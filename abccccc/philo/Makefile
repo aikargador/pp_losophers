@@ -1,0 +1,12159 @@
+NAME = philo
+
+CFLAGS = -Wall -Werror -Wextra -pthread -I includes
+
+UTILS = ${addprefix utils/, cuffs_ltd.c dish_washer.c utils0.c utils1.c utils2.c}
+
+SRCS = main.c philo.c simulation.c ${UTILS}
+
+OBJS = ${SRCS:c=o}
+
+%.o : %.c
+	@${CC} ${CFLAGS} -c $< -o $@
+
+${NAME} : ${OBJS} Makefile includes/pp.h
+	@${CC} ${CFLAGS} ${OBJS} -o $@
+
+all : ${NAME}
+
+clean :
+	@${RM} ${OBJS}
+
+fclean : clean
+	@${RM} ${NAME}
+
+re : fclean all
+
+.PHONY : all clean fclean re
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+zero_two:
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYJYYYGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYJ555JJPGPPGPPPGGGGBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBGYPGGBGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ555555JY7!~~~^~!!!J5GGGGBBBBBGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBB55GGGGGGG5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y555555Y~:^^^^^^!Y~:^75PPP5555YYYYYYJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBGYGBGGGGGGG55BBBBBGGGPPPPPPPPPGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY555555J~^:^^^^^~?~^^^7YY55555555555JPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBGGGG55GBP55PGGGGGBBBBGY5P5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY555555J~^^~^^^^!~^^^:~Y55555555555YYGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBGGGG5J5PGBBGGPPPPPPPY?YPGP5YPBBBBBBBBBBBBBGGGGGGGPPPPPPPGBBBBBBBBBBBBBBGB5J555555J~^~~~^^^~^:^^^:JYYY55555555JGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBG5BBBBBBBBGPP5YPGP5PPPPPPPPPPPYPPYGBBG55GBBGGPGPPPPPPPPPGGGGGGGGGPYBBBBBBBBBBBBGGGGGJ55555557~!^^::^^~~^^~^7JJ?5555555JPBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBBBBPY5Y55PGPPPP55P5P5PY?JJJYPBB5YPPPGGGBBGGGBBBBBBBBBBBBBP5BBBBBBBBBBBGGBBGB5J5555557!?7:...~JY7:^^~??J555555J5BGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBBBGP5G5JGP55PPGGGBGBBG5??5PYJYGBP5BGGGGGGGGGPPPGGGGGBBBBB5GBBBBBBBBBBBGBBBGGGJ555555Y~77:....:^:.:~~~J555555YYGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBGGPYJJ5PGBPPGGBBBBB5J?YGBBGPGBGYPGGGGBBBGPPPPPGGGGBBBB55BBBBBBBBBBBBBBBBGGG5J5555557:....:::..:7J7!~?5555YJGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBGYPGBBBBBBBGPYJJGBBBJ?Y5GBBBG5?75Y5GBBBBGGYGBBBBBGP5GGGPGBBBBBBG5BBBBBBBBBBBBBBBBBGGGJ7555555Y~^.:~~~^::!??YYJ77J5YJGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBG5PGBBBBBBBGGPJJBB5PYYYY5GG5G5YYGGPY5GGGGG5PBBBBGPPGGGPPGBBBBBG5GBBBBBBBBBBBBBBBBGGG5~~5555555J~~^^::^~!?Y5YYY5Y?7~!?Y5GGGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBB55PGBBBBBBBGGY?GB5Y5JGYPGPYYY55555PPYPGGGJ5GPPPYPBBBGPGGGBBBB5PBBBBBBBBBBBBBBBGGGG5!:^J5555555?!~~^~~!!77?Y5555JJ5J7~~!7JPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBGY5GBBBBBBBGPPJ55YY5YPBGGGPPPPY5Y5PPG5PBGYYGGBG5GGBBGPGBBBBBPPBBBBBBBBBBBBBBGGGGGP!^^^!Y5555555Y5?~~77!~~J5YY5Y?GBGGPY?!!!7PGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBB5YPBBBBBBBGGPJ55YYJYPBBBGBBJ77JYY?JGGYGBPYGBGYGBGGGPGBBBBBP5BBBBBBBBBBBBBBBGGGGG?^^^^:7555555557J?~~!77!7Y5557YGGGGGGGGGPJ?PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBY5BBBBBBBBGP5YY?JJJYBBBBBGPGJ?5YJPGBJPBGY5GYPBBGGGPGBBBBP5GBBBBBBBBBBBBBBGGGGGY^^^^^^~J555555Y!~~!7?!!??77?7^~7?JY5GGGGGBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBP5GBBBBBBBGGGY5J?YJ5BBBBBBBBGPPGBBBG?GPPG5YGBBBGGGPGGGBG5GBBBBBBBBBBBBBBBGGGG5~^^^^^^^~Y555555YYYYY5Y!?YJJJJ???JY?^~PGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBGGP5PGPPGGGGBBBBBBBBBBBB5J5P5PGPPGGGGGPGGGBGYGBBBBBBBBBBBBBBBGGGGP7^^^^^^^^:75555YYYYYYY5PYY55YYYPP5?7?J5PGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBBGPY5GBBP5GBBBGGGGGBGGBGJGBBP5PGG5PGBGGGGBG5GBBBBBBBBBBBBBBBBGGGGJ^^^^^^^^^^^?5YYYY55Y555YY555YYYYYYY?GGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBPJPBBBBBBBBGG5Y5GGGGGGP5YJYJJGBG5JPBGPPGGPPGPPPPGGGGYPBBBBBBBBBBBBBBBBGGGG5~^^^^^^^^^^^^JYYY55555Y55P555YYYYY5YJGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBGYY5BBBBBBBBBGPYY5PGBB5J5PPPY5BG5YGBP5GBBGGGPPGGPPGG5PBBBBBBBBBBBBBBBBBGGGG?^^^^^^^^^^^^:~Y5Y55555Y5GG55YYYYYP5JGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBG5PGYGBBBBBBBBGGP555PPGGP55PGBG5JPBGPPBBBBBBBBGPPGPP55GGGBBBBBBBBBBBBBBBGGG5~^^^^^^^^^^^^^:!Y5YYYYYYYY55YYYYY5YYPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBB5YGBYGBBBBBBBBBBGP5GGPPPPGBGPYYJ5B55PGBBBBBBBBGPPGG5PPPP5PPGGBBBBBBBBBBGGGP?^^^^^^^^^^~^^^:^YYYYYYYY555555YYYJJGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBB5JGBBYPBBBBBBBBBBGGP5GBGPY5P55JGJ5YJJJY5PBBGGPGGPGG5PGGGPPPP555PGGBBBBBBGGGP!^^^^^^^^^~!^^^^~Y55YYYY5GG555YYYY?PGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBPYGBBBG5BBBBBBBBBBGGG5YGGGGPPPPYJ?Y5PP5JY55PBGPPGPB5PBBBBBGGGP5YYYYY5GBBBGGGY^^^^^^^^^^^~^^^:^5BBGGPPY55YYYYYYJYGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBYGBBBBBBBBBBGGGJJGGPGBP5PY?JJ5P5Y5P55GBGPPGP5BBBBBBBBBBGGPPPPP55GBGGGJ^^^^^^^^^^^^^^^~?PGGGBBG!!?YYYYYY?PGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBB55BBBBBB55BBBBBBBBBBBBBGJ5PPPPGBGPP555PGP5PGGPGGPP55BBBBBBBBBBBBBBBBBBGPYPGGGJ^^^^^^^^^^^~~!JY5Y555PPJ!!?YYYYY?PGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBB55GBBBBBBGYPBBBBBBBBBBBBGY5PPPPGGGPGP5PGP55PYPPPP55YGBBBBBBBBBBBBBBBBBBBBGPPGG?^^^^^^^^~!?JY55555555YYYYJYYYYJ7JGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBBP5GBBBBBBBBBBBPYP55PPPGG55GP5PPGPP5YY5P5J5PGGGBBBBBBBBBBBBBBBBBBGGGGJ^^^:^~7JYY55555555555555555555~:^75PGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBGJPBBBBBBBBBBP5GBBBBBBBBBG5P5PPPGPPPGPPGBG5PGBBPYJJYYJ5GGGPPPGGGGBBBBBBBBBBBGGGGP~:^!JY5555555555555555555555Y7!^:^^!YGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBGJ5BBBBBBBBBBBB55BBBBBBBBG5GBGGPPPGGBBBGPPBGPPPPGGG5Y555Y5GBBGGGGPPGBBBBBBBBBGGGGG7!Y55555YY555555555555555555J^~?!^^^^~?5GBBGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBB5YBBBBBBBBBBBBBGYPBBBBBBBPPBBBBBBBBBBBBGGPPPGGGGGPPGBGGP555PGBGGGGPPBBBBBBBBBGGBPJJY5555555555YYY5555555555555J^:~J?^^^^^~!7J5PGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBGYPBBBBBBBBBBBBBBG5GBBBBBGPGBBBBBBBBBBBBGGGPPGGGBBBBBBGPPPGGPYPPPPGGGGBBBBBBBBGG5J5PPGGGGGGGGGGPP55Y5555555Y55YY!^^^JY!^^^^^^^~!7?J5PGBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBGYPBBBBBBBBBBBBBBBB55GGGGGPGBBBBBBBBBBBBBBBBBGBBBBBBBBBBBGGGBBP5BBBBBBBBBBBBBBBGYYPPPGGGBBBBBBBBBBGGP5Y555555YYY5?^^^^JPY7^^^^^^~!!~~~~7?5GGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBB5YBBBBBBBBBBBBBBBBBG5PGGGGGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBPYGPPPGGGBBBBBBBBBBBBBGP55YYY555YY5!^^^^!5P5J!^^^^^~!!JYJJPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBGYPBBBBBBBBBBBBBBBBBBG5PGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBGJ5GGGGGGBBBBBBBBBBBBBBBGGP55YYYYY5Y^^^^^^?5GPY7!^:::^75GBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBG5PBBBBBBBBBBBBBBBBBGPPGGGBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBGJYPGGGGBBBBBBBBBBBBBBBBBBBGP55YYY5!^~~^^^~JGGGP57?JPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBBPPGGPGBBBBBBBBBBGGGGP5GBBBBBBBBBBBBBBBBBG5YY5GGGBBBBBBBBBBBBBBBBBBBBBGP555J^^^~~^^^7PGPGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBG5PBBBBBBBBBBBBBBBBBBBBBBBP5GBBBBBBBBBBBBBBBGGGGGBBBBBBBBBBBGGGY5GBBBBBBBBBBBBBBBBBGGBGPYY5GBBBBBBBBBBBBBBBBBBBBBBBBGG5^:^^?J77?PGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55BBBBBBBBBBBBBBBBBBBBBBBBBG55BBBBBBBBBBBBBBBBBBBBBBBBBPJ?JY5PGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYPBBBBBBBBBBBBBBBBBBBBBBBBBGGBYPBBBBBBBBBBBBBBBBBBBBBBBB5YBBBBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBGYGBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBJPBBBBBBBBBBGJGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBB5PBBBBBBBBBBBBBBBB5?GBBBBBBBGYGBBBBBBBBBBBBGGGGGGBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJPBBBBBBBBBBJ!GBBBBBBBBBBJGBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBGYGBBBBBBBBBBBBBBBB5JGBBBBBBBB55GGGGBBBBBBBBPPGGPGBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?GBBBBBBBBBPJYPBBBBBBBBB5YBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBP5GBBBBBBBBBBBBBBBBYJGBBBBBBBBGYGGGGGGGGGGBBGGGGGGGBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBPJGBBBBBBBBPJGJPBBBBBBBBGYBGGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBB5PBBBBBBBBBBBBBBBBGJJPBBBBBBBB55BBBBBGGGGGGPPGGBBBBBBBBBBBBG5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5YBBBBBBBBGJGPJPBBBBBBBGJGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBYPBBBBBBBBBBBBBBBBGY55BBBBBBBGYGBBBBBBBBBBGYPYYPGBBBBBBBBBGYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBJ5BBBBBBBBYPBPJGBBBBBBBYPBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYJYYYGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYJ555JJPGPPGPPPGGGGBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBGYPGGBGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ555555JY7!~~~^~!!!J5GGGGBBBBBGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBB55GGGGGGG5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y555555Y~:^^^^^^!Y~:^75PPP5555YYYYYYJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBGYGBGGGGGGG55BBBBBGGGPPPPPPPPPGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY555555J~^:^^^^^~?~^^^7YY55555555555JPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBGGGG55GBP55PGGGGGBBBBGY5P5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY555555J~^^~^^^^!~^^^:~Y55555555555YYGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBGGGG5J5PGBBGGPPPPPPPY?YPGP5YPBBBBBBBBBBBBBGGGGGGGPPPPPPPGBBBBBBBBBBBBBBGB5J555555J~^~~~^^^~^:^^^:JYYY55555555JGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBG5BBBBBBBBGPP5YPGP5PPPPPPPPPPPYPPYGBBG55GBBGGPGPPPPPPPPPGGGGGGGGGPYBBBBBBBBBBBBGGGGGJ55555557~!^^::^^~~^^~^7JJ?5555555JPBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBBBBPY5Y55PGPPPP55P5P5PY?JJJYPBB5YPPPGGGBBGGGBBBBBBBBBBBBBP5BBBBBBBBBBBGGBBGB5J5555557!??:...~JY7:^^~??J555555J5BGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBBBGP5G5JGP55PPGGGBGBBG5??5PYJYGBP5BGGGGGGGGGPPPGGGGGBBBBB5GBBBBBBBBBBBGBBBGGGJ555555Y~77:....:^:.:~~~J555555YYGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBGGPYJJ5PGBPPGGBBBBB5J?YGBBGPGBGYPGGGGBBBGPPPPPGGGGBBBB55BBBBBBBBBBBBBBBBGGG5J5555557:....:::..:7J7!~?5555YJGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBGYPGBBBBBBBGPYJJGBBBJ?Y5GBBBG5?75Y5GBBBBGGYGBBBBBGP5GGGPGBBBBBBG5BBBBBBBBBBBBBBBBBGGGJ7555555Y~^.:~~~^::!??YYJ77J5YJGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBG5PGBBBBBBBGGPJJBB5PYYYY5GG5G5YYGGPY5GGGGG5PBBBBGPPGGGPPGBBBBBG5GBBBBBBBBBBBBBBBBGGG5~~5555555J~~^^::^~!?Y5YYY5Y?7~!?Y5GGGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBB55PGBBBBBBBGGY?GB5Y5JGYPGPYYY55555PPYPGGGJ5GPPPYPBBBGPGGGBBBB5PBBBBBBBBBBBBBBBGGGG5!:^J5555555?!~~^~~!!77?Y5Y55YJ5J7~~!7JPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBGY5GBBBBBBBGPPJ55YY5YPBGGGPPPPY5Y5PPG5PBGYYGGBG5GGBBGPGBBBBBPPBBBBBBBBBBBBBBGGGGGP!^^^!Y5555555Y5?~~77!~~J5YY5Y?GBGGPY?!!!7PGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBB5YPBBBBBBBGGPJ55YYJYPBBBGBBJ77JYY?JGGYGBPYGBGYGBGGGPGBBBBBP5BBBBBBBBBBBBBBBGGGGG?^^^^:7555555557J?~~!77!7Y5557YGGGGGGGGGPJ?PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBY5BBBBBBBBGP5YY?JJJYBBBBBGPGJ?5YJPGBJPBGY5GYPBBGGGPGBBBBP5GBBBBBBBBBBBBBBGGGGGY^^^^^^~J555555Y!~~!7?~!??77?7^~7?JY5GGGGGBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBP5GBBBBBBBGGGY5J?YJ5BBBBBBBBGPPGBBBG?GPPG5YGBBBGGGPGGGBG5GBBBBBBBBBBBBBBBGGGG5~^^^^^^^~Y555555YYYYY5Y!?YJJJJ???JY?^~PGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBGGP5PGPPGGGGBBBBBBBBBBBB5J5P5PGPPGGGGGPGGGBGYGBBBBBBBBBBBBBBBGGGGP7^^^^^^^^:75555YYYYYYY5PYY55YYYPP5?7?J5PGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBBGPY5GBBP5GBBBGGGGGBGGBGJGBBP5PGG5PGBGGGGBG5GBBBBBBBBBBBBBBBBGGGGJ^^^^^^^^^^^?5YYYY55Y5Y5YY555YYYYYYY?GGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBPJPBBBBBBBBGG5Y5GGGGGGP5YJYJJGBG5JPBGPPGGPPGPPPPGGGGYPBBBBBBBBBBBBBBBBGGGG5~^^^^^^^^^^^^JYYY55555Y55P555YYYYY5YJGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBGYY5BBBBBBBBBGPYY5PGBB5J5PPPY5BG5YGBP5GBBGGGPPGGPPGG5PBBBBBBBBBBBBBBBBBGGGG?^^^^^^^^^^^^:~Y5Y55555Y5GG55YYYYYP5JGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBG5PGYGBBBBBBBBBGP555PPGGP55PGBG5JPBGPPBBBBBBBBGPPGPP55GGGBBBBBBBBBBBBBBBGGG5~^^^^^^^^^^^^^:!Y5YYYYYYYY55YYYYY5YYPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBB5YGBYGBBBBBBBBBBGP5GGPPPPGBGPYYJ5B55PGBBBBBBBBGPPGG5PPPP5PPGGBBBBBBBBBBGGGP?^^^^^^^^^^~^^^:^YYYYYYYY555555YYYJJGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBB5JGBBYPBBBBBBBBBBGGP5GBGPY5P55JGJ5YJJJY5PBBGGPGGPGG5PGGGPPPP555PGGBBBBBBGGGP!^^^^^^^^^~!^^^^~Y55YYYY5GG555YYYY?PGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBPYGBBBG5BBBBBBBBBBGGG5YGGGGPPPPYJ?Y5PP5JY55PBGPPGPB5PBBBBBGGGP5YYYYY5GBBBGGGY^^^^^^^^^^^~^^^:^5BBGGPPY55YYYYYYJYGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBYGBBBBBBBBBBGGGJJGGPGBP5PY?JJ5P5Y5P55GBGPPGP5BBBBBBBBBBGGPPPPP55GBGGGJ^^^^^^^^^^^^^^^~?PGGGBBG!!?YYYYYY?PGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBB55BBBBBB55BBBBBBBBBBBBBGJ5PPPPGBGPP555PGP5PGGPGGPP55BBBBBBBBBBBBBBBBBBGPYPGGGJ^^^^^^^^^^^~~!JY5Y555PPJ!!?YYYYY?PGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBB55GBBBBBBGYPBBBBBBBBBBBBGY5PPPPGGGPGP5PGP55PYPPPP55YGBBBBBBBBBBBBBBBBBBBBGPPGG?^^^^^^^^~!?JY55555555YYYYJYYYYJ7JGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBBP5GBBBBBBBBBBBPYP55PPPGG55GP5PPGPP5YY5P5J5PGGGBBBBBBBBBBBBBBBBBBGGGGJ^^^:^~7JYY55555555555555555555~:^75PGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBGJPBBBBBBBBBBP5GBBBBBBBBBG5P5PPPGPPPGPPGBG5PGBBPYJJYYJ5GGGPPPGGGGBBBBBBBBBBBGGGGP~:^!JY5555555555555555555555Y7!^:^^!YGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBGJ5BBBBBBBBBBBB55BBBBBBBBG5GBGGPPPGGBBBGPPBGPPPPGGG5Y555Y5GBBGGGGPPGBBBBBBBBBGGGGG7!Y55555YY555555555555555555J^~?!^^^^~?5GBBGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBB5YBBBBBBBBBBBBBGYPBBBBBBBPPBBBBBBBBBBBBGGPPPGGGGGPPGBGGP555PGBGGGGPPBBBBBBBBBGGBPJJY5555555555YYY5555555555555J^:~J?^^^^^~!7J5PGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBGYPBBBBBBBBBBBBBBG5GBBBBBGPGBBBBBBBBBBBBGGGPPGGGBBBBBBGPPPGGPYPPPPGGGGBBBBBBBBGG5J5PPGGGGGGGGGGPP55Y5555555Y55YY!^^^JY!^^^^^^^~!7?J5PGBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBGYPBBBBBBBBBBBBBBBB55GGGGGPGBBBBBBBBBBBBBBBBGGBBBBBBBBBBBGGGBBP5BBBBBBBBBBBBBBBGYYPPPGGGBBBBBBBBBBGGP5Y555555YYY5?^^^^JPY7^^^^^^~!!~~~~7?5GGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBB5YBBBBBBBBBBBBBBBBBG5PGGGGGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBPYGPPPGGGBBBBBBBBBBBBBGP55YYY555YY5!^^^^!5P5J!^^^^^~!!JYJJPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBGYPBBBBBBBBBBBBBBBBBBG5PGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBGJ5GGGGGGBBBBBBBBBBBBBBBGGP55YYYYY5Y^^^^^^?5GPY7!^:::^75GBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBG5PBBBBBBBBBBBBBBBBBGPPGGGBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBGJYPGGGGGBBBBBBBBBBBBBBBBBBGP55YYY5!^~~^^^~JGGGP57?JPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBBPPGGPGBBBBBBBBBBGGGGP5GBBBBBBBBBBBBBBBBBG5YY5GGGBBBBBBBBBBBBBBBBBBBBBGP555J^^^~~^^^7PGPGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBG5PBBBBBBBBBBBBBBBBBBBBBBBP5GBBBBBBBBBBBBBBBGGGGGBBBBBBBBBBBGGGY5GBBBBBBBBBBBBBBBBBGGBGPYY5GBBBBBBBBBBBBBBBBBBBBBBBBGG5^:^^?J77?PGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55BBBBBBBBBBBBBBBBBBBBBBBBBG55BBBBBBBBBBBBBBBBBBBBBBBBBPJ?JY5PGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYPBBBBBBBBBBBBBBBBBBBBBBBBBGGBYPBBBBBBBBBBBBBBBBBBBBBBBB5YBBBBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBGYGBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBJPBBBBBBBBBBGJGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBB5PBBBBBBBBBBBBBBBB5?GBBBBBBBGYGBBBBBBBBBBBBGGGGGGBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJPBBBBBBBBBBJ!GBBBBBBBBBBJGBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBGYGBBBBBBBBBBBBBBBB5JGBBBBBBBB55GGGGBBBBBBBBPPGGPGBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?GBBBBBBBBBPJYPBBBBBBBBB5YBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBP5GBBBBBBBBBBBBBBBBYJGBBBBBBBBGYGGGGGGGGGGBBGGGGGGGBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPJGBBBBBBBBPJGJPBBBBBBBBGYBGGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBB5PBBBBBBBBBBBBBBBBGJJPBBBBBBBB55BBBBBGGGGGGPPGGBBBBBBBBBBBBG5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5YBBBBBBBBGJGPJPBBBBBBBGJGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBYPBBBBBBBBBBBBBBBBGY55BBBBBBBGYGBBBBBBBBBBGYPYYPGBBBBBBBBBGYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBJ5BBBBBBBBYPBPJGBBBBBBBYPBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP555GGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJY5JJPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ5555Y?5GGPYYJJJY5PGBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5J555555J?!~^^^::~7~!JGGGPPPP5555Y5Y5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBGGGBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY555555J^^^::^^^!Y~^^7YYYYYY5555555JBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBGPBBBBBBPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY555555Y~^^^^^^^~~~^^^J55555555555J5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBGPGBBBBBBBGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJ5555555?^^^~^^^^!~^^^:~Y555555555YYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBGPBBBBBBBBBBPPGBBBBBBBBBBBBGGGGGGGBBBBBBBBBBBBBBBBBBBGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBYY555555Y!~~^~^^~~~^~^^^JJJ5555555?GBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBG5GBBBBBBBBBBGGGGBBBBBBBGGBBGGGP5GGGBBBBBBBBBGGGGGGGGGGGBBBBBBBGGBBBBBBBBBBBBBBBBBBBBGGJ555555Y!~!~:.:^~77!:~^~7J555555J5BGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBG5BBBBBBBBBBBGGGGGGGGGGGGGGGGGGPGGGGBBBGGGGGGGGGBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBGG5J5555557!J?:...^7?!:^^~J555555YYGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBG5BBBBBBBBBGGGGGGGGGGGGGGGGGGGGPGPPGGBBGGGGGBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBGGGJ555555Y~~^........:^~~Y55555YJGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGPBBBBBBBBBGGGGPGGGGGGGGGGGGGGGGPPPPPGGBGGGBBBBBBGGGGGGBBBBBBBPGBBBBBBBBBBBBBBBBBBBBBGGG5J5555557...:::^^.:^!?!^J5555JPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGPBBBBBBBBBBGGGPGGGGGGGBGBBBBGPPPGBBGPGBGPGBBBBBGGGGGGBBBBBBBPGBBBBBBBBBBBBBBBBBBBBBBGGGJ7555555J~:::~~~:^~7Y5Y7~!J5JPBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGPBBBBBBBBBBBGGPGGBBGGGGGBBGBGPPPPGBBBBBBGGGGBBBGGGBBBBBBBBBGPBBBBBBBBBBBBBBBBBBBBBBGGGY^~5555555?^~^::^~~!JJYYYY?7~~!JJ5GGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGPBBBBBBBBBBBBGPGBBBGPPGGGBBBGPPPPPPGGGBBBGGGGGGBBBBBBBBBBBBPGBBBBBBBBBBBBBBBBBBBBBBBGY~:^?555555P7^^^^!77!~!7YY55JJY?!~^~7?YPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGPGBBBBBBBBBBBGPGBGPGPGGGGGGGGGPPPPPPPGGGGGGGGPGBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBP!^^^!5555555PY~^^7?!~^7GP55JJGGGGP5Y?7!!!YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBGGGGGPGPGGGGGGPGGGGGGGBGGGGGGGGPPBBBBBBBBBBBBPGBBBBBBBBBBBBBBBBBBBGGGGG7^^^^:?555555PJ!!^^!7?7~?5PP7YPPGGGGBBGGPY?5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBGGGGGPPGGGGGGBBGPPPPPPGGGGGGGGPGBBBBBBBBBBBBPGBBBBBBBBBBBBBBBBBBBGGGGG?^^^^^^~Y555555?!!~!!~!777777!^:!?JPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBGGGPPPPPGGGGGGGGPPPPPPPGGGGBGPPGBBBBBBBBBBBGPBBBBBBBBBBBBBBBBBBBGGGGGJ^^^^^^^^7555555YYJYY?JY?7?YYYYYJ7?!^JGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBGGGPPPPPPBBBBGGBBGPPPGGGGGGGGGGGBBBBBBBBBBGPBBBBBBBBBBBBBBBBBBBBGGGGY~^^^^^^^^^Y5555YY555555PP5Y5YY5PPY!?YPGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBGGGGGGGBBBBBBBBBBBBBBBBGGGGGGGGGBBBBBBBGPGBBBBBBBBBBBBBBBBBBBGGGBP~^^^^^^^^^^!YYYY555555YYYY55YYYYYYYJ5BGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBPGBBBBBBBBBBGGGGGBBGBBBBBBBBBBBBBBGGGGGGGGGGBBBBBBBPGBBBBBBBBBBBBBBBBBBBBGGGG!^^^^^^^^^^^^7YYY55555555P5Y5YYYYY55JPGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBPPBBBBBBBBBBGGGGGGGBBBBBGGGGGGBBBGGGGGGGGGGGBGBBBBPGBBBBBBBBBBBBBBBBBBBBBGGG7^^^^^^^^^^^^^^7Y55555555PG5YYYYYYPPJ5GGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBB5GBBBBBBBBBGGGGGGGBBGGGGGGPPGGGGGGGGGGGGGGGGBBBBGGBBBBBBBBBBBBBBBBBBBBBBGGY^^^^^^^^^^^^^^^^7Y5Y55555Y5YYYYYY5PJ5GGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBB5GBBBBBBBBBGGGGGGGBBGGGGGGGGGGPGGGGGGGGGGGGGGGBGGBBBBBBBBBBBBBBBBBBBBBBBBG!^^^^^^^^^^~~^^^:^Y5Y5555Y555YYYYY5J5BGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBGGGPGBBBBBBBBBGGGGGGGGGGGGGGGGPPGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBGGY~^^^^^^^^^^~!^^^^^J55YYY5PGP55YYYYY?GGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBPGBPGBBBBBBBBBBBGGGGGGGGGGGGPGPPGPGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBGGP!^^^^^^^^^^^~~^^^::YBGGPP5PP5YYYYYYJYGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBGPGBGPBBBBBBBBBBBBGGGGGGGGGGPGGPPGGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBGGY~^^^^^^^^^^^~^^^^~?PGGBBBY!JYYYYYYYJGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBGPBBBBGBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGGGGGGBGGGGGGGBBBBBBBBBBBBBBBBBBBBBBGJ!^^^^^^^^^^^~!~7JYYY55PP57~!JYYYYY?PGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGGBBBBBGGBBBBBBBBBBBBGGGBBGGGGGGGGGGGGGGGGGGGGBGGGGGBBBBBBBBBBBBBBBBBBBBBBBGG?^^^^^^^^^~!7JJY555555555YJJYYYYYY?5GGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBGPGBBBBBGGBBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBGGG?~^^:^~7?YY555555555555555555Y5Y5?!PGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBGGGBBBBBBBGGBBBBBBBBBBBBGGGGGGGBGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBGGGP^^!JY5555Y5555555555555555YYYYY!:^JPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBGGBBBBBBBBGGGBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBGB575PP5PP5555YY5555555555555YYYY?^:^^!YGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBPGBBBBBBBBBBGGBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBGJJPGPGGGBGGGGP55Y55555555555YYY5?7!^^^^!JPGBGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBPPBBBBBBBBBBBGGGBBBBBBBBBGGGGGGGGGGGGGGGGGGGGBBBBBGGGGGGGGGGBBBBBBBBBBBBBBBBBBBGJYGPPPGGGBBBBBBGGP55555555555YYY5J^?J~:^^^~7YPGBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBG5BBBBBBBBBBBBBGGBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGBBGBGGGGGGGGGGBBBBBBBBBBBBBBBBBBBP7PPPPGGGGGBBBBBBBBGP555555555YYYYY~^?57~^^^^^~!?Y5PGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBGPGBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBGGGGGGGBBBBBBBBGGGGGGGGGBBBBBBBBBBBBBBBBBGGYYGGGGGGBBBBBBBBBBBBBG55Y5555YYYY5!^^7PP?~^^^^^^^^~!!75GGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBGPGBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGBBBBBBBBBBBBBBBBBBBB5JPGGGGGBBBBBBBBBBBBBGGP55Y5YYYY5J^^^~YGPJ!^^^^^^^!YPGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBGPGGBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBGGGYY5PGGBBBBBBBBBBBBBBBBGGP5YYYY5Y!~^^^75GPY?!~^!JPGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBGPGBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBGGGP5YPBBBBBBBBBBBBBBBBBBBBGPP5Y557?!^^^~?5GGGGPGBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBGPGBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBGBGYGBBBBBBBBBBBBBBBBBBBBBBGP5P?^!7~^~^7PGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBG?^~?PPPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBGGBBBBBBBBBBB5YPGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBPGBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBB57BBBBBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJBBBBBBBBBBP?JBBBBBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBPPBBBBBBBBBBBBBBBBBBBGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5BBBBBBBBBGY5YBBBBBBBBBGJBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBGPBBBBBBBBBBBBBBBBBBBG5BBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBJG5YBBBBBBBBGJGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBPGBBBBBBBBBBBBBBBBBBBGPBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBPYBBBBBBBBBJPBJPBBBBBBBBJGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJYY5GBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG?555YJ5GGBBGGGPPGGBBBBBBGP555Y5YYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY55555JYPY?!~~^^!!7YGP5YYY555555?GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ5555555?~^^::^^^YJ^^!Y555555555YJBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJP5555557^^:^^^^^77~~^!555555555J5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ555555J!^^~^^^^~!~~~^:7Y5555555?GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJP55555!~^~~~^^^~~~~~^^^7555555JYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ55555Y77~7~^::~~~~~~~^~Y555555JGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY5555Y7~!JJ^...^?YY~^^?555555J5BGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJ55555?7^??^....:~^:^^755555YJGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG5J55557?^...:...:...^~~55555JPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGJ5555Y!!^:..~!!~::^?J^J555YJBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBJJ5555?~!!^^^^:^~~?YY7~Y55JGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG5~!5555P?^~~^::^^~77!7J~!YJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5!:~Y5555P?^~^:^7^^~^7PP?^^~?5GBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP!^^^?55555P?^^^~?!:::^5BP?^^::~J5GGGY7~YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5!^^^^!55555PGJ~^^!7^:::~J5Y~^^::::^^~!YPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5!^^^^^^J5555P555!^~77!^^::^!~~!:~?????5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBY~^^^^^^:?5555P?~!~~!~!7??775YY?7J~7GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ^^^^^^^^^~Y55555Y?JY5YJJJY55PP55J?!!GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?^^^^^^^^^^^!555555555PGP5555555555JYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJ^^^^^^^^^^^^^755YY5555Y55555555YYY5JPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGG?^^^^^^^^^^^^^^^?YYY55555P5555555555YJGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJ~^^^^^^^^^^^^^^^^J5Y5555GG55555555P5JPBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGJ~~^^^^^^^^^^^!^^^^~Y55555Y55555555YYJYBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGY~~^^^^^^^^^^^~!^^^^:!55Y55555555555Y5?5GGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGP!~^^^^^^^^^^^^~~^^^^:?GGP5PGP5555555PYJGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG?~~^^^^^^^^^^^^!!^:^!JPBBBJ7?5555555YYJGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP!~~^^^^^^::^^:^?7~7J555PPY!!75555555?75BGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5~~^^^^:^~!?J??7?JJ55555YYYYYY5555555J75BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJ7J^^^^~YPPGGGGPP555555555555555555555JYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBPPY:^^^JGGPPPGGGGG5Y555555555555555555Y7GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5^^^^?PGPPPGGGBBG55555555555555555555!YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG!^^^7PGGPGGGBBBBGP5555555555555555YJ7?BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJ^^^~YGGGGGGBBBBBGP555555555555555Y?J7?5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP~~^^!PGGGGBBBBBBBBGP5555555555555YJY7::~7J5PGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJ^^^^75GGBBBBBBBBBBBP555555555555YJYJ7~:::^^~!!~~75BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG7^^^^!PBBBBBBBBBBBBBG55555555555YYYJJGY7~^:::^!JPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPP5JJBBBBBBBBBBBBBBGGP555555555YYY75BBGPJJYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYGBBBBBBBBBBBBBBBBBGPPP5555YYYJ~?GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBGGGP55P?5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBP5YJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBB5PBBBBBBBBBBBGYY5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBB?PBBBBBBBBBBPJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJPBBBBBBBBB5BBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGBBGGGGGGGBBBBBGGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGBBGGGGGBBGGGGGGGGGGGBG5YYYYYJ5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB57J?JYPGGGGPY?!!~~~!?J5P5YYY55555J5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5?Y55YYJJYJ?~^:::::^7Y^^7Y55555555JGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG?5555555555?^^:^^^^^!?~~^75555555Y?GBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPPPPGGP5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ55555555Y7!~^^^^^^~!~^~^^7Y55555JYBGBBBBBBGGP55P5555PGGBBBBBGGPPPGGBBBGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ555555YY7^~^^~~^^^~!~^^^:~Y55555JGGGBBBBGP5555PPPPGGP5Y5PGGGPPPGBBBBBBGPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY55555!^^~!^!~^^^~~~~^^::?55555YYGGGGPYYJJYY5Y555555YY5555Y5PPGGGBBBBGPPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ55555?^^~^!7!:..:7J7~::!YYYYYY?YP5P5YYJJ5Y555YYYY55YJJJPGP55PGGGBBBBGPPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYJ55555!^!^!J?:...:!~^^^J555555YBBGGPYJ?J5PPGGGGGGGPY???7YGP55PGGBBBBGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPJ555557~^::::::......^^JY5555JYBGGPYJYY5GBBBBGGGGGP55PGPPGBP5PGBBBBGPPPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBPJ5555?!^:^...:^~~^ .~^?YYYY5?PGGPPPPPPPGGGGGPPGGYJ7?PBBBBGP5PGBBBBGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG5J555J77~^::.^~^^^:^?^!YYYY??555Y5P5Y?YP55P5JJPPJJY5PGBBBG5PGGGBBBGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGYY55Y?J7!^^7~:::^~^!!^Y55J?5PPP555J77?YYY55??Y5J?JY5GGPPP5PGGBBBGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGB5!YYJ??7!!^^^~^:!~^^^^!YY!5PYPPY5Y77????JYPPPPY????YGPPPPPGGGBBBGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGG!:7YJ?7?!!?~:77^^:^Y7^^!J!JP5YYY5Y777!77?5GGGG5?777?PPPPPGGGGBBBGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG!:J?7Y?7?J!?7^~7~:::Y5!~^~!!?J5JY5?^:!J??J5GGGGBG5YY5PPPPGGGGBBBGPPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGY~!!^~JY?!?Y7^^~77^::7J7!~!!~^:~^:::??JGGGGGGGGGBBBBBGGGPPGGGBBBBGPPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGP?^^^::?55Y7~!?!~!7?7!!~^!~~~~^^:!J??JP5?5GGGGGGPGPPPGGGPGPGGBBBBBGPPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGG57^^^^^^J5555J777!JJJJJJ?J5J7JJ^~^75PY?5P5J5PGG5YYYYJJ5GGGGPGGBBBBGGPPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGG?^^^^^^^^Y5555555Y55PGP5YY55PJ75?:^?555YY5PGPYYPP5Y5P55555PPPGGBBBGGGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG5!^^^^^^^^^7555555555Y555555Y5Y5J?Y^^555P5GG55GBGP555PP5555PGPPGGBBBGGGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGJ^^^^^^^^^^^^!YYYY5555YYY555YYYYYY?!:!P5PPPPGG5Y5PGG5JY5PPPPPGGGPGBBBGGPPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGP7^^^^^^^^^^^^^^!YYYY555YPGP5YYYYYYY7:.JP5PGP5GG5YJJY555PPPPGGGGGGPGGBBGPPPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGY!^^^^^^^^^^^^^^^^7YYY555Y55555YYYYYY!::YP5PGPPPPP5YYYYY5PPPPGPPPGGGPGGBGP5PGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGY~^^^^^^^^^^:^^^^^^^?5Y5Y55YY5555YYY5Y^:^Y555PGPPPPGGP5PPPPPPPP555PGGGPGGGP5PGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG5~^^^^^^^^^::::^^^^^:^J55555555555Y5P57::JG5Y55GGP5PGGPPPPPPPPPP55P5PGGGPGGGPPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGP7~^^^^^^^^:::::^^^^^:^5GGY7Y55555YY5GY^:~PGG555PGGPY555GGPPPPPPG55GG5PGGGPPPP5PGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGY~7^^^^^^^::::::^^^^^!J5PP7~?55555YJ?J?!:JGGGGP555GGP55PGPPGGPPPP5Y55555PGGGPPPGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG7^7^^^^^^^^~:::^^^^!JY5Y5YYJJ55Y55YYJJ?J!5GGGPPPPP5GBP5P55PGGPPPPPP5555555PGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGP7JJ::^^^^:^7^^~^!?Y5YYYY555555555555YYYJ?7PGPPPGGGG5PP5PPPPGGGGGGGGPPPGGGGGPPGGGGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGJ::^^^^~7?Y555555YYYYY5555555555YYYYYYY!!5PPGGGGGGPGGGGGGGGGGGGGGBGGGGGGGGPPGGGP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPG?:::^^~5PPPPPPPPPP55Y555555555YYJJYYYYYJ:~5PGGGGGGGGGGBBGGGGGGGBBBBBBBBBGGPPGGGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG5?::::~555PPPPGGGBBG55555555YYJJYYYYYYY57^YPGGGGGGGGGBBBBBBGGGGBBBBBBBBGGGGPGGGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG?^^::?PPPPPGGGBBBBGP5555YYJJYY5Y55YYY5Y!?5GGGGGGGGGBGBBGGGGGGBBBBBBBGGGGGGGGGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGP55Y7JPPPGGGBBBBBBBP5YJJJJYY5YYYYYYYY5!:75GGGGGGGGBBGGGGGGGGGBBBBBBGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGG5^JPGGGGBBBBBBBGPYJJJYY55YYYJYYYY5?^:~?PGGGGGGGGGBBGGGGGGBBBBBBGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGG57JPGGBBBBBBBGPPPP55YY55YYYJYYYYYJ7!:.:!?YPGGGGGGBGGGGGGBBBBBBGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBPJPBBBBBBBG5Y5GGGGGP55YYJJYYYYYY7YPJ!!?YPGGGGGGBBBBBBBBBBBGGGGGGGBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGB5YBBBBBGP5Y5PGGGBBBGGPPYYY55YY5J!PG55PGGGGGGGBBBBBGGGGGGGGGGGGGBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGB55BBBBGPYY5GGGGGGBBBBBBGGGGGPP55JPPP55PPGGGGBBBBBBGGGGGGGGGPPGGBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBG5Y5GGGGGBBBBBBBBBBBBBPYJY5PPPPP5PPPPGGBBBBBGGPPPPGGPPPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBGPY5GGGGGBBBBBBBBBBBBPYJPBGP5PPGP5PP555PGBBBBBGGP55PGGP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJBBBG5PGGPPGBBBBBBBBBGBB5JPBBBG55PPPP5PP5PPPGBBBBBGP5P5Y5PGP5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGBBBBGPP5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGPPPPPGGGGGGBPYJY55J5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBGGGGGGGGGGGPY?!!~~~!?Y5P5YJY555PJYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP5PPP5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGP5J?~^::::^^^J!^7Y5555555?PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP5PGBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYJYYYYYYYYJJJJ7^:^^^^^^^7~^^75555555JBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBPPPGBBBBBG55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ55555555555?~~~^^^^^^^^~^~^^755555YYBGBBBBBBBBBBBBBBBBBBBGGGGGGBBBBGGGGGPPGBGPPGGGGBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJ5555555555Y~^~~^~^^^^~~~^^^^755555JPBBBBBBBBBBBBBBBBBBBGGPP55YYYY55YY5PBGGGG55GGGGBBBBBB5YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ55555Y7J?~^~!^~!^^^~!^^^^^~Y55555JGGGGGGGGGGGGGGGGG5YYYJY55555P5P5JJY?5GGGGGGPPGGBBBBBGYYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGYY5555Y7??^^~^!!~:..^77!^^^?555YJ??555PPPPPPPPPPPPPGP?JY5YY555555YYJ77JJ?PGGGP5PGGBBBBBPJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPJ55555Y7~^~~:!J7....^77^^!YY5Y7J?PGGGGGGBBBBGGBGBGPY?J5PGGBBBBBBBBP??55J?PBGYYPGGBBBBB5YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG5J55555Y!^~!::^::.....^:~J5YYY!Y?GGGGGGGGGGGGGGGG5YY5GBBBBBGGGGGG5?YGBBBBBBGY5GBBBBBBBY5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGYJ5555Y~^!Y!:..::^^~::^7Y5YY5??JBGGGGGPPPPGBBGGPYPGPGPG55GBGYPGY777YGBBBBB5JPGBBBBBBPY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG?Y555?^!?77~^::^~~^::^JYYYY5Y~^PGGGGGPGP55555YJ55YYYYGJ?GG57YGJ~JGJ5BBGGGYYPGBBBBBB5YPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGP7Y557^!YJJ!7?!:::^^:^YYYY555!.!PGGGGPGG5?PGGYJPJ7J??5YJPGYJY5J!?JJJGP5G5Y5GGBBBBBG55GGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG5?557^^?YJ7!~!~::^::^?YYY55J:.:JGGGGPPGB5JG5JPP?!7777?JYPGGG5J7777?PP5GYYPGGGBBBBGY5BGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG5?5J^^~JYY?~~~:~~:::^?5555J^:.!PPGPPPPBBY5J5GPY?5J7!!!?GGGGGY!~!?75GG5J5GGGBBBBGPYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG57J7^^75G5~:^~!^:J~:^JY55Y~^:^YGGGGPPGG5JYGGPPY??7~!7?GGGBGGG?!7JGGPY5PGGGBBBBG5YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGP?J7^^75?::~77:^PY~^~?YYY~:^^?PPGGPPPPPY5P55GGJYPJ?J5GGGBBBBB5JGBGYYPGGGGBBBGGY5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPGGY!J?~^~7~!7?7!!7?7!!~~?Y~^:^JYPPGPPPPPPPPP5GBPJPBBGGGGBBBBBG55GG5Y5GGGGBBBBBPYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGG57~7JYJ7!?J?JYYYY?7?YJJ!~~^:::?Y5PPPPPGGGGGG5PBBYJGGGGGGGP55PPPGG5Y5PGGBGGBBBBYJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPGP?^:!YYY55555555GP5YYYYYYYJ~::::75Y5PPPPGGGGGGG5PGGYJ5GGG57??J5GGGG55PGGGBBGBBBGJYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGP5?~^^^?5YYYYYYYYYY55YYYYYYYY?^:^:^~YPPPPPGGGGGGGGGP5PGPYJYPG5YY5GGGGP5PGBBBBBBBBBPJPBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPY7^^^^^^?5YYYY55YYYYYYYYYYYYY?^^:::~??PPPPPPGGGGGGGGGG5PGGG5YY5GGGGGBG55PBBBBBBBBBGYYGBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPP5J~^^^^^^^^~JY555555555PP5YYYYYJ~^^^::75?JPPPP55GP5GGGGGGGGP5PGGGP5PGGGBG55GBBBBBBBBBGY5BBGGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGG5?^^^^^^^^^~!^^75555555Y5555YYYYY!^^^::^JGPYYPPP5YGGPYGBGGPPPPPPPPPPPPPGGBG55GBBBBBBBBG5YGBBBG55GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPGGPJ~^!~^^^^^^!7^^^^7555555Y5555YYYYJ^^^^^:~5PPPYYGP5YGGGPJPGGP5Y5555555PPPGGBB5YGBBBBBBGGGY5BBBBGPYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG5!^!J!:^^^^:7?^:^^^^?55555555PP5Y5P?:^:^^:7PPPGPJYGPYPBGGP?5GGGGPY5PPGG55PPGGBPJ5GBBBBBBGGYPGBBBBG5YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGY^~JY!:^^^^:7J^:^^^^^^?55555555Y?YGG5~^:^^~5PPGGGG5YGPYGGGBPYGGGGJ5GGGG5YYPP5PBGYJGGBBBBBBG5PGBBBBBGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPG5^~YY~:^^^^:!Y!:^^^^~~:757J555557~?555J?~::?GPGGGGGGP5P5YPGBGYYPP5?GGGPJ55JPP55GBG5PGGBBBBBG5PGBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGP!~YY~:^^^^^~5J^:^^^:!~~J57J55555YJJYYYYYJ!~5GGGGGGGGBGP55YPGGG555Y5GG5YPGPJPPY5PGGPPGGGBBGBGP5GBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGG5?55~:^^^^^^J57:^^:^~7JYYY555YYYY5YYYYYYYYYJJGGGGGGGGGBBB5YP5PGGP55P55PGGGPY5555PGPPPPPPGGGBGP5GBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPG?:^^^^^^~557^:^!?YYYYYYY55YYYYYYYYYYYYYYYJ?PGGGGGGBBBGP5GG55GP5PY5PGPPPPPGGP5PPPPPPGGGGGGGP5GBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGP!:^^^^^^?55~~?JYYYYYYY555YYYYYYYYYYYYYYYYYJ?PGGGGGGBG55PGGPP5PGGGGGGGGGPPPPPPGPPGGGGGPGP5PPGGBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGP^::::::^55J7J5555555YYY5555555YYYYJYYYYYYY5J?GGGGGGPYPGGGGPPPGBBBBBBBBGPGPPYPGBGGGGGGPPP5YGBGGBBBBGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPJYYJ??7?Y?J5PPPPPPPPP55Y555Y55Y555JYYYYYYYYY?5GGGGGYGGGGGGGGGGBBBBBBBBBGGG5?GBBBBGBBBGPP55GGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGJJGPPPPGGGGBBBGP55Y55555Y5JJ5YYYYYYYY?PGGG5YGGGGGGBBBBBBBBBBBBBBBB5?GBBBBBBBBBGP5GBGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGJYGPPPGGGBBBBBBBG555Y55Y5JJ55YYYYYYY?PGGPPYGBGGGBBBBBBBBBBBBBBGGB5?GBBBBBBBBBP5PGGGGGBGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGJYPPGGGBBBBBBBBBBGP555YYJY5YYYYYYYY?5GGGG5YGGGGGBBBBBBBBBBBGGGGG5?PBBBBBBBBG5PGGGGGGBBGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBPJ5PGBBBBBBBBBBBBBGGPP5?YYYYYYYYYYJJPPGGGPYGGPPPGBBBBGBBBGGPPPGP?5GBBBBBBG5PGBBBBBBBBBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGYYBBBBBBBBBBBBBBBBBBGPPPP5555YYY?75PPGGGPPPPGPGGGBBBBBBGGPGGGGJYGGGGGBG5PGBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBGJBBBBBBBBBBBBBBBBBBBBBBBGGGPJ777YGGGGGGGG5PGGGGBBBBBBBBBBGGGBYYGGGBGG55GBBBBBBBBBBPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBGP5??Y?JPGGGGGGGBGPGBGGGBBBBBBBBBBBGBPJPGGGGPYPBBBBBBBBBBG5YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJGBBBBBBBBBBBBBBBBBBBBGP55Y??YJYPGGGGGGGGGGPPGGGGGBBBBBBBBGGGGGY5BGGGYYGBBBBBBBBBBGJYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJBBBBBBBBBBBBBBBBBBBB5YJYY7J5YYPGGBBBBGG5YYGPPPPPGGGBBBBBBPPPPGPYGGGGYYGBBBBBBBBBBPY5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGBGP55GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGGGGGG5JY55JPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGP5YJJJJJY5PPJJ5555JYBGBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP5PPPP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPY7^^^^^^~^^^~!J55555YYBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5PGBBBG5YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPPP555YY7^:::^::!J^^^::755555Y5GGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5GGBBBBBGJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5YY5YYYYYYYYY!^:^^^^^^~^^^^^J55555YYGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPP555555555PPGBBP5GGGGBBBBGJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ55555555555Y!^^^^^^^^^~^^^^!555555J5GGGGBBBBBBBBBBBBBBBBBBBBBBBG5555PGGGGBGY5BGGGP555JPPGGGBBBBBY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG5Y5555555YJJ7^~~^^^^^^~^^^^^J555555JGGGGGGBBBBBBBBBBBBBBBBBBBBB55PGGP555555JJJ5GBBBBGGPJ5GBBBBBBBYYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGYY555555?~~^!~~~^^::^~~!!^~Y555555?GGGGGGBBGBBGGGGGPPPPP55PP5YY55Y555PPPPPJ?YJYYPGGGBPJ5GBBBBBBBYYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGJJ5555Y?~~~7^^7?^...~?J7^7555555Y~YGGGGGPPPPPPPPPPPGGGGGGGG?J5P555YY55YYYJ??Y5Y?YGBBYYPGBBBBBBBYYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGJJ5Y777J?757^~7^... ^~:^JYYY555?:^55YPPPGGBBBBBBBGGGGGGGG5?YY55PPGGBBBGBGJJPPPYJYBGJ5GGBBBBBBGJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBGGG??~7YYYYJ?Y~:..:..:^^^7YYY555Y~^^7J5GGGGBBBBGGGGGGGGGGG57J5GBBBBBBGGGGGY5GBBBBGBB5YPGGBBBBBBPJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGY~^~55YYYYJ7?^:::^~~^^~Y5YY555J^:^~?YPGGGGGGGGGGGGGBBBGPYYPGBGG55GBGPB5?JYYPBBGJGGJ5PGBBBBBBB5YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGP!^^~?Y5YYYYJJ?~~^^^^~7Y555YY557::^~!YYGGGGGGGGGGGPPP55JJ5??B5PPJ5BB5Y5J?JPG5PG5JG5J5GGBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG5~^^~J?Y5YYYYJ777!!^^?J5555555Y~:^^^~JY5GGGGGGGGGGGYPPJYPJ?JGJYJJGBG5YJ5??55Y?5Y5GYYPGGBBBBBBBY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGG5~^^~J5?J55YJ??!^~~^~YY5555555?:^^^^~7PJ5GGGGGGGGGBPY55G5JJJY?7?JYPGGPPYYYJJ7?JJGGJ5PGGBBBBBBG?JBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGG?^^^~?PJJ5555!::~~^!55555555Y!:^^^^^!YPY5GGGGGGGG55PGGG5YYJPYJ??7YGBGBGG?!7?JJGBPJPGGBBBBBBBGJJ5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGP7~~!~~?!7?7:.~77!^~?5555555Y~^^^^^^^?PPYPBGGGG5YPGP5YYPGB5?J!!7??PGGGGGGP?7JGBB5YPGGGBBBBBBPYG5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGP?~~~^!!7?7!7?JJ?~^?Y555555J^^^^^^^^~5PPYGBGP5PP55PGP5PBBBYJ57!7JGGGGBBBGJJGBBPJ5GGGGGBBBBG55GGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGP5J!?Y5555YY5555?^?YYYY5557^^^^^^^^^YPP5YP55P5YPGGGGG5PGBG?PGPP5PGGGBBGJYBBG5?JPGGGGBBBBBPJGPPPYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGY?YYY55YY5555P5Y7!Y5YYYYY~^^^^^^^^^YPPP5YGG55GGGGGGGG55GG5?GGGPPGBBBGY5GBPJJJ5GGGGGBBBBB5JGG5P55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG5?YYYYYYYYYYYYYYYYYYYYYYY7^^^^^^^^^^JPPPPGGP5GBGGGGGGGGP5GG5JPGGGGG5J75GB5???JPGGBBBBBBBGY5GBG55YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGP?YYYYYYYYYYYYYYYYYYYYYY7^^^^^^^^^^^JPPPGGG5PBBBGGGGGGGGG5PP5Y55GGPY?YGBY?55YPGGBBBBBBBBGYGBGGG5Y5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG5?YP5Y555555P5YYYYYYYY?^^^^^^^^^^^^JPPPGGGG55GBGGGGGGGGGGGGP5Y?Y5PP5GG5?Y55PGGBBBBBBBBB5YBBBGBPYJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGPYY5YYYYYY555YYYYYYY?^^^^^^^^^^^^^JPPPGGGGG5YGBGGGGGGGGBGGGPYYPP5PGGGJYYYGGGGBBBBBBBBGY5BBBBBG5JYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGJ?5YY5YY5YYYYYYYYJ~^^^^^^^^^^^^^?JPPGGGGGBPYPBGGGGGGGGPPPPPPPGGGGG5J5YGGGGGBBBBBBBBPYGBBBBBBG5JPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGPP5?!^~YYY55YY555YYY5PJ::^^^^^^^^~^^^JYPPGGPGGGGGY5GGGGGGP555YYY5PPPGGGYY?YGGGGGBBBBBBBG5PBBBBBBBGGY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGG5J7~^^^^:!55Y55Y5PP5YPPGP!^::^^^^^~~^:!5PPPGGGGGGGGB5YGGGPPY5PGYYPGGPGGBGYYYPBBGGGBBBBBBBGYGBBBBBBBBGPYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGP5?7~::^^^^^^^7Y555555?7JGGGPYJ?!^::^^~^^:?GPPPGGGGGGGGGB5JPGPPPBGJ5GGGGPPGBG555GBGGBBBBBBBBB5YGBBBBBBBBBGY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG5?~^^~~^^^^^^^^^:~YY555Y!~!YP5YYY5YJ7~^:^^^^YGPPPPGGPPGGGGGBPJPGGGPJPBGP55J5PGG5P5GBGBBBBBBBBBGJ5BBBBBBBBBBGPJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGP?~^!?7~^^^^^^^^^^^^755555J?JYYYYYYYYYYJ?!^::!PPPPPPPGP5PGGGGGGP555Y5GP555PGJYPGG5P5GBGBBBBBBBBGPJPBBBBBBBBBBBGJ5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG5!~!JJ7^:^^^^:^7~^^^^!5YYYYYYYYYYYYYYYYYYYY?~^JGPGGGGPGGG5Y5PPGGGP5Y5555PGGGPJY5GBP5PPGBBBBBBBBBG5YGBBBBBBBBBBBB5YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGG5~^J5?^:^^^^^^7J~:^^^^!5YYYYYYYYYYYYYYYYYYYY5Y?YGGGGGGGPPGG555PPPPGGGP5PGGPPPPPP5PBPYPGGGBBBBBBBGG55GBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGG?!YP7:^^^^^:!YJ^^^^^:!?Y5YYYYYYYYYYYYYYYYYYYYYYJ?PGGGGGGGGGP5PGGGPGBBBGGGGGGGGPP5YGGYPGGGGGGGGBGP55PBBBBBBBBBBBBBBYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPPP?::^^^^:~Y?^^^::^!?JYYYYYYYYYYYYYYYYYYYYYYYYYJ?GGGGGGBP5PGGGPPGGGBBBBBBBGP5PPJY5GPJGGGGGGGGGPPP5GGBBBBBBBBBBBBBPPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPP5Y~::^^~YY~^::~!JYYYYYYYYYYYYYYYYYYYYYYYYYYYYYJYGGGGGPYGGGGBGGGBGBBBBBBBGGGG5?G5PGYPBBGGGGGGGG5PGGGGBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPPGP?~^^Y5!:^~7YYYYYYYYYYYYYYYYYJYYYYYYYYYYYYYYY?PGGG5YGGGBBBBGBBBBBBBBBBBBBBYJBBGGGGBBBBBBBGGPPGGGGBBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGG55P57~7Y5YYYYYYYYY5YYYY5YYJY5YYYYYYYYYYYYYJPGGGY5BGBBBBBBBBBBBBBBBBBBGBJJGGBBBBBBBBBBBGP5PGGGBBBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGYJ5PPPPP5555YY5YYY55YYJJ55YYYYYY555555YPGGG5YGBBBBBBBBBBBBBBBBBBGGGJJBBGBBBBBBBBBGP5PGBBBBBBBBBBBBBBBBPYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGYYPPPGGGGGGP555YYYY5YYJJ5Y5PPPPGGGGGPGY5GGGG55GGGGGBBBBBBBBBBBGGGGGYJBBBBBBBBBBBG5YGGBBBBBBBBBBBBBBBBBPJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGYYPGGGGBBBBBGGGP555PP55PPGBBBBGGGGPP5YGGGGGBP5PPPPGBBBBBBBBBGPPP5GPJGGBBBBBBBBG55GGBBBBBBBBBBBBBBBBBBPJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGYJPGGBBBBBBBBBBBGGBBBBBBBBBGBBGPPYY5GBGBBBBBG5YPPGBBBBBBBBBGGPGGBBY5GBBBBBBBBPYGGBBBBBBBBBBBBBBBBBBBPJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5YBBBBBBBBBBBBBBBBBBBBBBBBBG5YYYPGBBGGBBBBGBB5YBBBBBBBBBBBBBBGBGB5YGBGGBBGBPYGBBBBBBBBBBBBBBBBBBBBBPJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYGBBBBBBBBBBBBBBBBBBBBBBBB5J5PGBBGGBBBBBBBBBBB55GBBBBBBBBBBBBBBGGGYPGGGGGGPYPBBBBBBBBBBBBBBBBBGBBBBPJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGB55BBBBBBBBBBBBBBBBBBBBBBBB5JPGGGGGGGBBBBBBBBBBBGYPBBBBBBBBBBBBGGBGG55GGGGGGYYBBBBBBBBBBBBBBBBGYPBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBGYBBBBBBBBBBBBBBBBBBBBBBBGY5GGGGGBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBGGPPGGY5GGGGPYYBBBBBBBBBBBBBBBBPJPBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGY5BBBBBBBBBGYGBBBBBBBBBBGJPGGGGGGGBBBBBBBBBBBBGPPP5YGBBBBBBBBBBP5PPGG5YGPGGGGJPBBBBBBBBBBBBBBB5JGBBBGYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGBGYY5Y5BGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5PPGP55GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGB5J5555?GBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5PBBGBGYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPYJ??77??YY?55555JPBGBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55GBGBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPP555YY7~^::^^7~::^755555Y5BGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBP5GGGGGBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55YYYYYYYYYYY!:::^::^J!^^:!55555Y5BGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPPP5555PP55PPPPYGPPGGBBBBBYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5J55555555555?^:^^^^^^~^^^^?55555Y5BGBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGP555PGGGGBBPJPBGGGP5YPGGBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGJ55555555YY?~~^^^^^^^~^^^^J55555Y5BGGBBBBBBBBBBGGGGPPPPP5PPPPPPPPPP5YPGGPPP55555JYYPBBBBGYGGGBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGP?555555Y!~!~~~!^^~^~^^~^^Y55555JYBGGGBBBBBBP5PPPPGGGGGBGGGGGGGGGG55P555PPPPPPPGY5YY5PGBGYGPGBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBGBY?5555J?~^!~~~~^:::~!7!^!Y55555J~5GGGGBBGGGYPBBBBBBBBGGGGGGGG5PPJJ5PP5555555Y55YYJ5P5YPPYGPGBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBGGGJ?YJ!~!7!~~:!J7...:~?~:?555555J^!5GGGGGGGB55BBBBBBBBGPPPPGGGPPPJ55555PGGGGGGGGPJJPPPY??5GPGBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGG5?~^^~?YYYY??~^!!....:^:~J5Y5555!^^!PGGGGGGGG5PBBBBBBBGGGGPGGGBPJ?5GBBBBBGGGGGPGPPBGBBBGY5GGBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGY!^::^!?55YYYY7~:....:^^^^!YYYY55Y~:^^7GGGGGGBBG5GBGGGGBGGGGG55PYYYGBBBGYPGGGGG5JG5?YGBB55Y5GGBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBP!^^^^?PGJJ55YYYY?!::.:~^~~~Y55YY55J^:^^~JPGGGGBBBGYGBBBBBGGGGBPJY5PY5BGBY7JGBG5JYJPY7JYG5YGYPGGBBBBBBBYYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGP!7J~:?GGPG?Y555YY5Y?!~^^!5JJ5555555?:^^^~!PGGGGBBBBP5BBBBBGGGBP55GGY755YP?7JGBGY7PY5YJPY?JGGJPGGBBBBBBB5J5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPJG?::5GGGGG?Y555YYYY?~^~PPJ55555555!:^^^^~JGGGGBBBBB5PBBBBBP555GBBG??PJYJ??YPPGY?GYJYJYJJGBGJGGGBBBBBBB5Y55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGG7:~PGGGGGGJJ55PPY!^^^7Y555555555J^^^^^^~7PGGGGGGGGB5PGGP55PGBBGPY??JJY5YJJJ5GGGGPPJ77?PBBPJPGBBBBBBBB5JPP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGY^~PGGGGGGG?J5J7!7~^^~!YP5555555!:^^^^^^!YGGGGGGGGGPY5PGGGGP5YJYYYGYYPJ????5BBGGGP5Y?PBBB5JPGBBBBBBBBYPJP5YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBPYPGGGGGPY?JJ7?Y?~~7?JY5555555Y^:^^^^^^~7PGPPPP5PPGGGGP5Y5PPGGBGYPBYJY?!JJYGGGBBB5JPBBBP7YGGGBBBBBBBYGGJP55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGG5JJY5P5Y5Y5Y77YJJY55555557:^^^^^^^^~55Y5PPGGGG5YYPGGBBGGGGBG5GBYPPYY55GGBBB5JGBBB5J?5GGGBBBBBBGYGBGJP55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG5?YY555YYYYY5J?YJ?Y555555J~^^^^^^^^::75PGGGG555GBP5BBBGGGGGGBGYPPJBBBGYPBBGYJGBBGYY55GGGBBBBBBBGYGGGGYPYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGJYYYYYYYYYYY5YYYYJYY5555J~^^^^^^^^:.:!Y?PP55GBBBBB55GGGGPGBGBG5YP5YBBBGGBGY5BBBPY5PYPGGGBBBBBBBP5BGGBGY55GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGYJ5YYY555555Y5YYYYYYYYYY~^^^^^^^::...~J55JPBBBBBBBG5PBGGPGBBBGGP5P5YPGGBPJPBBGYJYY?5GGGBBBBBBBB55BBBBBPJ55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGJJ55555555555YYYYYYYYY~^^^^^^^^...:^^YPJPBBBBBBBGGG5PBGGPGGGGGBGG55YY55YGBBPY?JJJYPGGGBBBBBBBB5PBBBBBBPYYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG5JP5Y55555G5YYYYYYYY~^^^^^^^^:..:^:^PJPBGBBBBBBBGBG5PBGGPGGGGGGGGGG5?5BBBPYPP5??PGGGGGBBBBBBGYPBBBBBBB5JJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGYY555YYYYYYYYYYYYY!^^^^^^^^^.:^^^:!YYGGBBBBBBBBBBBGYPBGGGGGPPGGBBP5PBBB55GGPYJPGPGGGBBBBBBBPYGBBBBBBBG5?5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGP?Y5YYYY555YYYYY5J:^^^^^^^^:.~^^:.!J5BGBBBBBBBBBBGBGYGBGPPPGGGG5Y?PBBB5PBBGY?5BGPGBBBBBBBBGYPBBBBBBBBBGJ?PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGP?Y5YYYY5PP5Y5PPP7^::^^^^^.^~^^:.7Y5BGGBBBBBBBBBBBBGYGBPPGGGPY77YBBBYYGPP5JYGGGPGBBBBBBBBPYGBBBBBBBBBBP?YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGP77YY555555JYGGGGPJ7!^::^:.~~^^:.?Y5BGBBBBBBBBBBBBBBPYG55PP5JJYJGBB5YPPPP55PBBGGBGBBBBBBBYPBBBBBBBBBBBG5YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPY7^^^7YY5555!~7PGP5YYYYJ?~^:^~^^^:.JYYBGBBBBBBBBBBBBBBB5YJ?YYYPGYPBBGYP5PPP5P5GBBBBBBBBBBBP5BBBBBBBBBBBBBGY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPY7~^^^^^^?55555?!7JYYYYYYYYYYJ!^^^^^::5YJBGGBBBBBBBBBBBBG5555YYJGG5YBYG5YPPP5PPG5GGBBBBBBBBBGYGBBBBBBBBBBBBBB5?GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGP5?!^^^^^^^^:~J55555YYYYYYYYYYYYYYYJ7^:^^7GPPGGGBBBBBBBGGP555PGBGPPPPG55YYBYPY5GGGBBPGBBBBBBBBBBPYGBBBBBBBBBBBBBBBJ5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGPY7~^:^^^^^^^^^!Y?Y5555YYYYYYYYYYYYYYYY5J7^^YGGGGGGGBBBBP55PGPPPPGBGGGGBG5Y7PGY5PGGGGBBGPGBBBBBBBBB55BBBBBBBBBBBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGP5?!^^^^^^^^^^:^~JPP!J5YY5Y55YYYYYYYYYYYYYYYYJ!YGGGGGGGGBG55GGBGGGGGBGBBBBBB5JJGGYYPGGGGGBGPGBBBBBBBBPYGBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGJ~^^!!~^^^^^^^^75PG5~~Y5YYYYYYYYYYYYYYYYYYYYYY5Y?JPGGGGGGB55BGGGBBBBBBBBBBBBBP??5PJYGGGGGGGGGGGBBBBBBGYGBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGY7Y?~^^^^^:^~?5PGGY~!Y5Y5YYYYYYYYYYYY5555555YYYYYY?PGGGGBG5PBGBBBBBBBBBBBGGGBG555575GGGGGBBGBGPGBBBGP5GBBBBBBBBBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGB5~^^^^^~JPGGGY!^?Y5Y555YYYYYYJYYYYYY555YY55555P5?GGGGBB5GBGBBBBBBBBBBBBBBBBBBBP?PBGGGGBGGBBGPGGG55GBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPY!~!YPGP5J!^!Y5YYYYYYYY5YYYJY5YYY5Y555PGGGGPP5JBBBGGB5PBBBBBBBBBBBBBBBBBBBBBGJGBGBGGGGGGBBGGGP5GBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGY~^:!J555YYYY555Y55YYYJYY555PGGGBGGPPPYJGBBBGBBGYPBGGBBBBBBBBBBBBBBGGBGJGBBBBBGGGGGGGGP5GBBGBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGG5?~75555YYYYYYY5YYYYYYJYPGGGBBBGGGGP5J5GGBBBBBBBG5PBBGGGBBBBBBBBBGGGGBGJPBGGBBBBGGGGGPYGBBBBBBBBBBBBBBBBBBBBBBBBY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG?PPPPGPP555555555P5PGGBBBBBBBGBGPYYPBBBBBBBBBBBBP5PPGGGBBBBBBBGGPPPGGY5BBBBBBBBBBBP5GBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBGGGYYPGGBBBBBGGGGGGBBBBBBBBBBBBBBGYYPBBBGBBBBBBBBBBBG55GGBGBBBBBBGGPPPGB5YGBBBBBBBBBPYGBBBBBBBBBBBBBBBBBPPBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG5?PBBBBBBBBBBBBBBBBBBBBBBBBBPJPBBBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBGGGBGYPBBBBBBBBGYGBBBBBBBBBBBBBBBBBBY5BBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBG?GBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBG5BBBBBBBBBBBBBBBBBB55GGGGBBBG5PBBBBBBBBBBBBBBBBBBG?PBBBBBBB5YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBYPBBBBBBBBBBBBBBBBBBBBBBBBGJGBBBBBBBBBBBBBBBBBBBBB5PBGBBBBBBBBBBBBBBGGYPGGGGBB55BBBBBBBBBBBBBBBBBBBP?GBBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB55BBBBBBBBBBBGPBBBBBBBBBBBGJPBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBBBBBBGGGGGPYGGGGGGJPBBBBBBBBBBBBBBBBBBBYYBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBGJBBBBBBBBBBGY!PBBBBBBBBBBGJPGGBBBBBBBBBBBBBBBBBBBBBBP5GBBBBGBBBBBGPPPGBGYPBGGGGP5PBBBBBBBBBBBBBBBBBP7YBBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGYGBBBBBBBBBPYY?BBBBBBBBBBGJPGGGGBBBBBBBBBBBBBBBBBBBBBBPYGGBBBBBBBBBGPPGGBY5GGGBGBGP5PGGBBBBBBBBBBBBBY75BBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYPBBBBBBBBBYJBYYBBBBBBBBBGJ5GGGGGBBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBBBBBBBGPJ5BBBBBBGGPPP55GBBBBBBBBBBGJJGGBBBBBBGJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPY5YPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBGGGBBYJ555JPBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPGPPPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPPPPPPGGJY5555Y5BBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5PGBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPPPPPPPPY7~~^^~!~~~?55555YYBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPPGBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYYY5YYYYYYYYY?^^:^:^~Y~::~55555Y5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5BBGBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG?55555555555?^^^^^^^^!^^^75555555GGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPPPPPPPPPGGGP5GGGGBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBYY555555555Y~^^^^^^^^~^^^75555555BGGBBBBBBBBBBBBBBBBBBBBBBGBBBGGGGGGGGBGP5PPPGGGGG55GGGGP5YPPPGGBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG?555555Y77!^^~~^^^^~~^^^75555555BGGGBBBBBBBBBGPPPPPPPPGGPPPGGPPGPPPP55PGGGGGGPPPPYY5BBBBGGPPGGBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBGB5?55555Y7^!~~~~^^^^!~~!^?55555575GGGGBBBBBBBGPGGGBBBBBBBGBGGGGGGGGGPPGPP5PPPPPPPPYGY5PGBBBPGGGBBBBBBBPPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBGGGYJ55Y7~~~!~~!7^.::~?J~:J555555~~PGGGGGBBBBBG5BBBBBBBBGGGGGGGGPPP5Y5PPPGGGPPPPPPPYPYPP55GBPGGGBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGG5J!7~~!?YY7!^!J!....^~:~Y55555Y^^!PGGGGGBBBBB5PBBBBBBBGPPPGGGGGYP5YPPP55PPPGGGGGG5YY5P55JPPGGBBBBBBBBPPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGY7~^:^^?555YYJ7^:::...:^^^!5Y5555J^^^!PGGGGGBBBBGYGGBBBBBGPGPPPGGBG5Y55PGGBBBBGGGBBGG5GBBGGP55GGBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGY!^^:^!Y5?Y555Y5J!:...:^^^~^J5Y5555?^^^^7GGGGGBBBBB5PBGGBBBGPGGGPPPGPJ5GBBBGGGGGGGGGPG55GBGBGPGPGGBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGG?~7~^~YGGGP?5555Y5YJ!^:~^!J7J5555555!^^^^~JGGGGGBBBBG5GBGBBBGPGGBGYGG5PPGBBBGYPGGGPGPY55P5GBBP5G5BBBBBBBBBB5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGY^J7^!PGGPGGP?5555YY5Y7^^?P5J55555555~:^^^~!5GGGGGBBGBG5BBBBBGGGGBB5PGP5YPGPG55GGGP55PY55BGY5G5PG5BBBBBBBBBB5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGP!J5^^5BGGGGGG5?55555Y7^^?PP555555555?:^^^^^~7PPGGGGBBGB5PBBBBBGGGGBG5P5Y5PG5555GGGPP5G5YY5YYY5PGP5BBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGP!GY^~PGGGGGGGBY?5YJ?7~^~!!755555555Y~:^^^^^^~YGGGGGBBBBGYGBBBBGGGGGPPG555P55555PPGGGGG55YJJJY5GBPPBBBBBBBBBB55PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGP5G577PGGGGGGPYYJYJJJ!~~77?J555555557:^^^^^^^~7PGGGGGBBBBG5GBBBBGGGPGGP5P55G5YYYYYGGGGGBPYYY5PPGBPPBBBBBBBBBB5G5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGG5JJJ5P5Y55Y7!7YYYY55555555~:^^^^^^^^~YGGGGGGBBBBP5BBGGPPGGGGG5PB55YY?J5JPBBBBBBBGY5PGBGPGBBBBBBBBBGYYP5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGG5?YY55YYYY5YJ!?Y5YY55555557^^^^^^^^^^^7GGGGGGBBBGG5PPPGGGGGGGBGYGBY5PJJY5GGBBBBBGBGPGBG5PGBBBBBBBBBP5PYG5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGYJ5YYYYYYYYYYYJYYJY55555Y!^^^^^^^^^^^^~PGGGGGGGGGGGGGGGGGGGGGGGG5GGJGBGGPPBBBBBBGPPGBG5YPBBBBBBBBBBPPBP5G5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG5?5YYYY5555Y55YYYYYYY55Y7^^^^^^^^^^^^^~JGPGGGGGGGGGGPPBBGGGGGGGBPYP5YBBBG5GBBBGG5PGBPYPPGGBBBBBBBBB5GBBP5G5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGY?Y5555555555YYYYYYYYY7^^^^^^^^^^^^^^^7PPGGGGGGGPGGG5GBGGPGBBBGGP5G55GBBBGGPP55GBG55PPGGGBBBBBBBBG5GBBBG5GYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGP?P5YY555PG5YYYYYYYY7^^^^^^^^^^^^^^^^~PPPPGGPPGBBBBG5GBGGGGBGGGGGPPYY5PGGG55GGBG55P5GGGGBBBBBBBBP5BBBBBP5P5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGB5J5YY555555YYYYYYY7^^^^^^^^^^^^^^^::~P55P5PGBBBBBBBG5GGGGGGGGGGGBGP5P55PPPGBGP55YYPGGGGBBBBBBBB5PBBBBBBP555BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGP?YYY55YYYYYYYYYYJ^:^^^^^^^^^~^^::::~YP55GBBBBBBBBBBG5GGGGGGGGGGGGBBGG5PGBBPPGGPYPGPGBBBGBBBBBBYGBBBBBBBP55PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGJJ5YY5555PPYY55P5~:::^^^^^^^!^:::::!G55GGGBBBBBBBBBBP5BGGPGGPGGGGGPGPPBBG5PBBGY5GGPBBBBBBBBBBP5BBBBBBBBG555GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGJJ5YY555P5YYPGGGP7~^::^^^^^~^.::^:!55GGGBBBBBBBBBBBBP5GBGPPGGGPPYJ5GBBG5PGGGYYGBGPBBBBBBBBBGYGBBBBBBBBBG555BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGJJYY55557!?GGGP5YYJ?~^::^^~:.:^::7YGGGGBBBBBBBBBBBBB55BGPGGGP5YYYGBBGYPGPPPYPBGPGGBBBBBBBB55BBBBBBBBBBBG5YPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGP?~Y555557~!J55YYYYY5YJ?~^^^^^^^:^J5BGGGBBBBBBBBBBBBBB5PP55PPY55PBBBB55GPPP55GBBGGGBBBBBBBGYGBBBBBBBBBBBBGY5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGG57~^^?55555YYYYYYYYYYYYYY5YJ7~^^^^:~PPGGGGBBBBBBBBBBBBBBPJJJY55PGPGBBBP5PPPPP5PPBBBBBBBBBBBB5PBBBBBBBBBBBBBBPY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPY7^:^^^~Y55555Y5Y55YYYYYYYYYYY5Y?~^::JGGGGGGBBBBBBBBBBBGP5PPGPP5PGPPBGGG55PPPPGGGPGBBBBBBBBBBG5GBBBBBBBBBBBBBBG5YGBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGP5?~^^^^^^:~?Y5Y55Y55YYYYYYYYYYYYYYY5YJ!^PGGGGGGGBBBBBGGPPPPPPGBGGGGGG5GPYGGPP5GBBBBBPGBBBBBBBBBBP5BBBBBBBBBBBBBBBBG55GBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGPY?!~^^^^^^^^7Y!Y5Y5YYYYYYYYYY55YYY5YYYYY55JY5GGGGGBBBBGPPPGGGPGPGGGBGGBG5P55BPGPGGBBBBBGPGBBBBBBBBB5PBBBBBBBBBBBBBBBBBG5PBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPJ??!~^^^^^^^^^:~5Y~!YY5YYYYYYYYYYYYY555YYY55PPPPPYJGGGGGBBG5GBGGGBGGGBBBGGBBG5P5PGGGPGBBBBBBGPGBBBBBBBBP5BBBBBBBBBBBBBBBBBBBP5GBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGP7~~^~~^^^^^:^!JPY~755YYYYYYYYYYYYYYYY5Y55PGGGGPPPPJGGGGGGBP5BBBBBBBBBBBBBBBGGPP55GG5GBBBBBBBGGPGBBBBBGPPBBBBBBBBBBBBBBBBBBBBGPGBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG57^^:^^^!?5GP7~J55YYY5Y555YYJYYYYY55PGGGGGGPPP5JGGBGGGGB5GBBBBBBBBBBBBBBBGGGGGPGP5GBGGGBBBBGGPGBBGG5PBBBBBBBBBBBBBBBBBBBBBBGPGBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGG57~!?5PGPJ~~Y55YYY55Y55YYYYJYYPPGGBBBGGGGP5YYGGBBBGGGB5GBGBBBBBBBBBBBBBBGGGGGGP5GGGGGGGBBBBGPGGP5PGBBBBBBBBBBBBBBBBBBBBBBBPPBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGY~:!Y5YYYY5555YYYYY5YPGGBBBBBBGGGPYYGBBGBGGGBGBP5BGGBGBBBBBBBBBBBBBBBGGPPGGGBGGGGGBBBGGGPPBBBBBBBBBBBBBBBBBBBBBBBBBG5BBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGPY!55YYYYYYYY5555PGGBBBBBBBBBBBG5JPBBBGBGGBBBGGBPPBBGBBBBBBBBBBBBBBBBGBP5GBBBBBGGGGGGGG5PBBBBBBBBBBBBBBBBBBBBBBBBBBGYPBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGG5YP55555PPPPGGGBBBBBBBBBBBBBBBJ5GBBGBBBBBBBBBBGBP5GGGGGBBBBBBBBBBGGGGBPYGBBBBBBBGGGGG55BBBBBBBBBBBBBBBBBBBBBBBBBBBBPPBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPJPGGBBBBBBBBBBBBBBBBBBBBBBBB55BBGGBBBBBBBBBBBBBBG55PGGGBBBBBBBBGGGPPBGYGBBBBBBBBBGG55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGP?PBBBBBBBBBBBBBBBBBBBBBBBBPJGGBBBBBBBBBBBBBBBBBBB5YGGGBBBBBBBGGGGGGGG5PBBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5GBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGB5YBBBBBBBBBBBBGBBBBBBBBBBBGJGBGBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBBBBBBGGBBP5GBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPGBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBGJBBBBBBBBBBBGJPBBBBBBBBBBBY5BBBBBBBBBBBBBBBBBBBBBBG5BBBBBBBBBBBBBBBGGGBPPBGGBBBBG5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPPBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBGBY5BBBBBBBBBBPY?GBBBBBBBBBB5YBGGBBBBBBBBBBBBBBBBBBBBB5GBBBBBBBBBBBBBBBBGBGPGGGGGGB5PBBBBBGGBBBBBBBBBBBBGGBBBBBBBBBBBBPPBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBGJBBBBBBBBBB5YGYGBBBBBBBBB5YGGGBBBBBBBBBBBBBBBBBBBBBBPPBBBBBBBBBBBBBGGGGGGPPGGGGGP5GBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBPPBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBYPBBBBBBBBG?PB5YBBBBBBBBB5JGGGGBBBBBBBBBBBBBBBBBBBBBBGPGGGGGBBBBBBBBGPGGGGG5GGGGGG5PBBBBBBBBBBBBBBBBBBGY5BBBBBBBBBBBBPPBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBG?5GGYPBBBBBBBBPJGGGGGBBBBBBBBBBBBBBBBBBBBBBBPPGGGGGBBBBBBBGGGGGGG5GGGGGGG5PBBBBBBBBBBBBBBBBBP?5BBBBBBBBBBBBPPBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPGGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJYYYYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBB5J5555JPBGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPPPPPPPGGGP5JJ??7???JJJ55555J5BGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5J5Y5Y5YYYY55Y!^^::^^7!^^^?55555Y5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5Y5555555555Y~^^^^:::?7^^^?55555Y5BGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJ5555555555!^^^^^^^^~^^~~J55555Y5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBGPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGY5555555?J7~^^~~^^^^~^^^~555555Y5BBBBBBBBBBBBBBBBBBBGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBGPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP?555555J!~!~~!^^~^!^^~~~Y55555YPGGGBBBBBBBBBBBGGGGGBBBBBBBBBGGBGGGGGGGGBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBYY55555Y!!~!!~^:::~7??!~555555J5GGGGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGBBBBGGGBBBBBBBBGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGG?5555Y7!!^^7Y!...:~J?^!5555557!GGGGGGBBBBBBBBGGBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGGGBBBGBBBBBBBBBGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5J5Y?!?5?7^^!^.....:^^?555555!^?GGGGGGBBBBBBBGGBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGGGGGBGGBBBBBBBBBGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPY?~!!?Y5YY?^:....:^^:^~Y55555Y^^^JGGGGGGBBBBBBGGBBBBBBBBBBGGBBBGGGGGGGGGBBBBBBBBBBGGGGGGGGGGGBBBBBBBBBGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBPJ7~::~7J555YY5J!::.:~^~!!Y555555?^^^~YGGGGGBBBBBBBGGBBBBBBBBBGGGGGGGGGGGBBBBBBBBBBBBGGGGGBBBBGGGBBBBBBBBBGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBPJ!~:^7YPPJY5555Y5YJ7^^^~YYY5555555!^^^^~YGGGGGBGBBBBGGBBBBBBBBBBGGGGGGGGGBBBBBBBBBBBGGGGGGGBBBGBGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5!^^^!5GGGGGJY555YYYYJ!^7PPY5555555?^^^^^^~5GGGGGBBBBBGGBBBBBBBBBBBGGGGGGGGGGGGGBBBBBBGGGGGGGGBGGBGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG~^:^JGGGGGGGGJYPPP5?!~^~??Y55555555~:^^^^^^!PGGGGGBBBBBGGBBBBBBBBBBGGGGGGGGGGGGGGBBBBBGGGGGGPGGGGBGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG7~75GGGGGGGGGP?5Y?7!^^~!!!YP555555?^^^^^^^^~7PGGGGGBBBBBGGBBBBBBBBBGGGGGGGGGGGGGGGGBBBGGGGGGGPGPGBGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBGGGGGP5YYYY5YYJ~~~JJJYY555555Y~:^^^^^^^^~?GGGGGBBBBBGGBBBBBBBBBBGGGGGGGGGGGGGGBBBBGGPPGGGGGGGGGGBBBBBBBBBPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGY?JY5P5YY5?7!7YYYYY555555?^^^^^^^^^^^!YGGGGGBBBBBGGBBBBBBBBGGGGGGGGGPPGGPGBBBBBGPGGGGGGGBGGGBBBBBBBBBPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?5YYYYYYYYJJ?YY5YY55555Y?^^^^^^^^^^^^^~5GGGGBBBBBGGBBBBBBBBGGGGGGGGGGPPGPGBBBBBBBGGGGGGGBBGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ5YYYY55555YY5Y555555557^^^^^^^^^^^^^^^7PGGGBBBBBBGGBBBBBBBBGGGPGGGGGGGGGGBBBBBBBBBBBBBBGGGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYJ5YYY55555Y5555YYYY55J~^^^^^^^^^^^^^^^~JGGGBBBBBBBGBBBBGBBGGGBGGBBGGGGBBBBBBBBBBBBBBBBGGGGBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYJP5555555P5YYYYYYYYJ~^^^^^^^^^^^^^^^^^7GGGBBBBBBBGBBBGBBGBBGBGGGGGGGGBBBBBBBBGGGBBBBGGGGBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY55555Y5P5YYYYYYYY~:^^^^^^^^^^^^^^^^^~PBBBBBBBBBGGGGBBBBBBBGBBGGGGGGGBBBBGGGGGGGBBGGGGBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYJ5Y55YYYYYYYYYYYY!:^^^^^^^^^^^^^^^^^^^5BGBBBBBBGGBBGGGBGBBBGBBGGGGGGGGGGGGGGGGGGGGGGGGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGG5?5Y5555Y555YYYY5?:^^^^^^^^^^!~^^^^^^^^YBGGGGGGBBBBBGGGGGBBBBBBBGGGGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG?YPYY5555PG5Y5PGP^:^^^^^^^^^~~^^^^^^^^JBGGGGGBBBBBBBGGGGBBBBBBBBBBBBBGGGGGBGGGGGGGGBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGP?55Y55555YJ?PGGGY!^^:^^^^^^^^^^^^^^^^YBGGGBBBBBBBBBGGBGBBBBBBBBBBBBBBBBGGGGGGGGGGGBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP7J555555?~~JPP55YJ?!~^::^^^^^^^^^^^~PGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBB?7555555Y??JYYYYYYYYYJ?7!~^^^^^^^^:7GGGBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBGBBGGGBGGBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBGJ75PY5555555YY55YYYYYY555YYJ7~^^:^^:YBGBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBGGGGGBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPY!~~?55555555555555555555555YY5YY?~^:!GGGBBBBBBBBBBBBBGGBGBBBBBBGGGGBBBBBBGBBBGGGGBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPY7~^^^^^J5YY5555555555555555555YYY555YJ!5BGGBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP5J7~::^^^:^7YYYYY5555555555555555555PPGPPPPPJPGGBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5?!~^^:^^^^::^~YYYYY55555555555555555PGGGGGPPPPG?PGGBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPY?^^^^^^^~7YJJ5YYYY55555555555555PGGGBGGGPPPPPJ5GGGBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG57^^^7JPGGYY5YYY5555555YYY555GGGGBBGGGGPPPYJPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPYPGGGG5J5YY55555555YY5PGGGBBBBBBGGGGPPYYGBGGGBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBGGGGGJYY5555555YY55GBBBBBBBBBBBGGGPYYGBBGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGP?55555YY55PPGBBBBBBBBBBBBBBB5JPBBBBBGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5J55YY55PGGBBBBBBBBBBBBBBBBBPYGBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGB5YPGGGGBBBBBBBBBBBBBBBBBBBBGJPBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBGY5BBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBGB5PBBBBBBBBBBBJPBBBBBBBBBBPJBGBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBY?PBBBBBBBBBGJPBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBYJYPBBBBBBBBBY5BGBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYGBBBBBBBBP?GJPBBBBBBBBPJBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYGBBBBBBBG?GB?PBBBBBBBBJPGBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55Y5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYY555PGGBBBBGGPPPPPGGBBGYYY555JGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY5555YYY5PP57!~^^~~!?JYJY55555JGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ5555555555?^:::^:^^~Y~^?555555JGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ55555555557:^^^^^^:^!^^^J55555JGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG?555555JJ?~^^^^^^^^^~^^~~J55555JGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ555555?7^^~~^^~!^~!!^^~~555555YGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBYY55555J~~~~!!^^^^~!~^~~!55555YYGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPY5555Y57~~^7?~..:~?YJ!^!P5555Y5BGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ55555Y!~~~7Y!....^77^^755555JPBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJY55557!?J:.::.....::^~J55555?GGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGB5J55Y!~YJ5?:..:^^:~::^~Y5555J!GGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJPJ^^YP5?YY!^:^:::^~^755555!:?GGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5GGG5?7J^!YP55Y~7Y!^^:::~~!55555Y^^^?GGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJJ5PY?77!^^!J555555J!~^:~~^^^!Y55555~:^^^?PBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP!^^!7!~^^~?JY5555PBG~^::7!^^~?Y5555?:^^^^^!YBGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5?!!!!75BG?Y5555GBP^:^^~~~~~YY555Y^:^^^^^~~JGBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBG?5555JJ5Y^^~!~!^::GG55Y~:^^^^^^^^^!5BBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBG?Y555Y7!!~!!7??~^!JY55!^^^^^^^^^^^^^7PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?5555Y?JY555YYYY55YJY7:^^^^^^^^^^^^^^~YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBY?5555555PP555Y5Y5GP55Y~:^^^^^^^^^^^^^^^7PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY555555555555555555555?^^^^^^^^^^^^^^^^:~5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5J555555555555555555555Y^^^^^^^^^^^^^^^^^::YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5J5555555PG55555555555J~^^^^^^^^^^^^^^^^^^^^JBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y55555555555555555Y?~^:^^^^^^^^!~^^^^^^~^^:^5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPY5555555555555555Y~^^^^^^^^^^^^!~^^^^^^^^^^:~PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ555555555555PP5Y!:^^^^^^^^^^^^~~^^^^^^^^^^^:YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG?Y55555555555J?5G!::^^^^^^^^^^^~^^^^^^^^~^^^^5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJYGGJ??Y5555Y!~JGY~^^^^^^^^^^^^~^~^^^^^^7^^:!GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPY#B5~!Y55555YYYY5YYJ?77!~^^^::^^~^^^^^~!^:~PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJGPY?JYY5555555555555555YYJJ?7!~^^^^^^^^:^5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?55555YY5555555555555555555Y555YYJ!^^^^:^YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?55555555555555555555555555PPGPPPGG7:^^:JBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG?55555555555555555555Y55PGGGGPPPPGB5?^~5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?55555555555555555555PGGGGGGGPPPPPGJPYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYJ555555555555555Y55PGBBBBBGGGGPPPGYYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYJ555555555555555PGBBBBBBBBGGGGPPPJYGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY5555555555555PGBBBBBBBBBBBGGGP5JPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJY55555555555PGBBBBBBBBBBBBBGGPJYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJY555555555PGBBBBBBBBBBBBBBBB5JPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBJY5YY555PGGBBBBBBBBBBBBBBBBBGJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?5PPPGBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBPYBBBBBBBBBBBBBBBBBBBBBBBBPJBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBY5BBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJGBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJGBBBBBBBBBBBBBBBBBBBGJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBBBBBBBBBBBBBBGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJYYY55GGGG5YJJJJY5PPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYY5555YJY?!^^^^^^^7~!YPPPGGGGGP5PPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP55PGGBBBBBBBBGGGGGGGGGBBBBBBBBBBBBBBBBBGPJ555555Y!^^^^:^^^~Y~^^!5P55YYJYYYJYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPGGGPPPPGBBGPP55555555555PPGGBBBBBBBBBBBGB5Y55555557^^^:^^^^~!^^~^7JJY555555PJYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGGBBBGGPP55Y5PGBBBBBBBPY55PGGGBBBBBBBBBBBBYY555557!~^^^^^^^^^^^^^^7Y555555555?PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGGBBGGGG55PGPPP555555YYYYPGGGGBBBBBBBBBGGGYY5YYYY!:^^^~^^^^^~^^^^^!YY5555555YYGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGBGGGGPPPP5Y555555555YYYJJ5GGGGBBGGGPPPP5PJJYYYYY~:!^~~^:^^~~~^^~~!?!J555555JGGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGBBGGPP555YYY5PPGGGGGGPYJJY5PGGP5PPPGGGGGG5J555557:!~?J~...^7JJ~^^^:^J55555J5GGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPPPGBBGGP5YYYYPGGGGGBBBGG5Y5PGGGPPPGGGGBBGGGP5?5555YJ~^~!?^.....^^.^^^~Y55555Y?GGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPPPBBBBGG5555PGP55PGGGGGG5Y5PPPPPPPGGGGGBGGGPPJY55YJY?:^.....:.:...^~~~555555?5GGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPBBBBBG5555555YY5PPGPP5YYYYYYYY5PPGBBBGGGPGB5J55JJ5J^^:..:~^^^::^~!!~Y5555?YGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPGBBBBG5555YJ????5PP555YJJY5YYYY5PGGP5PPPPGBPJ5J?Y5Y~^^^:::::::~!7Y!~Y555JJGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPPPGBBBBGP555J??77JPGGGPJ77777J5YY555PPPPPPPGGP7??Y55Y~^^^::::^^~!!77~~Y55J!PGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPPPGBBBBBGP55Y7!!!?PGGGGPY???YPPYY5PPGPPPPPGGG5:^Y555?~~??^...~7~^^!J~!Y5Y7JGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGBBBBBGP555J?JJ5PGGGGGGGGGBG5YY5PGPPPPPPPGG?.:J555YJYJYJ~::^7~::^!^?557?5GGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPGBBBBGP55555PBBGGGGGGGGGGGGPPGGGGGGGGGGGP7..:755555J!?PY:.:77^:::~Y5?^:^!JPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGBBBBGGP5555PBBGPYYJ?J5GGGGGGGGPPPGGGGGGP~.::!5555Y~~!??^:^77!~::7J7^^^^^^!5GGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGBBBBGGPP5555PGGYJYYY5GPPPGGGPPPPPGGGGPGPJ^::!555Y7!???????JJJJ~7JJ!^^^^^^^^75GGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPGBBBBGGPPPPP55555PGGPYJ5GGGGGPPPPGGGPGPY5~::!5YJ??YYYY5PP5YYYYY55YY?~^^^^^^^^?5GGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP55PGBBBGGGPPPP555555YJ?Y5Y???YPPPPPPGGGPY5P!::~YYJYYYYYYYP55555555P555Y~^^^^^^^^^?PGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP55PGGBBBBGPPPPYYPGGGPYJJ???JJJY55PPPPGPYY5P!::~YYYYYYYY5YY55555555555557^^^^^^^^^^~?PGPPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPPPGGBBBGGGPPPYY5PGGGP5YY55YJYY55PPPGP55PPP!:^^JYYYYYYY5PP555555555555Y7^^^^^^^^^^^:~JPGPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPPGBBBBGGPPP5555PPGP5555PP5555PPPPP55PPGG!::^JYYYYYYY5PP55555555555Y!^^^^^^^^^^^^^^:!YGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPPGBBBBGGPPPP555PGGG5555PGGPPPPPPPPPPPPPG?:::7YYYYYYY555555555555J!^^^^^^^~^^^^^^~^^^^7PGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPPGGBBBGGPPPP555PGGGPPPPPGGGGGGPPP5PGPPPGJ:::7YYYYY5PP55555YY55Y7^:^^^^^^^^~^^^^^^^^^^:~PGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPGBBBGPPPG5YYY5PGGPPGGPPPGGGPP55PGGGPPP5~^:7YYYY55P55555Y5555!:^^^^^^^^^^~^^^^^^^^~^^:!PGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGGBBGP5PP5Y555PPPPPGGGPP555555PPGGGGPPP7::7PPP5??YY55555Y55!^^^^^^^^^^^^^^^^^^^^^~^^^:?GPGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGGBGPP5Y5GGGGGGGGGGGGGGPPPPGGGGPPGGGGGPY^:YGGB5!~7YY555555?^^^^^^^^^^^^^^^^^:^^^^^^^^^^PGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGGP555PGGBBBGGGGGGGGGGGGGGGGGPPPPPGGGGGG?755PPJ??YYY5555557^^^^^^^^^^^^^^^^^::^^^^^~^::JGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPPP5PGBBBGGBGGGGGGGGBBGGGGGGPPPPPPPPGGG5?YYYYYY55YYYYY5555Y7!~^^:^^^^^^^^^^:~~^^^^:!!:.^PGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPGGGGBBBBBGGGGGGGBBBBBBBBBBGGGGGPPPPGGP?Y5YYYJJJYYYYYYY5Y55YYYJ?!~^^^::^:^^:!Y!~~~7YPYJJPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPGBBBBBBBBBGGBBBBBBBBBBBBBBBBBGGGPPPPG?J555YYYJJJYYYYYYYYYYYYYYYYYYYJ?!~~?Y55PPPPPPPPGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGBBBBBBBBBGGGGGGGBBBBBBBBBBBGGGGPPPPY?5555555YYYJJJYYYY555YYYYYY55555P5Y?PGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGBBBBBBBBBGGPPGGGBBBBBBBBBGGGGGGP5P57YYY5555555YYYJJYYY555Y555PGGGPPPPGGJ5GGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGBBBBBBBBBGGGGGBBBBBBBBGGGGGGGG55PGJ?YYYY55555YYYYYYJJJY55PGGGGGGPPPPPG5JGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGBBBBBBBBBBBBBBBBBBBBBBGGGGGPP5PGGGJJJJJJYYYYYYJJJJYYYJY5GBBBBGGGPPPPP5YGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGGBBBBBBGGGGBBBBBBBBBBBGGGG55GGBGGGJJYJJ?JYYYYYYJJ??YPGGPPGGBBGGGGPP5J5BBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGGBBBBBGGPPGGBBBBBBBBGGGGG5PGBGGGGBJJ5YJJ??JYYYYYYJJJ5GGGPPGGGGGGGPJYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPGGGBBBBBGGGGBBBBBBBBGGGGPPGBBGGGGGBP?55YYJ??JYY5GGG5YYPGGGPPPGGGB5YPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPPPGGP555PPGBBBBBBBBBGGGPPGBBBBBGGGGBJJ5Y5YJ?JYPGGGGG555PGGGP5PBGGJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP5PGGGPYYY5PGBBBBBBBBBGGPPGGBBBBBBBGGGGJJ5Y5555PGBGGGGGPPPGGGGGGGGGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGP5PBBGGPYYYY5GBBBBBBBBBGPPGBBBBBBGGGGGGGGYJPPGGPPPGGGGBGGGPPGGGGGGGGJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG555GGGGP5YY55PGBBBBBBBBGGPPGBBGGGGGGGGGGGGBYYBBGPPPGGGBBBBGPPGGGGGGBGJBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5PGGGGGGGGGGGBBBBBBBBBBGPPGBBBBGGPPGGBGGGGBGYYBBGGGGGGGBBBGGGGGGGGGB5YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYY5GGGGPGGGPPPPPPPPPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ55YJYP5J?7!~~!!7?YPPPPPGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP5PPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ55555Y7~^^^^^^^~7^^!JPPPPGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5PGBGPPPGBBBBBBGPP555PGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5J55555Y!^^^^^^^:!Y^^^^7PGPPGGPPPP5555GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5PGBBBGG55GBBP5Y55PPGGGGGGP55YPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y55555JJ:^^^^^^^^~^~^^^JYYY5YYY55Y55YJBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5GBBBBBBGPYYY5PGBBBBBBBBBP7YGG5Y5GBBBBBBBBBBBBBBBBBBBBBBBBGGGYY555557~^^^^:^^^^^^^^^^JY55555555555YYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPY5BBBBBGGPYJPBBGPP5555555Y?7?PBBG5YPBBBBBBBBBBBBBBBBBBBBBBBGGBYY55555!~~^~^^^^~~^:^~~^JY55555555555JGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYPBBBBBGPYJYP5YJY5PP5555YY7??7JGBBPJPBBBBBBBBBBGGGGPPPPPPPPPGB5J5555Y7~!~!~:::^!?7~:~^!YJJY5555555?PBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBP5YY7J55YY55PGGGGPJ~!7!7YGB5?5GGPPPP5555555PPPPGGGGYYGPJ55555J^~!J7....^77~:^^~!J7J555555J5GGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YGGBBBBBG5Y???J5PGBBBBBBBP?!YGG5Y5GGJ?5PPGGGGGGGGGGGGGGGGGBY5GGJY55555?^^^:........:~!^^?J555555?YBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55GGGBBBBG5Y?7JGB5?PGGBBBGPJJJJPBBP5P5JPBGPPPPGGPPPPGGGGGGGPJPGG5J555555!::..:^^^:.:^~~~~J555555?YGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YPGGBBBBG5YY?YGY??5PGGG55PY5G5?JPYJ5PJYPPGGGBBP555GBGGGGGGJ5GGGGJ555555J^^::^~^^:^~~!?J?!Y5555JYBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYPGGBBBBGPYP?JP???YYPGGY?JJJJJJYJ7!J5JYGGGBBGP5PPPGGBGGGGYYGGGGG?J5555Y5?^~~::::^!!7JJYY~?555JYBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55GGBBBBBGY5YJJ????5GBGPP5J?77?Y557~YYYGGGG5Y5GGPPGGBGGG5JPGPPPY~!555555Y~^~:..~!!!~!7JY7!Y5?YGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYPBBBBBBG5YY?77!!75BBBBG?!~!!~~JGJ~75JJ55P5JPBG5PGGGGG5?PGGPP5!^^J555555?^7~..~7^^^~55Y?~YJ?GGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYPBBBBBBBPY5?~~~7!YBBBBGGP7!7?5GG??7YJJG#GJ5GGPPGGGGBP?PGGPPPY^^^!555555J^?Y:.:7!::.~Y5!?7^!YGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YGBBBBBBG55Y77?7JPGGGGGGGGGGBBB5!?7?YJYYJPBGPPGGGGBGJ5GGPPPP!^^^^?555557^!?^.:77!~::~!~!^:^^?GGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYPBBBBBBBPYYYYPBG5YGBBBBBGGGGGG?7PPJJY7YGBBGPPGGGGGJYBGGPPPY~^^^:!5555J!777?77??JJ7?7!??!:^^^5GPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5GBBBBBBG5Y5YYGBGGGPYJ?7?5GGPJJGBGPJ5Y5BBGGPGGGGGJYGGGGPPP?^^^^:~Y55Y7JYYYYYPP5YY5Y?Y55Y7^^~PPPPGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YPBBBBBBGPYYPYJGBGJ!?JJ??PG5JYGBP55YY5YYGGGGGGGGJYBGGGGPPP7^^^^^^7YYJYYYYYYY5P5YYYYY5PP5Y?^^JPPPPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPY5BBBBBBGG5Y55YY5PPYY55PGP??GBPYYGBGPYPY5GGGGGGY5BGGGGGPPP!^^^^^^!YYYYYYYYYYYYY55555555555!::7PGPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?YBBBBBBGGG5Y5P5Y??Y5GPY?!755JJ5GBBBG5Y5YGGGGGY5BBGGGGGPPP!^^^^^^^YYYYYYYYY5P5YYY55555555Y!:::~JPGPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJJYGBBBBBBGGG55PG5JY555J7??7?7!!7J5PBGPY55PPGG5PGGGGGGGGPPP7^^^^^^^?YYYYYYYY5P5YYY5555555Y?^:::::7YPGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5JPY5BBBBBBBGGG55PP5Y5GGP?7!~!?YJ7J??PGG55PPPGY5GGGGGGGGGPPP7^^^^^^^!YYYYYYYY5YY55YYYY555Y7^^^^^^^^^!J5GGPPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJPBPYGBBBBBBGBBG55YJ5PGGPJJ?7?YYJ?JY55GGP5PPP55GGGGGGGGGGPPP7^^^^^^^~YYYYYYYPP5555YYYY5Y7^^^^^^^^^^^^^^7YPGPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJYBBGY5BBBBBBBBBG555?JGBBGYJJJPPY5P5Y5PPGPPPP5PGGGGGGBBGGGGPPY^^^^^^:!YYYYY55PP555YYYY5Y~:^^^^^^^^^^^^^^^^75GGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5J5BBB5YPBGBBBBBGGY5G5JYGGGPJY5Y5PBBG5JPPPPPYYGGGGPGGGBBBGGGPPP!^^^^^:7PPPG5??JY555YYYYJ~^^^^^^^^^^^^^^^:^^^^?PGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJJGBBBG5YGBBBBBBBPY5G5YYPGGGJYGP5PGGGG5Y55PPYPBGGGPGGGBGGGGGGPPY!^^^^?PGGGG5!~7YYYYYYYY~:^^^^^::^::^^^^^:^~^^:~YGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJPBBBBGPY5GBBBBBGY5GGP555PGPY5GGGGPPPPP55PP55GGGGGPPGBBGGGGGGGPGP7:!Y555555J??YYY5555J^^^^^^^^^^^^^~!^^^^^!7^^^^JGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YGBBBGBG5YGBBBBG55PGGPPPGGGPPGGGGGGPPPP55PPP55PGGG55GGGGGBGGGGGGGJJYYYYYYYYY55YY5555?~^^^^^^^^^^^^^^!!^^^^^!?^^^:JGPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ5GBBBBBGPYPGGBGP55PGGGGBBGGGGGGGGGGGGGGGPGGGGP5PGG5YPGGGGGGGGGGPJJ5YYYYYYYYYYY5555557^:^^^^^^^^^^^^^^?!:^:^^7?:::^5PGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5JGBBBBBGBG55PGGG55PGGBBGGGGGPPPGGGBBGGGGGGGPPPPP5PGP5GGGGGGGGGB5?Y5YYYYYYYYYYYYYY5555YJ7~^^:^^^^^:::::!Y!~~!!757!7!YGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYYBBBBBBBBGPPPGP55GGGBBBBGGGGGGGGBBBBBBBBBGGGGPPGP55PGGGGGGGGGG5?YYYYYYYYY55YYYYYYYYYYYYYYJ?!~^^:^^~7J?JPPPPPPPPGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJYBBBBBBBBBGPPPGGBBBBBBBBGGGBBBBBBBBBBBBBBBBBGGGGGG55GGGGGGGGG5?YYYYYYY5YY55YYY5YYYYYYYYYYYYYYY?!?YPPPGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ5BBBBBBBBBGP5PBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBGGGGG5YGGGGGGGGP?YYYYYYYY5YY55Y55555YYYYYYY555555PPPJ5PGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ5BBBBBBBBBBG5PGBBBBBBBBBBBBBGPGGGGBBBBBBBBBBBBBGGG5YBGGGGGGG5?YYYYY5Y555YY555Y5YYY5555PPGGGPPPPGPJPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5JPBBBBBBBBBBGP5PBBBBBBBBBBBBGPPPPGGBBBBBBBBBBBBBGGP5PGGGGGGGGYJ5YYY55YY5Y5YY55Y5555PGGBBBGGGPPPPPJPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5?PBBBBBBBBBBBG5YGBBBBBBBBBBBGGGGGBBBBBBBBBBGGPGGGPY5BGGGGGGGGYJ5YYYY5Y55555555PGGBBBBBBBBBGGPPPYYGBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5?PBBBBBBGGBBBB5JGBBBBBBBBBBBBBBBBBBBBBBBBBGGPPGGP5PGBBGGGGGGG5?5YYY5555555PGGGBBBBBBBBBBBBGGGYJ5BBGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5?PBBBBBBPPGGBB5YPGBBBBBBBBBBGGGBBBBBBBBBBBGGGGGPPGGGGGBGGGPGGG?J55555555PGBBBBBBBBBBBBBBBBBGJYGBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5YPBBBBBBPPGGGBP5PGBBBBBBBBGPPGGBBBBBBBBBBBGGBP5PGP5GBGGGGGGGGGPJJ55555PGBBBBBBBBBBBBBBBBBBBBJPBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYPBBBBBBGPGGBBP5PGBBBBBBBBGGPPGBBBBBBBBBBGGGP5GGGGPPGBBGGGGPPGGBPJYY5PGBBBBBBBBBBBBBBBBBBBBBY5BGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5GBBBBBGPGGBBPYPGGGGGGGBBGGGGBBBBBBBBBBBGG5YGBBBGGP5PGGGGGGPPPPPPJJPGBBBBBBBBBBBBBBBBBBBBBB5YBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55GBBBBGGPGGBB5YPGGGGGPPP55PGGBBBBBBBBGGGG55GBBBBBBGG5YGGGGGGGP555PYYBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5GGBBBGGPGGB5JGBBBBBBBPYYY5PGGBBBBBBBBGPYYGBBBBBBBBGGYY5GBBGGGP5YJ5YYBBGGGBBBBBBBBBBBBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP55PGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY55YYPGGPPPPPP5PPPPPPGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55GGGP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ55555JYY?7!~^~~~~!?5GGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYGBBGBGP5GBBBBBBBBBGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY5555557^^^^^^^^77^^~JPGGGGGGBGGBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJPBBBBBBGPYPBBBGP5555555PPPPPPPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ555555Y!^:^^^^^^7J~^^^7GGGPPPPPP555Y5YPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5YBBBBBBBGGG55P555PGBBBBBBBBPYPGP55GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGJ555555PJ^^^^^^^^~^^~^^^JYYYY55Y555555J5BGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBGGGPJ5GBBBBGGGPPPPPJ7JPBBG55GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJ555555Y!^^^~^^^~^:^^^^~Y555555P55555YJGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJPGBBBBBBGPYYGBGP5555PPPPPP5JYYYGBBBPYGBBBBBBBBBBBBBGGGGGGGGPPPPGBBBBBBGBYYP55555J^!~^^^^~~^::~~^JYY5555555555?PBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJPGBBBBBBG5Y55Y5PPPP55555P55?7???YPBBPYGBGGGPPPPPPPPPPPPGGGGGBGG5GBBBBBBGP?P55555Y~!!^:..^7JJ~:~^7YJJ?Y555555JYBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJPGBBBBBBGP5PJYPYYPGGGBBBBBG5?J55JJ5GB5J55PGGGGGGGGBBBBBBBBBBBBGYGBBBBBGGB5Y555555!7Y7....:7!^:^:^7Y??555555YJGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJPBBBBBBBBGP??J5PBGPPGBBGBP??JYGBBGPGBGY5GGGGGGGGPPPPGGGGBBBBBB55BBBBBBGGBGJ555555J~^::.......:~?~^!Y555555YJGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ5GBBBBBBBGPJ7YBBGY7J5GBGBGJJPPY5GBB5PGPYGGGGGGGBGP5P5PGBBBBBBPYBBBBBBBGGGB5Y555555!^:.:^^~:.:!YY77!J55555YJGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYYPBBBBBBBGP57YBPJJ?JJ5G55GJJPPPYY5PJJGGYGBBGGBGGPPGBPPBBBBBBGYGBBBBBBBBBGB57555555Y!^:^~~^:^7J?JY5J!7Y55JJGBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ5GBBBBBBBPP7JG5JYJPYPGG5JYY55Y5GPY?755?GBBBBGPPGBBG5PBBBBBB55BBBBBBBBBBBG!~Y555555Y~~~::^~!7?JYYY5Y7!?JJGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YPBBBBBBBGG5JYJJJJYGGBBGG5JJJJYY5G5!?5JGGPPP5JPBBBG5GGBBBBP5GBBBBBBGGGGG7^^J55555555?^::~77!!7JYY555Y~^!5GGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ5BBBBBBBGPPJY???7JGBBBBGJ?7?J?7JGB?!Y5JPGGGPYGBBBP5BBBBBPYGBBBBBBGGGPPY^^^!55555555J~^^~7~::^JP5555J?^^~JPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5JGBBBBBBBGGJ777???PBBBBGBGJ???5GGP?5?5Y5BGPYGBBBB5GBBBBGJPBBBBBBGGGGPP!^^^^?5555555?!~^~77!^:.!5P577Y?~~^7PGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJPBBBBBBBGG5????J5GBBGBBBGGGGGBGBJJ5?YG55JYGBGBBGPGBBBGYPBBBBBBBGGGGGJ^^^^^^J5555555J7~~?JJ??7^^77~~7~~~~^?GGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5YBBBBBBBBGPJJ5GGGPGGBBBBBBBGGGBP?5GBP5G5YGBBGBBGPGBBGY5BBBBBBBGGGGPP!^^^^^:~555555555?~YGPYY5YJYYYJ?J~7?^!GGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBGGYY5JPBPGBGPP5YY5GGGGJ5BBGGJYPP5GBBBGPGBBGY5BBBBBBBBGGGPPY^^^^^^^:!55555555Y!Y55Y5Y55555PY7!Y5^7GGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBGGGPYPPJPBB5YYY55JYBB5JPBGP555P5PGPPGGPGGBGY5BBBBBBBBBGGGPP?^^^^^^^^^755555555YY5Y555Y555Y55YJPY!PGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ5BBBBBBBBGG5YPPYYGPYPPPPGBPJ5BBGY5GGGBGPPGPPPPGBGYPBBBBBBBBBGGGGPP~^^^^^^^^^^?555YY5Y55PGP55Y55Y5Y5Y?PGPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJYYGBBBBBBBBBG5YPP5J5GGGGP5J75BG5YPGBBBBBBGPPGP5PGYPBBBBBBBBBBGGGGPY^^^^^^^^^^^^J5YYYYYYYY55YYY5YY555J5GGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55GY5BBBBBBBBBGP5YPGG5JY55JJ5?5Y?JY5PGGGGGGBG5PGGP5PBBBBBBBBBBBGGGGGJ^^^^^^^^^^^:75YYYYY555555YYYY55Y?5GGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYGB5YBBBBBBBBBBGGY?YPGP5GGYJJ?YYP5JJYYPGGG5GPPGGPPBBBBBBBBBBBBBGGGPP7^^^^^!~^^^^^?YYYYYYYPGP555YY5Y7?5PGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJGBBGYGBBBBBBBBBGGGJ755PGGG55J?JY5G5JYYY5GG5G5PB55BBBGBGGBBBBBBGGGGPP7^^^^^~~^^^^:?PPPP5555555YYY5Y!^^~!JPGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBY5BBBBY5BBBBBBBBBBBBG?J555GGGPP5PPPPGPYPG5YGPG5G55BBBBBGGGBBBBBBGGGPPP7^^^^^^^^^:^^YGGGGGGYJY5YYYY5?^~^^^^~7YPPGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5YGBBBBGYPBBBBBBBBBBBBJJ55YPGGGPPPPPPGBG5YPP5555Y5BBBBBBGGGGGGBBGGGGPPP?^^^^^^^^^!?Y55PPGGP7~!YYYY5J^^~~^^^^^^~7J5GGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJGBBBBBBPYGBBBBBBBBBBP?555PPPGGGPPGGGPGGBP5PGP5JYPGGBBBBBGGGGBGBGGGGPPP?^^^^^~!?YY55YYYY55J77?YYY5J~^^^~!^:^^^^~^^7J5PGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5BBBBBBBBPYPBBBBBBBBGPPPPGGPPPGGP5PGGGGP5PPYJYY?5GGPPPPGGPGGGGBBBGGGPPP?^:^!?YY55555YY5YYY55Y5Y557^^^^^^~?7^^^^~77~^^7YPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBGB5JPBBBBBBBPGBBGPPPGPGGP5PPPGGGGPPPJJYJ?YPBBGGGGPGGPGBBBBGGGPGY^^?55YYY555555555555555Y?^^^^^^^^~?5!^^^^~JJ~^^!YPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJPBBBBBBBBBGGJYGBBBBBGPGBBBBBBBG5GPPGGGGGPPGPPPGPP5YJ5BBBBBGGGGGGBBBGGGGGY!J5YYYYY5555555555555557^^^^^^^^^^^?GY!^^^^JP?~^^75GGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBBBBBPY5GBBBGPGBBBBBBBBGYP5PGGGGBBBBBBGGGGPPP5YPPPPGBGGGGGGGGGGG5?YYYYYYYYY5Y5555555555557~^:^^^^^^^^^!PP?^:^^7PY~::~5GGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBPYPGGGPGBBBBBBBBBGP5YPBGGGBBBBBBBBGGGGGGPJ5GGGBBGGGGGGGGGJJYYY55YY555555555Y5YY5555YYJ!^^^^^^^^::!5PJ^^^^JP5JYYPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBBBBBBBBBG5YGGGGBBBBBBBBBBBG55GBBBBBBBBBBBBBBBBBBBP5GBGBBGGGGGGGGYJYYYYYYY5YY555555555YYYYYYYYYYJ?~::^^^~~~?PP5555PPPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBB5YGBBBBBBBBBBBBBGGGGGGGBBBBBBBBBBBBBBBBGJPBGBBBGGGGGG5?YYYYYYY5Y55555555YY55Y5YYYYYYYY5Y?!Y5PPPPPPGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBGYPBBBBBBBBBBBBBBBBB5YGBBBBBBBBBBBBBBGGGPPGGGBBBBBBBBBBBBBGYPBBBBGGGGGGGJY5YYYYYYYYYYYYYYYY5555555PPGPGPPPPP5YGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBBBBBBBBBBBGY5GBBBBBBBBBBBBBGPGGPGGGBBBBBBBBBBGGB5YBBGBBBGGGGGPJ5Y55555PPPPPPPGGGPGGGGGBBBBBBBGPPPGJ5GGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBBBBGYPGBBBBBBBBBBBBBGGGGBBBBBBBBBBGGPPG5YGBBBBBBBGGGG5YPPPGGGGBBBBBBBBBBBBBBBBBBBBBBBGPPPYYGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBYYGBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPP55GBBBBBBBBBBBGGJ5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBGP5J5GGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBG5GBBBBBBBBBGGBBBBBBBBBYYGBBBBBBBBBBBBBGBBBBBBBBBBBBGBG55GBBBBBBBBBBBBGGGG5YYPGBBBBBBBBBBBBBBBBBBBBBBBBBBYYGBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBBB5?GBBBBBBBGY5GBBBBBBBBBBGPGGPGBBBBBBBBBBBP5PBBBBBBBBBBBBBBBBBBBBGPYPBBBBBBBBBBBBBBBBBBBBBBBBBYPBBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBBYJGBBBBBBBGYPGGGBBBBBBBBGPGGPPBBBBBBBBBBGJGBBBBBBBBBBBBBBBBBBBBBBBBJPBBBBBBBBBBBBBBBBBBBBBBBBPYBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBBJ?GBBBBBBBBPJGGGGGGGGGGBBGGGGGBBBBBBBBBGYPBBBBBBBBBBBBBBBBBBBBBBBBBGJPBBBBBBBBBBBBBBBBBBBBBBBGJGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBG??PBBBBBBBB5YBBBGGGGGGGPPGBBBBBBBBBBBBBP5BGGGGBBBBBBBBBBBBBBBBBBBBBBGYYBBBBBBBBBBBB5GBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBGJJ5BBBBBBBPJGBBBBBBBBBBY55Y5GBBBBBBBBBPYGGGGGGGGBBBBBBBBBBBBBBBBBBBBBB5YGBBBBBBBBBBY?GBBBBBBBBPYGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBPPBBBBBBBBBGJYYBBBBBP5YGGGGGGBBBBBBYPPJ5YGBBBBBBBPYPPGGGGGPPGBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBG7JGBBBBBBBGJGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YYYPGGGGGGGGGGGGGGBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPP5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5J555JYGGGGGPPPPGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBGP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ5555PYJ5Y?!~~~~~7?YPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBG5PGBBBBBBBBBGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5J555555Y!^^^^^^^~J~^~?PGGGGGPPPP5555YYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBGGP5GBBBGPPPPPPPPPPPPPPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y555555J^^^^^^^^~J!~^^7YJYYYYYY555555JPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBBGGBP5GGPPPGBBBBBBBBBPJ5PP5PGBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBGBYY555555Y^^^^^^^^!~^~~^~Y555555P55555YJGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBGYBBBBBBBBGGGPPYPGBGGPPPPPPPPPYYYGBGP55GBBBBBBBBBGGGGGGGPGPPPPPGPPPGBBBBBBBBBBGBYY555555?^^^~~^^^!^^^^~^?5Y5555555555?PGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBGP555GG555PPPPPPPPPPYPPYPGBBP5GBGGGPPPPPPPGGGGGGGBBBBBBB5PBBBBBBBBBBBBP?P55555Y!~!^^^^~~~^:^~^!YJJY5555555J5BGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBGP5P5Y5GGP5P55PPPPPPYJJYYYPBBGY5PPGGGGGGGGGGGBBBBBBBBBBGYGBBBBBBBBBBBGGYYP55555!!7!:..:!JY?:^^~75?J555555JYBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBGPP5YP55PGGBBBBBBB5YYYGG5Y5GBP5GGGPGGGGGGPPPPGGBBBBBBBPPBBBBBBBBBBBBGBGJP55555J!J?:....^~^:::^^7Y555555YJGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBBGPYJY5GBBPPPGBBBGBY7?5GBBBGPGB55GGGGBBBBGPPGPGBBBBBBBG5BBBBBBBBBBBBBBGB5Y555555!^::........~J?~!?Y5555Y?GBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBGYPGBBBBBBBGG5JJGBBBYJY5GGGBGY7JP55GBG5PBG5GBBBBBBGPPGBPGBBBBBBG5GBBBBBBBBBBBBBBGB5?555555J~^.:~~~~.:~JJ?YY7!?555JPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBGYPGBBBBBBBBGPJJGB5P55Y55G5PG555PP555PYJGG5PBBBGGPPGBBBPGBBBBBBPPBBBBBBBBBBBBBGGBG7~Y555555J^^^^^^^^7J?JY555YJ??!JGGBGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBP5PBBBBBBBBGG5?PG5YPYG5GGG5Y55P55PGPYJ?PGJPGPPGPYGBBBGPBBBBBBP5BBBBBBBBBBBBBGGGG7^^J5555555!~~^^^~!77JJYYY55PY?7^!7J5GBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBB55GBBBBBBBGGGJYYY55YPBGGGGG5JJJJJJ5GP??PYYGBBB5PBBBBGPBBBBBG5GBBBBBBBBBBBBGGGGJ^^^75555555Y5GY!~7?7~~?5YY5P5JGGPJ~^!!YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYPBBBBBBBBGGYP5YYJYPGBBBBGJJ?JY??YGBJ?YGYPBG55BBBBGPGBBBBG5GBBBBBBBBBBBBBGGGY~^^^~Y5555555Y?55!~!77~!YP555?PGGGBPYP5?JGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5YGBBBBBBBBGPJJ?JYJYBBBBBBBGJJYY5GGP?GYYGYP5PBGBBBGPGBBBBPGBBBBBBBBBBBBBBGGP!^^^^^!Y555555Y~~~!7!~??7!?YY!~??JY5GGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5GBBBBBBBBGGJ?JJJJGBBBBBBBGGGGBBGBYYP5Y5G55GBBBBGPGGBBB5PBBBBBBBBBBBBBBBGG?^^^^^^:!5555555Y??Y5Y~7YJJ?J?7!J5YJ!^5GGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBG5?5GGGPGBGBBBBBBBGGBBG?5GBBPJGG5PGBBGPGGBBPPBBBBBBBBBBBBBBGGG5~^^^^^^^^JP5555555555G?7555555PPY??77JGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYBBBBBBBBBGPJ5YPGPPGBGGPP55PGGBGY5BBBB5Y55PPPPGGGGBBPPBBBBBBBBBBBBBBGGGG7^^^^^^^^^^Y55555555555J?555555555Y?PGBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJPBBBBBBBBGG5Y5Y5GBB5YYYY5Y5BBPYPBBGP555PGP5PP5PPGBPPBBBBBBBBBBBBBBGGGGY~^^^^^^^^^:~Y555555555555555555YYYY?GGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY55BBBBBBBBBGPY?Y5YPG5YPPPPPBG55GBGP5PGGGGGGGPP5P555YGBBBBBBBBBBBBBBGGPP7^^^^^^^^^^^^!Y5555555Y5GG55555Y5PP?5BGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5GGYGBBBBBBBBBBGYY5P555GGPGGPY?YBBPPPGGGGGGGGGGPGGG5Y55PGGBBBBBBBBBBBGGG5~^^^^^^^^^^^^^75Y55555YY55Y555YY5PJ5GGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBYGBBBBBBBBBBGGYP55P5Y5PPYYY?P5?J5PGGBGGGGGGGGGBP5GGPYY55PGGBBBBBBBGGGJ^^^^^^^^^^^^^:~YYYYY5Y555555YYY5YJPBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBPPBBBBBBBBBBGGPY55J5P5Y55Y5?YYYJ?J55GBBGPGGPGBP5GBGBGP5JJJY5PGBBGGGGP7^^^^^^^^!~^^^^~55555YY5BG5555Y5YJGBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBP5BGBBG5BBBBBBBBBBBGB5?PGPP5P5JY??JJPG5J5J?5BGPGGPBP5BBBBBBBBG5JYP5YYPBGGGP!^^^^^^^^~~^^^:~PBGGGPP5555YYYY5JPBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBGYGBGBBB5PBBBBBBBBBBBBB5JPGBG55PPYJJY55P5YP5JYGPPPPP5BBBBBBBBBBBGJ5GGPYYGGGP!^^^^^^^^^^::^!YGGGGGBG!!J5YYY5JYGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBG5GBBBBBBGYGBBBBBBBBBBBGGJ5PPPP5JYPP5PPP5GPPPP55PPP55BBBBBBBBBBBBBGJ5BBBPGGGP!^^^^^^^^^~!7J55Y555PP?~~?5YYYJ~?5GGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBP5BBBBBBBBBBBBPY55PGP5J?YPGP5GGP5555PPPP5YGGGGGBBBBBBBBBBGGBGBBGGGP!^^^^^^^!?Y555555555YYYJJYYYY!^^^^!J5GGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBBBBBP5GBBBBBBBBBGP5PGPPPP5JYYPBG5PBBGP5JJ55YYPGPPPPPGGGGBBBBBBBBBBGGGG!:^:^!?YY5555555555555555YYYJ^^7^^^^^!JPGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBGY5BBBBBBBBGPGGGPPPP5PGGG55BGJ5GGBGPYJY5YYPBBBGGGGPPPPGBBBBGBBGGGG!:^~J5555Y55555555555555555J^^^~J~:^^^^^!J5GGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBGG5PGBGBBBBGPGBBBGGGBBBGGGYGGJY5PPPGPPPPPP55PBBBBBBGP5GBBBBBBBGGGGJ~?Y5Y555555555555555555555!^^^^!5?^^^~!~!!!7?J5GGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBB55GBBBBBBBBBBBGBPJPGGBBBGPGBBBBBBBBBBGGG55GYPPGGGGGGBGPGGGP5GGGPPPGGBBBBBBBBGGGPJY5YY5Y555555555555555555557^^^^^!P57^^^^!7??!~^~7J5GBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBG55GGBBGPGBBBBBBBBBBBGGGPYGJGGGBBBBGBBGGGGBP5GGGGBBBBBBBBBBBGBYJY5YY5555555555Y555555555Y55Y~^^^^^~YG5?~^^^^!?55J!^:^7PGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBBB55GBGGGBBBBBBBBBBBBBBBG55YBBBBBBBBBBBBBBBB5GBBBBBBBBBBBBBBBYJ55PPGGGGGGGGBGGP5YYY5Y555Y555?^^^^^^^?5GPY7^^^^~!YP5JYYPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBB5PGGGBBBBBBBBBBBBBBBBBPYPBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBGYYPPGGBBBBBBBBBBBBGGPP55YYY5555557^^^^^^:~JGGG5J!^^^^7GBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBBBGGPPGBBBBBBBBBBBBBBBB5GBBBBBBBBBBBBBYYGPPGGGBBBBBBBBBBBBBBBBGPP555YYY55~:^^^^^^^?PGGGPJJ55GGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBGPGGGGBBBBBBBBBBBGGGG5PBBBBBBBBBBBBBBPJPGPGGGBBBBBBBBBBBBBBBBBBBBBGGPP55J^^^^^^7^:?GGGGGBGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBGPGGGGBBBBBBBBBBGPGG5PBBBBBBBBBBBBBBBBPJ5PPGGBBBBBBBBBBBBBBBBBBBBBBBBBGGP7::^^~?PY5GGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGP5GBBBBBBBBBBBBBBBBBBG5Y5PGBBBBBBBBBBBBBBBBBBBBBBBBBBG57!?YPGGGBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBG5BBBBBBBBBBBBBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP5GBBBBBBBBBBBBBBBBBBBBBGP55PBBBBBBBBBBBBBBBBBBBBBBBBB5JPGBBGGGGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBGPBBBBBBBBGYGBBBBBBBBBBBBBGGBBBBBBBBBBBBBB55GBBBBBBBBBBBBBBBBBBBBBBBBBG5YBBBBBBBBBBBBBBBBBBBBBBBBPJBBGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBP?GBBBBBBBG5GBBBBBBBBBBBGGGGGGBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBYYBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBGYBBBBBBBBBBBBBBB5JGBBBBBBBB55GGGGGGBBBBBGGGGPGBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBY5BBBBBBBBBBBJ5BBBBBBBBBBP5BGGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBP5BBBBBBBBBBBBBBBYJGBBBBBBBB55GGGGGGGGGGGGGGGGBBBBBBBBBBBPPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBY5BBBBBBBBBB57PBBBBBBBBBGJGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBYJPBBBBBBBG5GBBBBBBBGGG5YPPGBBBBBBBBBBBGYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5BBBBBBBBBGJJYBBBBBBBBBJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBY55BBBBBGP5PGGGGGBBBBBB5PGJ55GBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBY5BBBBBBBBBJPJYBBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBGYPYGBBBP55GGGGGGGGGGBBG5GGJG5GBBBBBBBBGYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBB55BY5BBBBBBBGJGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYYYJ5GGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBGPPP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y555YJPGGGPPPPPPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBPPBBBGP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBGJ555555JYJ7!~^^~~!!?5GGGBBBBBBBBGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBG5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y555555Y~^^^^^^^~Y~^^7PPP555555YYYYYJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBYGBBBBBBGGP5GBBBBBGGGGGPPGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY555555Y~:^^^^^^~7~~^^7YYY5555555555JPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBBGGBG5GBGPPPPGBBBBBBGG5YPPPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBYY555555J^^^~^^^:!~^~~^~Y555555P5555YJBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBYGBBBBBBBGGBGG55PGBBBGGGGGPPGPJJPBGP5PBBBBBBBBBBBBBBGGGGGGGPGGPPPGBBBBBBBBBBBBBBBGB5JP55555J~^~~~^^^~^^^^~^?YY555555555?GGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBGGPP5PGGPP555PPPPPPP55PYPBBG55BBGGGGGGPPPPPPPPPGGGGGGGGP5BBBBBBBBBBBBBGBBGG?55555557~!^^::^~~~^:~~7YJ7Y555555?5BGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBGP555555PGPPP5PPPPPP5JYYYYPGBPYPPPPGGGGGGGGBBBBBBBBBBBBP5BBBBBBBBBBBBBBBBGB5JP555557~??:...~JY7:^^^?JJ555555JYBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBGPPPJPPP55PGGBBBBBGPYJYP5JYPBP5BGGGPGGGGGPPGGGBBBBBBBG5GBBBBBBBBBBBBBBBBGGBY555555Y!77:....:^:.^^^~J555555JYBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBBGP5JYY5GBGGGGBBBBBGJ?YGBBGPPGB55GGGGBBGGGPPPGGBBBBBBBPPBBBBBBBBBBBBBBBBBGGBPY5555557:.....::..:!J77!?5555JJGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBGYPBBBBBBBBGGPJJPBBBP?55GBGBBGJ7YY5GGGGGGG5GBBBBBGPPGBPGBBBBBBBGPBBBBBBBBBBBBBBBBBBGGBY!555555Y!^::~~~^:^!??Y5J!7JYYJGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBYPGBBBBBBBBGPY?PBGPPJYY5GGPGP5Y5GP55GGGGBPPBBBBGPPGBBPGBBBBBBG5GBBBBBBBBBBBBBBBBGGGB5~^Y555555Y^^^:::^~7?Y5YY55YJ7~!?YPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBP5PBBBBBBBBGG5?PBPJPYPY5GG555Y55Y55PYPGBGYPGGGPYGBBBBPGBBBBBB5PBBBBBBBBBBBBBBBBGGGGP~^^?5555555?~~~^^~777??YY55PYJPJ7!~!?JPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBY5GBBBBBBBGGPJY55Y5Y5GGGBG5PPP555PPG5PGGYYGGGGYBBBBGPBBBBBBP5BBBBBBBBBBBBBBBBBGGGP!^^^!55555555Y5?~~7?7~~YPY555?PGGGPY?!!~?PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBPYPBBBBBBBBGG5Y5Y5YY5GBGGGBP??JYYJJ5G5PG5YBBG5GBBBBPGBBBBBP5BBBBBBBBBBBBBBBBBGGGG?^^^^^J5555555Y7J?~~!77!~YP5575GGBGGGGGGPY?PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBB5YGBBBBBBBGGGYYJJYJYGBBGGBPP5?YYJ5PBP5GB55G5GBGBBGPGBBBBGPGBBBBBBBBBBBBBBBBBGGGY^^^^^^~Y55555557~~777!!??7?J?^~7?JY5GGGGGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBGG5YY?5YYGBBBBBBBP55PGGGGY5GGGY5GBBBBBGPBBBBG5GBBBBBBBBBBBBBBBBBBGGP~^^^^^^:!55555555YY555Y!7YYJYYJ??YY?^!PBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBGG5PPPPGBBBBBBBBBBBGGBBG?5PPPGPPGBGBGPGBBBG5GBBBBBBBBBBBBBBBBBBGGG?^^^^^^^^^?55555Y555555PYY55555PP5?7?JPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBGG55GBBP5GBBBBBGGGGGGBBY5BB55GGP5GGGGGBBBG5GBBBBBBBBBBBBBBBBBGGGGJ~^^^^^^^^^^J55555555555YY5555555555?GBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBJPBBBBBBBBBGP5PGGGGBGGP5YYYYPBGG55GGPPGGGGG5PGGGGBB5PBBBBBBBBBBBBBBBBBBGGGP!^^^^^^^^^^^~J5555555555PP5555555Y5YJBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBB5Y5BBBBBBBBBGG55GBBBB5J55PP55GBPYPBP5GGGGGPPGPPPGGBPPBBBBBBBBBBBBBBBBBBGGGG?^^^^^^^^^^^^^~Y555555555PG5Y55555G5?PBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBP5GYGBBBBBBBBBGGYPGPPGBPPPPPGBGY5GGPGGGGGBBGGGGGGPPP5GGBBBBBBBBBBBBBBBBBGGG5^^^^^^^^^^^^^^^!Y5555555YY555555Y5YYGBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBP5GBYPBBBBBBBBBBGP5GGP5PGBBBG5YJYBGYPGGGGGGGGBGGGGGPGGPPPPGGBBBBBBBBBBBBBGGG7^^^^^^^^^^~^^^:^YYYY55Y55555555Y5YJBBGGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBGYGBBP5BBBBBBBBBBBGP5GBGGP5555YP5Y5J?JY5PGBBGGGGPGB5PGGGGGPPPP5PGGBBBBBBBGGGP!^^^^^^^^^~!^^^^^Y5555YY5GG5555YYYJGBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBB5GBGBG5GBBBBBBBBBBGGP5GGGGPPGGYYJYY5P5YY5YPBBPPGPGPPBGGGGGPP555YY55PPGBBGGGG5~^^^^^^^^^~~^^^:^5BGGGPP55555YYY5J5BGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBPPBBBBB5GBBBBBBBBBBBGG5JPGGGGGP5PJJYYPP5PP55GBGPPPP5BBBBBBBBBGGGPPPP555GBGGGGJ^^^^^^^^^^~^^:^~JGGGGGGG7!?5YYY5YJGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBP5BBBBBBG5BBBBBBBBBBBGGGY5PGGGGGPP55555PP5GGPGGGPPP5BBBBBBBBBBBBBBGGGGGP5PGGGG?^^^^^^^^^^~~!!JY55555PPJ~~7YYY55?PGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBG5GBBBBBBB5PBBBBBBBBBBBGB5YPPGGGGGGGPPPPP5555GGPPPP5GBBBBBBBBBBBBBBBBBBBBGGYPGG?^^^^^^^^~7JYY555555Y5YYYJJYYYYJ7JGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBG5GBBBBBBBBGYGBBBBBBBBBBBGY5P5PP5GGP5GGPPGGPP5YY5P555GGGGGBBBBBBBBBBBBBBBBBBBGGGJ^^^:^~7JY55555555555555555YYYY~^^75GGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBBG5GBBBBBBBBBGPPPPGPPPPGG55GBGPPGGGPYJJYYJ5PPPPPGGGBBBBBBBBBBBBBBBBGG5~^^!JY5555555555555555555555Y7!~^:^!YGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBP5BBBBBBBBBBBBPYGBBBBBBBBPPGGG5PPPGGGGGPPGBGPPGGGG5Y5555PGBGGGPPPPGBBBBBBBBBBBBGGG7!Y55YYY55555555555555555555J^~J!^^^^!JPPGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBG5PGBBBBBBGPGBBBBBBBBBBBGGGPPGGGGPPPPGGGPPPPPBBBBGP5PBBBBBBBBBBBBBPJJ555555555555555555555555555J^^!Y?^^^^^~~7Y5PGGGBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBGYGBGBBBGPGBBBBBBBBBBBBBBGGGGGGGGGBGGGGPGGGG5PGPPPGBBBBBBBBBBBBB5J5PGGGGBBGGGGGPP55555555555555Y!^^~557^^^^^^:^~!JY5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBP5BGBBGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBP5GGBBBBBBBBBBBBBBGYYPPPGGBBBBBBBBBBBGG55YY555555555J^^^~JG57~^^^^^~~!~~~~7?PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBB5PBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5GBBBBBBBBBBBBBBB5YGPPPGGGBBBBBBBBBBBBBGP5YY5Y555555!^^^^75G5J~^^^^~~!7JYJJ5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBGYPBBBBBBBBBBBBBBBBBBG5PGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBGJ5GPPGGGBBBBBBBBBBBBBBBBGP55Y55555Y^^~^:~?PGPY7!^^^^^7PBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBBBGGGGGBBBBBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBBGY5PGGGGBBBBBBBBBBBBBBBBBBGGP5555557^!~^^^~JPGGG5??YPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBPYGBBBBBBBBBBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBBPPGGGGBBBBBBBBBBBBGGG5GBBBBBBBBBBBBBBBBBBBPYYPGBBBBBBBBBBBBBBBBBBBBBBBGGP55J~^~!!::^7PGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBP5GBBBBBBBBBBBBBBBGGGGGGBBBBBBBBBBGPGP5PBBBBBBBBBBBBBBBBBBBBBBPY55GBBBBBBBBBBBBBBBBBBBBBBBBBGY^^^^?J7??PGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGP5GBBBBBBBBBBBBBBBBBBBBBBBBBB5YBBBBBBBBBBBBBBBBBBBBBBBBB5JJJY5PGBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBYGBBBBBBBBBBBBBBBBBBBBBBBBBB5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBY5BBBBBBBBBBBBBBBBBBBBBBBB5YBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBPGBBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJPBBBBBBBBBBBJPBBBBBBBBBBGJBGGBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBB5GBBBBBBBBBBBBBBBBGJGBBBBBBBBPPBBBBBBBBBBBBBBGGGBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJGBBBBBBBBBBJ?GBBBBBBBBBBJPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBG5BBBBBBBBBBBBBBBBBGJGBBBBBBBB5PBGBBBBBBBBBBGGGGGGBBBBBBBBBBBG5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJGBBBBBBBBBPJYPBBBBBBBBB55BBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBB5PBBBBBBBBBBBBBBBBB5JPBBBBBBBBGYPGGGGGGGBBBBGPGGGGBBBBBBBBBBB5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBGYG?PBBBBBBBBGJBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBG5GBBBBBBBBBBBBBBBBBYJ5BBBBBBBBBYPBGGGGGGGGGGGGGGBBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5YBBBBBBBBBJGGJPBBBBBBBBJGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBG5BBBBBBBBBBBBBBBBBBY55BBBBBBBBP5GBGBBBBBBGG555PGBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBY5BBBBBBBBYPBGJGBBBBBBBYPBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG555GGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ55YJPGGGGBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJ55555J5GGP5YJJJYYPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ555555J?!~^^^^^^7^!?PGGGPPPP5555555BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y555555J^^^^^^^:~Y!^^75YYYY5555555YJBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5555555Y^^^^^^^^~!^~~^J55555P55555?5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYY555555?^^^~^^^^7~^^^^!YY55555555YJBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBGGGBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5JP55555J~~!^^^^~~~^^^^^?JJ5555555?PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBGGGBBBBBBBBBBBBBGGGGPGGGBBBBBBBBBBBBBBGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBG?5555555!~!~::.:!??~^^^!7J555555J5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBGGGGGBBBBBBBBBBBBBGPGGGBBBBBBBBBBGGGGGGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBB5JP555557!JJ:...^??!:^^!J5Y5555YJGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBGGGGGGGGGGGGGGGGGGGGPGGGBBBBBGGGBBGBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBGBJ555555Y~~^:.......:^^~J55555YJGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBGGGGGGGGGGGGGGGGGGGGPGGGGGBBGGGGGBBBBBGGBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBGGB5Y555555?:..::^^^..^!?7~J5555?PGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBGGGGPPGGGGGGGGGGGGGGPPPPPPGBBGGGGBBBBGGGGGGBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBGGB?!5555555!^::~~^::~7Y5Y7~7J5JPBBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBGGGGPPGGGGGGGGGGGGGGPPPGGGPGBBGGGBBBBGGGGGGBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBY^~Y55555PY~~^^:^~!7JYYY5Y?!~^!?YPGGBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBGGGGPPGGGGGGGGGGGGGPPPPGGGGGGBBGGGBBBGGGGGBBBBBBBPGBBBBBBBBBBBBBBBBBBBBBBBBG5~^^?55555557^~~^~777!7?YY5PJJY?!^^~!?YPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBGGGGGGGGGGGGGGGGBGGGPPGGGGGGGGBGPGGGGBGGBGBBBBBBGPBBBBBBBBBBBBBBBBBBBBBBBBBP!^^^~55555555J~^^7?7~^?GP55YJGGGGP5Y?7!~!YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBGGGGGGGGGPPPPGGGGGGPPPPPPPGGGBBGGGPGGBBBBBBBBBBPBBBBBBBBBBBBBBBBBBBBBBBGBG7^^^^^?555555PJ!~^~~777~75P57JPGGGGGGGGGPY?5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBGGGGGGGGPPGPGBGPPPGGPPGGGPGBBBBGPGBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBGGJ^^^^^:~Y555555?~~~!~!~!?7777~^^7?YPGGGGBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBGBGGGGGGGPPPGGGGGGGGPPPPGGGGGBBBGGGBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBGGY~^^^^^^:7P555555YJYY?YY77JYYYYYJ77~^JBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBGGGGGPPPPPGBBBGBGPPPPPPPPGPGBBGGGBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBGBY^^^^^^^^^^Y55555Y55555555555555GP5!?5GGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBGGGGGPPGGPGBBBBBBGGPPPPPGGGGBGGGBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBGG5~^^^^^^^^^:~Y55555555555YY555555555J5BBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBGGGGGGPPPGGBBBBBBBBGGGGGGGGGGBGGBBBBBGBBBBGGGBBBBBBBBBBBBBBBBBBBBBBGP!^^^^^^^^^^^^!5555555555PP5555555555?PBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBGGGGGGGGGGBBBBBBBBBBBBBBGGGBBGGGBBBBGBBBGGGBBBBBBBBBBBBBBBBBBBBBBBG?^^^^^^^^^^^^^^7555555555PG5555555PP?YGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBPBBBBBBBBGGGGGGBBBBBBBBGGGGGBBBBBGGGGGGGGBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBY^^^^^^^^^^^^^^^^?55555555Y555555Y55J5BGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBPGBBBBBBBGGGGGGBBBBBGGGGPPPPGBBBGGGGGGGGGGBBBGBBBGBBBBBBBBBBBBBBBBBBBBBBBBG!^^^^^^^^^^~~^^^:~Y55Y555YYY555YYY5J5BGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBGPBBBBBBBBBGGGGGGBBBGGGGGGGGGGGGGGGGGGGBGGGBGGBBGBBBBBBBBBBBBBBBBBBBBBBGGGY^^^^^^^^^^^~!^^^^^J55YYY5PGPY55YYY5?GGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBGPGBBBBBBBBBGGGGGGGGGGGGGGGGGGPGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBGGGP!^^^^^^^^^^^~~^^^^:YGGPP55PP555YYY5JYBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBPGPGBBBBBBBBBBGGGGGGGGGGGGGGGPPPGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBGGG5~^^^^^^^^^^^^^^:^^?GGGGGBY7?5YYYY5YJGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBPGGGGBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBGGY7^^^^^^^^::~!!!7JY5555PP5!~!Y5YYY5?GBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBPPBBBGGBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBGGGJ!^^^^^:^^~!?JYY5555Y55YYYJJYYYYYY?5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBGPGBBBGPBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGBBBBBBGGGGGGGGGBBBBBBBBGGBJ~^^:^~7?YY55555555555555555YYYYY7!PBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBGPBBBBBGGGBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBGGGGGGGGGBBBBBBGGP^^!JY555YY5555555555555555YYYYY!^~JPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBGPGBBBBBBGGBBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGBGGGGGBBBBBBBBBBBBBBBBBBBGGGBBBBBBBB5?Y5555P5555Y555555555555555555?~^^^~JGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBPGBBBBBBBBGGBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBGYJPPPGGBBBBGGP555Y55555555555555?!!^^^^~J5GGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBGPGBBBBBBBBBGGBBBBBBBBBBGGGGGGBGGGBBBGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBGJ5PPPPGGBBBBBBBBGP555555555555555J^7J~^^^^^!JPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBPGBBBBBBBBBBGGBBBBBBBBBBGGGGGGGGGBBBBGGGGBGGGGGGGGGGGBBGGGGBBBBBBBBBBBBBBBBBBBBP?GPPPPGGBBBBBBBBBBGG55555555555555~^75?^^^^^^~!?Y5PGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBPGBBBBBBBBBBBBGGBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBGBYYPGPGGGBBBBBBBBBBBBBG55YY55555555?^^7G57^^^^^^^:^~!7!5BGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBPGBBBBBBBBBBBBBBGBBBBBBBBBBBBBGGGGGGGGGGGGBGGGGGGGBBBBBGGGGGGGGGBBBBBBBBBBBBBBBBBBB5YPGGGGBBBBBBBBBBBBBBBGP55YY55555Y^^^!5GPJ!^^^^^^^!5PGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBPPBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBGGGGBBBBBBBBBBBBBGGBGGBBBBBBBBBBBBBBBBBBBBBBBBGYY5GBBBBBBBBBBBBBBBBBBGGP5YYY555!!^^^!5GP5?!~~~JPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBP5YPBBBBBBBBBBBBBBBBBBBBGP55Y5P??7^^^^75GGGPPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBPGBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBGJGBBBBBBBBBBBBBBBBBBBBBGGPP5?^7?~^~~!PGGGBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBPGBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBG?~!JP5PGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBGPGBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBY5BBBBBBBBBBBGGBBBBBBBBBBBPYGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBPGBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJGBBBBBBBBBB5?GBBBBBBBBBBPYBGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBGPBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBBP?JGBBBBBBBBBP5BBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBGPBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBGY5JBBBBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBJGYJBBBBBBBBBJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBGPBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJBBBBBBBBBJPG?PBBBBBBBBJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPPPGBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5YYJJ5GGGGGBBBBBBBGGGGBBGGPP555PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5YP555JYGGGP5YYYY55GBGGP5YYYYY55JGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJ555555YJY7~^^^^^7~~7JYY555P5555JPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ5555555?^^^^^^^^Y?^^~Y555555555?GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y5555555!:^^^^^^^!~~~^^J5555555JYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY555555!~^^~^^^:~!^^^^:~J555555?GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y55555Y~~^!~^^^^~~~^^^^!Y55555YJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJP5555J!~~7~^:::~7?!^~^J555555?PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY5555J!^!YY^ ..:7J7^~^Y55555YJBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ5555Y!!:~~:... ....~:?55555?PGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y555577^....::^^..:~~~5555YJGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGYP555Y!7~^::~~~^::!YJ^J55Y?GGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?J55557^!!^::::^~!??J~~YP?PGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBY^!555557:~^::~~.!7~!J?^!?YBGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5~^^J555557^!^:!?^:~^^P5?^:^?5PGGGGGP5JGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5~^^^?5555PP?~~^~?!::. JGP?^^:^!?J??!~~?GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJ~^^^:!55555PGJ^~~!7!:..^!7?~~^^^^^^^^!?PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBG?^^^^^^^Y55555YPY~^7?7!~:.~!77!~^7YYYY5GGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBP7^^^^^^^^?5555Y!!!!!~!7?77!YYY5J?J^?GGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGB5~^^^^^^^^^~55555YJ?Y55YJJJ555P5Y5J77YGPPGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG5~^^^^^^^^^^:7555555555PP555555555Y5?PGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBGJ~^^^^^^^^^^^^^75555555555555555YYYYY?GGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ^^^^^^^^^^^^^^^^?5555555P55555555555?5BGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG?^^^^^^^^^^^^^~^^^^J55555PGPYY555555PYJBGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG?^^^^^^^^^^^^^~!^^^^~J5Y55Y555Y5555YY5JYBGBBBBBBBBGBGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGY~^^^^^^^^^^^^^~~^^^^:755Y5P55555555555JGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP~^^^^^^^^^^^^^^^~^^:^~5BG5YPP5555555PPJ5GGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG?~^^^^^^^^^^^^^^7!^^!J5PGGJ~!Y5555555J?JBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP~~^^^^^^::^^^^^^J??Y55Y555?!7Y555555Y7!5BBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5^7~^^^^^!?YYYYJJJJY55Y55555Y5555555555?5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGB5!Y~^^^^?PPPPPPPPPP55555555555555555555YJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5!5!^^^^JPPPPPGGGGGP5555555555555Y55555YJ5BGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBP!P7^^^^?PPPPPGGBBBGP5Y5555555555555Y55YYJBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYG5~^^^~YPPPPGBBBBBGP5Y555555555555555Y5?5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG!^^^^!5PPGGBBBBBBGGP555555555555Y5YY5?^?5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBY^^^^^7PGGBBBBBBBBBBP5Y55555555555YYYJ^::^!?Y5PPPP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG?^::::7PBBBBBBBBBBBBG5YY555555555JYYY77^:::::::^~?PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG?777!^7GBBBBBBBBBBBBG55YYY55555YYYYY?PPY7!~^!J5GBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?PBBBBBBBBBBBBGGGPP555YYYY5YY5Y?YGGGPPGBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBGGBBBBGGGPP55555P??GGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBGGBBBBBBBBBBGGGPGYYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBBBBBBBGGBBBBBBBBBBBGP5YYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJGBBBBBBBBBB?PBBBBBBBBBBG5555GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBGJGBBBBBBBBBGJ5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGBBGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGGGGP5YYYYJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55GGGGGGGGP5J?7!!!7J5PP5YJYY5555JGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5?7?JJY555J?!~^^^^^^~?~~?JY5555555?GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG?Y55555YYYYY?:^^^^^^^~J!^^?5555555JJBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG5YYY5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ555555555J7!^^^^^^^^^~^~^:7555555JPBBBBBBBBBBBBBBBGGGGGGGBBBBBBBBBBGP55PGGBGP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ555555Y557:^^^^^^^:~!^^^^:!YY555YJGBBBBBBBBBBBGP5YY55555YY5PGBBBBGP55PGGGGGG5YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB555555Y!?!^~~^~~^^^^~~:^:^^J55555J5BGBBBBBGPGGPJJJY555555PPY!!J5P5Y5PGGGGGGBG5YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJP55557~~^!^~!~:.:^~7!^^^!JJYYYY?PGGBBBBBP77??JYJJYYYY55Y??J?5Y?JPGP5PGGGBGPY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBY55555Y!^^!^7J7....^??^.:??JJJJ?75YY55555J!!?JJYYYYYYYYYYJ777JGPYJ555PGGGGG5YPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ55555J~:^^:^^...  ... !YY5555?YGGGPPPPY~^~~?PGBBBBBBBGG57!?7?PG5?J5GGGBGGY5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5J5555J^^~~....:::^..:.!YYY55Y75PPPPGGGJ!?YYPBBBBGGPGGGPJYPGGPGBGJJPBBBBBPY5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGYJ555Y~7!^::::^~~^::~.^YYYYY7!J5PGGGGP5GPYJYGY5GBY7GP?7~~JGGGGG5JYPBBBBG55GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGYJ55J~7Y?~^!!^::::^7:.JYYYY~~J7YYYYJ?YY?~~JG7?G5!!GP!!57?GBBGGJJPGBBBBG55GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGG?J5J!!?J?~~!~^..:^^:.^YYYJ::5??PPPY?57^^^757~JJ~~7?!!J7?GG5P5JYPGBBBBP5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPPP?YJ!!7JJ?!~~~^:::~7:.!55?::55??PPJJP7~77!!!!7Y55Y?!!~~7G5J5YYPGBBBBB5YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPPGP?J?!!?Y55~^^~^::?P7:.7YY~:J55??5?55~!?!~~~!5BBBGJ~^~~!5YJYY5GBBBBBGY5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPGGP5?~?7~!?J?::^7!.:?G57.:!?!:^?YY7^~?7!!JJ!~!?PGGGGG57777PY?JYPBBBBBBPY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGY?~^:~JY?~~7!^~77!^~!!!7!::^^^:^~!!!JPJYY7GGPPGG55GGBBBBY?5?!YPGBBBBBG5YPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGP?^^^^^J5YY?!!77??JJJJ?7?J?7^^:::7YYY?55?PG?YBBBBBGGGPPPGBY?5?J5PBBBBBBG55GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGPJ~^^^^^!YYYY55YYYYY5P5YYYYYYY?~:::7PY??P575BP?JGBBPJ?777!75JJPJYPGBBBBBBPJJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPJ~^^^^^^^!YYYYYY555555555YYYYYY5?::^YP57JG5JJYGB5JJPG5J??JYYJ?JGJYGGBBBBBBP??5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGG5!^^^^^^^^^^!YYYY5555555YYYYYYYYY5J:.^5P57JG5JPPYYGBGYYYPGP5YJ?7YGYYGBBBBBBG5JJYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGP?^^^^^^^^^^^^^!JY5555555PGPYYYYYYY?~^.:5P57JGPJPBGJ75PGB5!~~7YY?7YB5JGBBBBBBPY55YPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGY!^^^^^^^^:::^^^:~Y55555555P5YYYYYYY!^^:~JPP?JGGY?PGY!~!?JY7JPJ!5P?YGPY5GBBBBG5YGPY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGY~~!^^^^^^:::::^^^^75555555555555YYYJ~^^^YJ?5J?GBP??5?!~?J!^:7PY7YBJJGG5YPBBBBGYYGGYJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGJ^~?^^^^^:::^::::^^^^?Y55555555555555!^^:~PGJ?Y7PBBG??5PPY???JYJJJ75J!5BG5JPBBGP5YPBPJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG5^~?^:^^^^^::::::::^^:~55YJ555555555G5^:^:JPPGYJY?GBGY~YBG5JYPGGY??YJ???5BB5JPBGPPJ5BPJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGP!~Y~:^^^^^:~^.::^::::^?GP7~J5Y5YYJ7J557^:~5PPPG5JYJPGP7:?PY5PPYJYYJPPYP5JPBB5JPBGPY5BPYYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGY^J?^^^^^^::J~::::::~?Y55YJJYYY5YYYJ?JYYJ~?GGGGPP5?J?PBG7:^?GG5JYG5JP5?5GY?5GBGY5GPY5BPYYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGY?5!^^^^^^:?5!:::^7JYYYYYY555555YYYYYYYY5J7GGGPYY55?J?5BG?^^7?JPGG5?YJ!7?7!!~7PBPJJJYGPYYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGG5~^^^^^:^Y?!!!?Y55YYYYYYY555555YYYYYYYY5?YPYY5GPY5GGJYGGJ?7~75PP5Y55Y???J5J~~?5PY?J5PYYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPG5^^^^^^^^7?YPPP55555YYYY5555555YYYYYYYYYJ~JPGGPY5GGBG5J555P55GGGGGGGP55PGBG57~7J5PPPPJJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGY::::::^7Y5PPPPPGGGGP5Y555YYY5YYYYY5YYJ?J??GG5JYGGGGP5PPGBBBBBGGPPPP5YPBBBBBGY?JYPBG5JJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG5??7~~~~75PPPPPPGBBBBGP5555555555YYJ??JYYY7JGJJPGGGGBGGGGGBBBBBBGGGG5JPGBBBBBBP5YGGG5JJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGPPPP?YPPPPPGGBBBBBBGP5Y5555YYJ?7?YY5Y5Y~??JGGGGGBBGBBBBBBBBBBBGB5?PBBBBBBG5Y5P5P5?YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGJYPPPGGBBBBBBBBBGP55YYJ???7?YYYYY5!:?7PBGGGBBBGBBBBBBBBBGGG5?PBBBBBG555GGGBPJ5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGYJPGGBBBBBBBBBBBBP5J???7!~?YYYYY?~7J??PBGGGPGGBBBBBBBGGPPG575BBBBGP55GGGGGPJ5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGPY5BBBBBBBBBBBBGPJJ???7??YYYYJ?7?~JPGYYPG555GBBBBBBBGGPPPP7YBBBBPY5GBBBBG5YPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGPJBBBBBBBBBBBPYJJY5YYY555YYJ??J?^PBBBJ!PPPPGBBBBBBBBGGGBG7?GBBGYYGBBBBBPY5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBGJGBBBBBBBBG5JJ5PG5YPBBBGGYJY5?77PBBPJ77GBBBBBBBBBBBBBBBGJ7PBBGY5GBBBBBPY5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYBBBBBBBBGYJJPGG5YPBBBBB5Y5GJ!J5GBB5??!YBGGPGBBBBBBBGGPPY7PBG5YPBBBBBG5YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYBBBBBBBPJJYGBGYYGBBBBGPYPP?!YGGGBGJJJYYYP5PGBBBBBBGGP555?YGP5YGBBBBBPYYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBPJ7YGBGYYGBBBBBPYPYYJYPGGGB5JY?5P??JY5GBBBBBBBG5Y?7JPGPJPBBBBG5YPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGGPYYYYJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGPYYYYYY5PGGG5JYY55PJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5Y555PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPY7^^^^^^~7!7JJJ55555PYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5PGBBBG5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPP5555555YY7:^^^^^::!Y~:^?5555555JGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP5GBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG?Y5555Y5555YYJ!^^^^^^^^^~~~^^?55555YJBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGPPGGBBG5PGGBBBBBBPYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG?55555555555J~^^^^^^^:^~^^^:^?55555J5BBBBBBBBBBBBBBBBBBBBBBBGGPGGGGGGGPY5GGGGPPG5PGGGGBBBBBPYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5Y555555YYJ?~~~^~~^~~^!^^^::~Y55555?PBBBBBBBBBBBBBBBBBBGGGGP5YYY5PP55YJY5YGGBGGPPGPPGGGBBBB5YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBGGJ555555??7^^!~~^~:^~~!~~^^^7555555?GGPPPPPPPPPPPPPP5PP5JJYY5555555555Y??YYYGBGB5Y5GGGBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBPJ55555Y7~^^~^!?!...:!JJ^^!Y555557?PPPPPGGGGGGGGGGGGGG5JY5Y5PPGGGGGGPY7?YY?75GG5?YGBBBBBBGY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBYJ55555Y~^~~:^7!.....^~^^J55555Y~PGGBGGGGGGGGGGGGGGG5JJYGBBBBBBBBBGGP5PGGP55GBYJPBBBBBBBPYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG?Y5555Y~~!J~.........^^7555555J!GGGGGGGGGGPPGGGGBGYYPGBBBBGBBBBBG5J!?5GGBBBGPJPGBBBBBBG5YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?75555J~?7??~:..^~~~:^~Y555555J~5GGGGGGGPPPPGGGGG5JGP5P5G5?GBBJPBJ~?575BGBGG5JPGBBBBBBGYYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG5!?YYY7~?YJ77!~::^^::^!5555555?^^YGGGGGGPPP5J5P5J?P5?YYJG5JGGY?5GJ~?GY?GG5GGJYGBBBBBBBGYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGY7JYJ~^7YYY7~!~^^::::!555555Y!^:~PGGGGGPPGGJYBPJ5PJ7777JYY5P555Y??????PG5G5J5GBBBBBBBPJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGY?YJ^:~JYY?!~!~:~:::~Y55555J~^^:7GGGGGPPPGGY5JYBGJ7?J????YGGGGGP?~!777PGGYYPGBBBBBBBPYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGY?Y7::~Y55Y^::~7^:::755555?:^^:!YPPGGGPPGBPJYGBPPYJJ!!!7?PBGGGPY?!?7YBB5J5GBBBBBBBG55GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGPGYJ?!^:!YP?::~7!:!7::75555J^:^:7YYPPGGGPPGP5PPPGGGJJY777?PBBBGBBGJ?YBGGYJPGBBBBBBBGYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPPGP?7?~:!?~:~77!:7Y!^^!JY5Y^:^:~5YYPGGGPPPPPPG5PBBP?PG55PGGGGBGBB5YGBG5Y5GBBBBBBBG5YPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPPGGJ!YJ7~!?7J?JJ?J77?J7!!7?^:^:~P5JPPPPPPPGGGGG5PBBYJGBBBGBBBBBBGPGGP5Y5PGBBBBBBBGYYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPPP??JYY5YYYYYY5GPYYYYYYYJ!~^^^:~5Y5PPPGPPGGGGGGG5PBGJYGBBGG55YJ5GGGG5Y5PGBBBBBBBBPYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPGP7!YYYYYYYYYYY555YYYYYYYY?^^^^^!JJPPGGPPGGGGGGGBG5PGG5J5GBGJ?JYPGGGG55PGGBBBBBBBG5YGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGG5?~:?5YYYYYYYYY55YYYYYYYYY?~^^^^^7?JPPGPPGGGGGGGGBBGP5PPP5JYPGGPPGGGGP5PGGGBBBBBBBGY5GBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGP5?~::^^?YY55YYY5555P5YYYYYYJ~^^^^^:?J?GPPPPPPPPGBGGBBGGGGGPPPP55PGBGGGG5PGGBBBBBBBBBPYPBBBBGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPPPPJ!~^^^^^^^7Y5555Y555PP5YYYYYY!^^^^^^^YP75GPPP5PGPYGBBBBGGGGGPPPPPGGGGGGBP5GGBBBBBBBBBB55GBBBBGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGY7~^^^^^^^:^^^7YY55Y555YYYYYYYY7^^^^^^^!PPYJPGPP55BBPYPBGBGPPPPPP5PPPGGGGGB55GBBBBBBBBBBGYPBBBBBGGPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGG5?^^!~^^^^^^!~^^^7Y5555555555YY55!^^^^^^^JPPP5YPPPP5GBBGY5GGP55PP5Y5PPP5PGGGB55GBBBBBBBBBBP5GBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGP?~^7J!^^^^^^7?^^^^^?5555Y555P5Y5PG7:^^^^^!PPPPGPYPGP5PGBBB55GGGGGYJPBBBGJ5GGGGP5PGBBBBBBBBB55GBBBBBBBP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGP7^!YJ~^^^^^^7?^^^^^:^?5YYYY55J77PGPY7~^:^^YPPGGGGP5PPP5PGBBBJ5GBB5JGBGPPYY5PPGGGP5GBBBBBBBBG55BBBBBBBBG5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG7^?5?^^^^^^^?J~^^^^^^:~5YYYYYYJ!!JYYYYY?~:!PGGGGGGGGP5PPPPGGBP55P5YGBGP55P5Y55PGGG5PBBBBBBBBBP5BBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG?^?P?^^^^^^:7Y7^^^^^~!^7PYYYYYY5YYYJYYYYYY7?GGGGGGGBBBGPGPPPPGBGP55PGP55GGGYY555GGGPPGBBBGGGBBP5GBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPJJP?^^^^^^:!5?^^^^:^!?JY5YY55555Y5YYY5YYYYYJ?GGGGGGGBBBBBG5PP5GGPPP55PPGGGGP5P55PGPPGGGGGGBGGGPYPBGBGBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGY^^^^^^^^J57^^:^!JYYYYYYYY5555555YY5Y55555J7PGGGGGBBBBGP5GGPPPGGGGPGGGGGGGGGGP5G5PGGGGGGGGGGP5PGBGBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGJ:^^^^^^!5Y7^!?Y5YYYYYYYYYY5555Y5YY55Y55555J?GGGGGGGBG5PGGGPPPPGGBBBBBBGPPPPGGPPPPGGGGGGGGGPPPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPGJ^^^:::^?5Y7J555555YYYY55Y5555YY5YYY55Y55555J?GGGGGGP5PGGGGGPGGBBBBBBBGGPPPPPGGGGGBBBBGGGGP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPP55YJJ??5Y?5PPPPPGGGP5YY55555555Y5JY555555555?5GGGGPYPGBGBBBBBBBBBBBBBGGGGG5YGBBBBBBBBBGBG5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGG?PPPPPPGGBBBGP555Y55555Y5JY555555555JJGGGGP5BGGBBBBBBBBBBBBBBBBBGG5?GBBBBBBBBBBBPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGG5JPPPPPGGBBBBBBGPP555Y5Y5JJ5555Y555YY?PGGGGYGGGGBBBBBBBBBBBBBBBBGBY?GBBBBBBBBBBP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGG5JPGGGGBBBBBBBBBBGP55YYY?YYYYYYYYYYY?PGGGGPYPGGGGBBBBBBBBBBBBGGPG5?GBBBBBBBBBP5GBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGPYYPGBBBBBBBBBBBBBBGPP5JY555YY55YY5J5GGGGBG5PGPPGBBBBBBBBBBGPPPPGJ5GBBBBBBGP5GBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGG5JBBBBBBBBBBBBBBBBBBBGGGGGPGGP555JYGGGGGGG55PGGBBBBBBBBBBGGPGGBYJGBBBBBBP5GBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBGGPJBBBBBBBBBBBBBBBBBBBBBBBBBBBPJYJYGGP5PGGGG5PBBBBBBBBBBBBBBBBGB5JGBBBBBGYPGBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBY5BBBBBBBBBBBBBBBBBBBBBBBBBGY5PPPP5PPPGGGGGG5PBBBBBBBBBBBBBBBGGGY5BBBBG5YGBBBBBBBBBBBBPYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBGY5PP55555PGGGBBBBG5PBBBBBBBBBBBBBGGGGPYGBBBPYYBBBBBBBBBBBBGYYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYBBBBBBBBBBBBBBBBBBBBBBBB5?5YY5P555PGGBBBBBGGG5GGGGBBBBBBBGPPPPGG5GGGGGYYBBBBBBBBBBBBPY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGG5YYY5BBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPPPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGPJJ555?PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5PGGPY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGP5J77!!!!7?YY?Y5555Y5BBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55GBBBBGJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPPPJ!^^^^^~?^::^^755555Y5BGBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYPGGGGBBBY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPP5YY5YYYYY7:::::::^?~^^::755555YYBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPPP5555555PPGBGY5PPGGGBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJYY5555555555!^^^^^^^^~^^~^^?55555JYBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBGP555PPGGGBPYPGPP555JYPPGGGBBBBGJBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5?P555555555Y7^^^^^^^^~~^^^:!Y55555J5BGGBBBBBBBBBBBBBBBBBBGGGGGGG5Y5GGGGPPPPP5??YGBBGBGGYYGGGBBBBBGJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY555555Y77!~!~^!^^~^!:^^^^75Y5555?PGGGGBBBBGGGGPPPPP555PPPPPPPYJ55YYY55PPPP57Y?JY5GBBB5YPGBBBBBBGJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJY555555!^^!~~~~^:::~!7!^~Y555555!YBGGGGGP55PPPPPGGGGGGGGGGGGP?Y55PP55555YY5??J5YJJPBGJPPGGBBBBBGJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBG?Y555J!!!~7~^!J!...:~?!:7YY5555Y~!PGGG55GGBBBBBBBBGGGGGGGGGGJJ5YY55PGGGGGGGY7J55YJ75PYPGGBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPJYJ!7JYY7JJ^:~^....:^^^J5Y5555J^^7PGG5YBBBBBBBGGGGGGGGGBBGJ7JPGBBBBBBBBBGG55GBBBBGGY5GGBBBBBBB5YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG?~~?5YYYY??7:...::^^^^!Y555555!^^~JGGGY5BBBBBBGGGGGPGGGBGJ?YGBBBG5BBBBBG5Y?YPBBB55GJ5GGBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGG?^^^?55YYYYJ7!:::^~~^~!Y555555Y^:^~~5GGGYPBBBBGGGGGBGY5PYJ55JBGPGYJGBB55YJJJGYYGGYPPJGGGBBBGBBGY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGY~^^^!J555YYYYJ7~!~::77Y5555555?:^^~~7GGGPYGBBBBBGGGGGPY5YG5??GJ55JYGBGYJYYJ?PPJ?YYB5JGGBBBBBBBBY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGY^^^^5J755YYJ7!7!~~^~YY55555555!:^^^~!5GGGPYGBBBGGGGBG5YPGGYYY5JJ?JYPBB555??J???JYGBY5PGBBBBBBBGJYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG5~^^^JGY7Y55JYY!^^^:~555555555J~^^^^^~?GGGGPYGBGGGGPP55GGGGYYY5YJYJ?JPGGGGGG7!??JGBGY5GGBBBBBBBGY5JGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGJ^^^:?557Y5PY^.:~~^^J555555557^^^^^:^!PGGGGP5BGGG5PGGGPPPY5P5?5?7!!!YGBBBGG5PJYGBBPYPGBBBBBBBBPYG5JBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGJ^^^^~7!~!~:~!7?!^~7Y555555Y!:^^^^^^^YPGGGGYPGPPGG555PGG55BB5?Y?~77YBGBBBBBYYGGGGY5GGBBBBBBBB5YPG5JGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGJ~^^!??JYJJJJJYJ!^?Y555555J~^^^^^^^^?PPGGGPPGGGPPPGGGGBG55BBYYGYY55BBBBBGJ?GGGGJ?5GBBBBBBBBBY5GJ55YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPGY!7YYP5Y5YY555PJ~!YYY55557^^^^^^^^:~PPGGGGGGG5GBGGGGBBBB5YGB?PBBBJPBBBGJJGBBPJYJPGBBBBBBBBGJPBPJ5Y5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGP?JYYYYYYYYYYY55YJ?YYYYY5J^^^^^^^^^^^55PGGGGGGYGBGGGGGBBBGP5GPJGBBBGGBGJJGBGY?Y55GBBBBBBBBBPYBBBGJYJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGP?5YYYYYYYYYYY5YY5YYYYYYY~^^^^^^^^^^^J5PGGGGGGP5BBGGGPGGGGGPYP5JYGBBGPY5GBPJJ5Y5PGBBBBBBBBBY5BBBBGJJ5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGJ?YYYYYYYYY555YYYYYYYYY!^^^^^^^^^^^^YPGGGGGGGB55BBGBGPGGGGGGP555JYPGY5BBP?5P5Y5GBBBBBBBBBGJPBBBBBP??PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGY?555YYYYY5P5YYYYYYYY!^^^^^^^^^^^^^YPGGGGGGGGB55GBGGPPGGGGGBBGP5PP5GGGPJ5PYYPPGBBBBBBBBBPJGBBBBBBY7YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGG5?YYY5Y5555YYYYYYYY7^^^^^^^^^^^^^^5GGGGGGGBBBB5YGGGGPGGGGGGGGGGGGGGGGYPPYJPGPGBBBBBBBBB55BBBBBBBGJ75BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGB5?5555555555YYYY5Y^^^^^^^^^^^^^^^5GGGGGGGBBBBBPYGBBGPGGGGGGP5PGGGGG55G575GGGGBBBBBBBBGJPBBBBBBBBP!JBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGP5?!~J55555Y5PP555PG5~^^^^^^^^^~^^^^YGPGGGGBBBBBBBGYPBGPGGGGGPY5PGGGBGYP5Y5BBGGBBBBBBBBB5YGBBBBBBBBGY!PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGP5?!~:::^J555YY555YYGGGGY7~^^^^^^^~^^^75PPGGGGBBBBBBBBGYPGPPGGPYYPP5GBGGPPP55PBBBBBBBBBBBBGJPBBBBBBBBBBGJYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGPPGP5?7~^^^^^^^^^J555YY5?~?PGP55YY?!~^^^^^^^~5P5PGGGGBBBBBBBBBGYPP55YYPPGG55BGGPPGPPPBBBBBBBBBBBB5YGBBBBBBBBBBBPJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGP5J!^~~^^^^^^^^^^^J5YYY57!7J55YYYYY5YJ!^^^^^7PPP5PGGGBBBBBBGBBBPY55555Y5GGP5PBGGPPPPGGBBBBBBBBBBGY5BBBBBBBBBBBBBJJBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG57^^!J?!^^^^^:^~^^:~YYYYYYYYYY555YYYYYYYJ!^:^5GPGGGGGGGGGGBBBGGPPPPPP5PPGGP5555GGGGGGGGBBBBBBBBBBGYPBBBBBBBBBBBBBP?GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPJ~^7YY!^^^^^:^77~^^^^Y55Y5YYYYY5Y5YYYYYYYYYJ~7GGGGGGGGBGGGGGPPPPPGGGGGPGGGGGP5P5PGGGGGGGGBBBBBBBBBP5BBBBBBBBBBBBBBGJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGP?^!YY!^:^^^^^~J?^^^^^^?55555YY5YYYYYY5555YYY5Y?YGGGGGGGGBGPPGGGPPPPGGGGBBBBBGP5P5PGGP5GGGGBBGBBBBBG5PBBBBBBBBBBBBBBBYYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGP??5J~^^^^^:^?5?:^^^^!7?Y5555YY5YYYY5YYYY5YYY555J?GGGGGGGG5PGGGBGGGGBBBBBBBBGGGP5?5GGGYGBGBBBBBBBGP5PBBBBBBBBBBBBBBBB5?GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGP!^^^^^:^JP?^^^:^!?YYYYY5YYY5YYY5YYYYY55YY5Y55?JGGGGGG55GGGBBBBBBBBBBBBBGGGGG575GGG55GBBBBBGGGPPPPBBBBBBBBBBBBBBBBG?PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGP5J~:::^Y5J^^:^!JYYYYYYYY55YY5YY555Y5YYYY5YYYY5?PGGGGGJGGGGBGBBBBBBBBBBBBBBGBP?GBGGGGBBBBBBBGGGPPGBBBBBBBBBBBBBBBBGJ5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGPG5?!!YGJ^:^!JYYYYYY5YY5YYYYY5YY55YYYYYYYYYYY5YJGGGGGYGBGGBBBBBBBBBBBBBBBBGBP?GBBBBBBBBBBBBBBPPGBBBBBBBBBBBBBBBBBBYYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGJ~!Y55YYYYYY5YY5YYY5Y5YY55YYYYYY55PP555JGGGGGY5BGGBBBBBBBBBBBBBBBBGBP?GBBBBBBBBBBBBG5PGBBBBBBBBBBBBBBBBBBBYYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGJ5PPPPPP555YYYY55YY55YJ5YY555PGGGGGPP5JGGGGGG55GGGGBBBBBBBBBBBBGGGGP?GBBBBBBBBBBBGY5GBBBBBBBBBBBBBBBBBBBB5JBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGJPPPPGGBBGGP555YYYY55YJ5PPGBBBBBGGPPPJ5GGGGGGG5YPPPPGBBBBBBBBBGPPPGGJ5BBBBBBBBBBGY5BBBBBBBBBBBBBBBBBBBBBB5?BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPJ5GPGGBBBBBBBGGGPPGGGGBBBBBBBGGGGPYJPBGGGBBBBBGY5GPGBBBBBBBBBGPPPGG5YGBBBBBBBBGYYBBBBBBBBBBBBBBBBBBBBBBBY?BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGYYGGBBBBBBBBBBBBBBBBBBBBBBBBBG5555GBGBBBBBBBBBGJGBBBBBBBBBBBBBGGBBGJPBBBBBBBG5YGBBBBBBBBBBBBBBBBGGBBBBB5JBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGYGBBBBBBBBBBBBBBBBBBBBBBBBPYY5GGBGGBBBBBBBBBBB5YBBBBBBBBBBBBBBBBGG55BBBBBBB5YGBBBBBBBBBBBBBBBBGPGBBBBB5YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBYPBBBBBBBBBBBBBBBBBBBBBBBB5JGBBGGGGBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBGGPYGGGGGGGY5BBBBBBBBBBBBBBBBB5YGBBBBBY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBB5YGGGGGBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBGGGGG5YGGGGG5?GBBBBBBBBBBBBBBBBBYYBBBBBBY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBGYGBBBBBBBBBGGBBBBBBBBBBBBYYGGGGGBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBGPPPGGGJPGGPPG55GBBBBBBBBBBBBBBBBJ5BBBBBBY5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBG?5BBBBBBBBBBGJYBGGGGBBBBBBBBBBBBBBBBBBBGPJGBBBBBBBBBBGPPGGGJ5PGGGGBPYPGBBBBBBBBBBBBBGJPBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YYYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGBGJJ55Y?GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5PPGP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPPPPPPPP?Y5555JPBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYPGBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGPPP5?!~~~~~^~!?5555PYPBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5GBGGBBBGYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55YYYYYYYYYYY?^^::^^!Y~::!55555J5BGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5GGGGGBBBBYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?55555555555?^^^^^^^~7^^^?55555Y5BGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPPPP5555555PPPPYGGPGGBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBJ5555555555Y~^^^^^^^^^^^^J55555Y5BGGBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGP55PPGGBBBBPYGGGGG555PGGBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ55555557!~^^~~^^~^~~^^^?55555YYBGGGBBBBBBBBBGGGPPPPPPPPPPPPPPPGPPYYPGGGGPPPPPPJY5GBBBBGYGGGBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGB5?5555Y?~^7!~!!^~~^~~~!:?555555~YBGGGGGBBBGPPPPGGGGGGGGGGGBGGGGGG55P55PPPPPGGGGYPYY5PGBGYGPGBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJJYJ!~^~!!~^!7~:::^?7^^J55555Y~~YBGGGGBBBGYGBBBBBBBBGGGGGGGG5PPJY5PPPPP5555555Y55PP5YPPYGGGBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5J7~^~~7JYYY7!^7Y!...:~^^~555555J^~~5BGGBBBBB5PBBBBBBBGGGPPPGGG5P5J5Y55PPGGGGGGBB5JYPPPY7J5GGGGBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPJ!^^^~!7Y55555Y7^:::..:^^^^7555555?:^~!PBGGGGBBG5GBBBBGBGPGGPPGGBG5?J5GBBBBBBBBBGGBPPGGBBBGYPGGBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGY~~^^^?5GP?Y555Y5Y~::..^~^^^!5555555?::^~!PGGGGBBBG5GBBBBBGPGGGG5PP5Y5GBBBG5GBBBGGP5GYYPBBG5P5PGGBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGY^77^~YGGGGP?555555YJ!^^^:7?7Y5555555!:^^^~?GGGGGBBB55BBBBBGGGGGB5555G5GBBB5?5BBB55YJPYP55GGJGYPPGBBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG!7P~^?GGGGGGP?555555557^^YGPY55555555~:^^^^!5GGGGGGGG5PBBGGGGGGGGP5GGY?P55PJJ5BBGJJPYPJPPYJYPBYPGGBBBBBBBPJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBY!G5^~YGGGGGGG5?5555P5?^^YGP555555555?:^:^^^~?GGGGGGGBGYGBGGGGGGGPGGBP?YPJ5JJJ5GBG5YGYYJJJJJPBGYGGBBBBBBBBP55PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG7JB5^~5GGGGGGGB5J5YJJJ~^~!~7PP555555Y^:^^^^:^!5GGGGGGGBP5GBGGGPPGBBBG5JYYYYYYYYYGGGGGP5??JJ5BGGYPGBBBBBBBB5YGYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPGGP7^JGGGGGGP5YJ5JJY7^~?7?J555555557::^^^^^^~JGGGGGGGGBP5GPPPGGGGP55Y5PYP5Y???JPGGGGBP55JPBBBPYPGBBBBBBBB5YYGYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPGGBPJJY5P555Y57!!YYYYY5555555~^^^^^^^^^7PGGGGGGPPPPGGGGP55PGGGPYGGYYYJ7J?5BGGBBBB5PGGGGY5GGBBBBBBBBYGPYGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGP?55555Y55Y5J!7YYYYY5555557^^^^^^^^^^~5PPPPPPGBBGP5PGGGGGGGGBPYBGYG5YY5PBGBGBG5PGGGPY?5GGBBBBBBBBYGBPYPYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGB5J55555555555YJYYYY5555557^^^^^^^^^^^^?5PPGGBGGPGG5GBGGGGGBBGBPYBY5BBBPYGBBBP5PGBB5Y5YPGBBBBBBBBGYGBBPYPYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBP?555555555555YYYYYY555Y7^^^^^^^^^^^::7PPGGGPPGGBGG5GBGGGGBBBBG5YGJPBBGGGGGPYPBBG5YPYPGBBBBBBBBBPYBBBBPY5YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGY?Y5555555555YYYYYYYYY!^^^^^^^^^^:.::!YYGP5GBBBGGBG5GBGGPGBBGGGPPPY5GBBBGPPGBBPY55YPGBBBBBBBBBB55BBBBB5Y55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBPJPP555555G5YYYYYYYY!^^^^^^^^^^^..::^YPY5GBBBBBBBBPYGBBGPGGGGGBGP5555PG5PBBG5JYYY5GGBBBBBBBBBB5PBBBBBB5YYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBGB5?555555555YYYYYYY7^^^^^^^^^^^:.:^:^PY5GGBBBBBBBBBP5BBGGGGBBGGGBGPP5Y5PBBP5PP5YJGPGBBBBBBBBBBYGBBBBBBBYYYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBG?555Y555555YYYY5J^^^^^^^^^^^:.:^^.~YYGGGBBBBBBBBBBP5BBGPGGGGGGGBBGPPGGBP5GBG5JPGPGBBBBBBBBBPYGBBBBBBBGYJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5J55Y55Y5PP555PP57^^^^^^^^^:::^^:.!JPGGGBBBBBBBBBBBP5GGGPGGGGGGG5YPBGB55BBBPJPGPPBBBBBBBBBB55BBBBBBBBBPJJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5?YYYYYY55YYGGGGPJ7~^::^^^:^^^^::7JPGGGGBBBBBBBBBBB55GP5PGGGG5??YBBB5YGGGPJ5BBGGBBBBBBBBBPYGBBBBBBBBBBPJ5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBGJ?5YYYY5?~?GGPP55YYJ7~^:^^~^^^:^?JGGGGBBBBBBBBBBBBBYPGPGGP5YY5YBBBPYPPPP55PBGGGBBBBBBBBG5GBBBBBBBBBBBGYJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGBGY!~~?5YYYY!~!J55YYYYYY5YJ!^^^^^^:^YYGGGGBBBBBBBBBBBBBGY5JJY5YPG5GBBGY5PPPP55PGBBBBBBBBBBBP5BBBBBBBBBBBBBGJ5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPJ!^^^^~YYYYYYJYY555555YYYYY5J7^^^^:!PPGGGGBBBBBBBBBBBBGPYY5YYYPG55GGB55GPPPPPPPGBBBBBBBBBBGYGBBBBBBBBBBBBBBPJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBGGGGGGGG5?~^^^^^:^?555Y55YY555555Y5Y5YYYYJ!^:^JGGGGGGGBBBBBBGGGPPPPGGGPPPPPYGJ5GYPYPGGGBGPGBBBBBBBBBBGYBBBBBBBBBBBBBBBGJ5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGG5J!~^^^^^^^^JY75Y55555Y55Y555555555YYYY7~5GGGGGGGGGGGPPPPPPPGPGGGBBBBG55?GP5PPGGBBGBGPGBBBBBBBBB55BBBBBBBBBBBBBBBBGJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGP5Y?!^^^^^^^^:^!5G7!5555555YY5YYY55555555YYYYYJYGGGGGGGGG5PGGBBGGGGBBBBBBBGYYYBP55GBBGGGBGPGBBBBBBBBG5GBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG57!~~~^^^^^^^^^^!YGP!~YYYY5555YYYYY555555YYYY5555P5Y5GGGGGGY5BBBBBBBBBBBBBBBBGYJYGPY5GBGGGGBBGGGGBBBBBG5PBBBBBBBBBBBBBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJ77~~~^^^^^:~7YGGY~7Y5YYY555Y5YY555Y55YYY5PPGGGPPG5JBGGGGGYGGBBBBBBBBBBBBBBBBP5PPPJGBBGGGGGGBGGGBGGGG5PBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBGGY~~^^^~7YPGG57~?Y5YYYY555Y5YJY5YYYY55PGBBBGGPP5JGGGGGGGYBBBBBBBBBBBBBBBBBBBBBG5JGBBGGGGBGGGPPGGGPPGBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGPY7?YPGGPY!^!Y55YYYY5YY55Y5YJYY55PGBBBBBGGGPY5GBGGGGGGYGBBBBBBBBBBBBBBBBBBBBBPYGBBBGGGGGGBGPGGP5GBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGP?^:^?YYYYYY555YYYYY55YYPGBBBBBBBGGPYYPBBGGGGGGBP5BBBBBBBBBBBBBBBBBBBGBPYGBBBBGGGGBGGGGGPGGBBBBBBBBBBBBBBBBBBBBBBGYBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGG5J!?55YYYYYY5YY555PPGGBBBBBBBBBBG5YPBBBBBBBBGGGG55GBGGBBBBBBBBBBBBBBBGPYGBBBBBBGGBGGGPYGBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGJPPPPPPGPPGGGGGGBBBBBBBBBBBBBGYPBBBBBBBBBBBBGGBP5PPGPGBBBBBBBBBGPPGBGYPBBBBBBBBBGGPYGBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG5Y5GBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBBGP5GPGBBBBBBBBBGGGGBBY5BBBBBBBBBBPYGBBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBG?GBBBBBBBBBBBBBBBBBBBBBBBBPJBBBBBBBBBBBBBBBBBBBBYGGBBBBBBBBBBBGGBBBPYGBBBBBBBBGYGBBBBBBBBBBBBBBBBBBGGBBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGYPBBBBBBBBBBBBBBBBBBBBBBBBBJGBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBGG5PBBBBBBBG5PBBBBBBBBBBBBBBBBBBB5GBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBBBGPBBBBBBBBBBBBJPBBBBBBBBBBBBBBBBBBBBBPYBGBBBBBBBBBBBBBBGGP5GBBGGGG55BBBBBBBBBBBBBBBBBBBPYGBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBBB5?YBBBBBBBBBBBY5BGBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBBGGGG5PGGGGGPYGBBBBBBBBBBBBBBBBBBBYYBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJGBBBBBBBBBPYPYPBBBBBBBBBGY5BGGBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBGPPPGBGYPGGGGP55GBBBBBBBBBBBBBBBBBGJ5BBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYPBBBBBBBBGYYGGJBBBBBBBBBBY5BGGBBBBBBBBBBBBBBBBBBBBBBBG5GBBBBBBBBBBGPGPGBGY5GGGGGGPYPGBBBBBBBBBBBBBBB5?PBBBBBBBBB5GBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJPBBBBBBBBGJPBB55BBBBBBBBGJ5BGGBBBBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBBBBBGGGGGPJ5GGGGGBBP5PPGGBBBBBBBBBBBGYJPBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YYYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBBBBBGBPJY55JYBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPPPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPPPPPPPG5?55555JGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPGGBBBGPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPPPPPPPPPPPP5?!~~~~~^~!!555555JGBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPGGBBBBBBP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJYYYYY5YYYY5Y?^:^^^^!Y~::^J55555JPBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPGGGBBBBBBG5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJ55555555555?^^^^^^^~7^^~~Y55555JPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGPPPPPPPGGGGPPGGGBBBBBBB5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPY555555555Y~:^^^^^^^^^:^7555555YGBBBBBBBBBBBBBBBBGGGGGBBBBBBBGBBBGGGBBGPP5PPGGGGGGPGGGGPP5YPPGGBBBBBBB5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBY5555555?7~~^^!^^^~~~^^~!555555JGGGBBBBBBBBBBGPPPPPPPPGGGGGGGGGGGPPPP5PGGGBGGGGGG5Y5BBGBBBGPGGGBBBBBBB5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?555555J~!!~~!^~~^!^~~~!555555?GGGGGBBBBBBBB5GBGBBGGGGBGGGGGGGGGGGGPGPPGPPPPPPPPYPPYPPGBBGPGBBBBBBBBB5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBYJ5555Y?!!~^!7~:::~?YJ~!55555P77GBGGGBBBBBBB5GBBBBBBGGGGGGGGGGPPG55PPPGGGGPPPPPPP55PG55GBGPGGBBBBBBBB5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBYY5Y?!7J7!^7Y!....:7!^?5555557~?GGGGBBBBBBBGPBBBBBBGBGGGGGGGGPPGYPP5PP5PPPGGGGGP555PP5Y5PPGGBBBBBBBB5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5J7~!7J555Y7^:::....:^^~Y55555Y~~~?BBGGGBBBBBBPGBBBBBBGGGGPPGBBGP5YPPGGBBBBBBBBBBG5PBBGGGPPPPGBBBBBBBB5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBGY7~^:^!75555Y5Y~::...^~^^~?555555?:^~~YBGGGBBBBBBG5GGGBBBGPGGGG5PPG5YPBBBBBBBBBBBBGP5PGBGGBPGPPGGGBBBBBBG5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGY77!^^?5GP?Y55555YJ!^:^~^?JY55555557::^~~YGGGGGBBBBBPPBBBBBGGGBBG5PGPPPPGBBBP5GBBGGG555P5PBBG5GPGGGGBBBBBBG5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBJ~~~^!YGGGGP?55555555J^^!5G555555555~:::^^~5GGGGBGBBBB5GBGGGGGGGGBGPG5PY5BPPPYPBBGPGP5YPBBP5GG5GPGGGGBBBBBBG5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5!~^^?PGGGGGG5?555555?~:7PPP55555555?:::^^:~7GGGGGGBBBBP5GBBGGGGBGGBPP55Y5GPPY5GBBGGGGPY5P55555PBPGGGGBBBBBBG5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5!^^7GGGGGGGGGYJ5YJ?7^^~!~!PP555555Y^:^^^^:^!?GGGGGGGGGBPPBBBBGGGGGBPPPYYPPP55PPGGGGGGP5P555555GBPGGGGBBBBBBG5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP77?PGGGGGGGP5YJYJ?J~^!?7?J555555557::^^^^^^^!YGGGGGGGGBB5GBGGBGGGGGGG55PPGGP5555PGGGGBGY5Y555PBBPGGBBBBBBBBGPPPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPJJY5P5555?!!7YYYYY5555555~:^^^^^^^:~!PGGGGGGGGBG5GBGBGPPPPGGPPGP5GPYJ55PGGGBGGGB555PGBGPGBBBBBBBBBPYG5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBP?5555555Y5?J7YYYYYY5555557^^^^^^^^^^^~?GGGGGGGBBBG5GGGPGGGGGGGGPGP5PYYY5PGGBBBBBGGPPGGG5PBBBBBBBBBBP55G5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5J555555555YYYYYYYY5555557^^^^^^^^^^^^^!5GGGGGGGGGGPPGGPPPGBGGGBPPB5PGGGGPGGBGBBGGPPGBP5YGGBBBBBBBBB5GGYGPPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBP?555555555555YY5YYY555Y7^^^^^^^^^^^^^^~JGGGGGGGGBBBG5GGGGGGBBBBB55G5GGBGPGGBBBGGPPGBPY5PGGBBBBBBBBG5BBG5P5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGY?Y5555555555YY5YYYYYY!^^^^^^^^^^^^^^^^7PGGGGGGGGGGG5PBGGGGGBBBGG5PP5GBBBGGGGGP5GBG5Y5PGGBBBBBBBBBP5BBBGYGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPJPP555555G5YYYYYYYY!^^^^^^^^^^^^^^^^^^YGGPGGGPPGGBG5PBBGGGGGGGGGPP55PPGBBP55PGBP555PGGBBBBBBBBBB5GBBBBGYP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGB5J55555555YYYYYYYY7^^^^^^^^^^^^^^^^^^^JPPGPPGGGGBBBB5GBGGGGGGBBBBBGP555PGPPGBGP555PGGBBBBBBBBBBGPBBBBBBPYP5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGP?5Y55555555YYYY5J^^^^^^^^^^^~^^^:::::7GP5PBGGBBBBBBG5GBGGGGBBBGGGBBGPP55PBBPPPP55GGGBBBBBBBBBBPPBBBBBBBP5P5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGJ5555Y5Y5PP555PGY^:^^^^^^^^^!^^:.::::JPPGBBBBBBBBBBBG5GBGGGGGGGGBBGBGPPGBG5PBGPYGGPGBBBBBBBBBG5GBBBBBBBBPP5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGG5JP555Y5555YYGGGGJ~^^^^^^^^~~^^:::^::?PGGBBBBBBBBBBBBG5GBGPPGGGGGPYYPGBBGPGBBGYPBGPGBBBBBBBBBP5BBBBBBBBBBPP5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5?55555Y5?~?GGPP5YJ7~^^^^^~^^:.:^^^^5GGGBBBBBBBBBBBBBG5GGPPGGPP5YYPBBBG5PPPPPPGBGPBBBBBBBBBG5GBBBBBBBBBBBP5PGBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBJ75YY5YY!~!J55YYYY5YJ?~^^^^^^^^^^:!GGGBBBBBBBBBBBBBBBP5G5PPPP555BBBBGYPPPPP5PGGGGBBBBBBBBBP5BBBBBBBBBBBBG55PBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGBBBJ!55555YYYYY5555YYYYY55Y?7~^^^^^^:JBGGBBBBBBBBBBBBBBBB55YYP55P5GBBBB5PPPGG5PPGBBBBBBBBBBBG5GBBBBBBBBBBBBBG55GBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGBGY7~!55555Y55YY555YY5YYYY5Y55YJ7~^^:^PGGGGBBBBBBBBBBBBGPPGGGP55PPPGGGBP5PPPPPGGPGBBBBBBBBBBBGPBBBBBBBBBBBBBBBG55BBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGG5?~^^^^J555555Y55Y5Y55YY555555Y5YYYJ!^7GGGGBBBBBBBBGGPPPPGGBBGGGGGPGG5PGPGPPGGBGBGPGBBBBBBBBBG5PBBBBBBBBBBBBBBBBG55BBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGP5J!^^^^^^^!555555555YY5YYY5555555YYY5555YJPGGGGBBBBBPPPPGGPPGGBBBBBBG5GP5GPGGPGGGBBGGPGBBBBBBBBBP5BBBBBBBBBBBBBBBBBBG5PBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP5J7!^^^^^^^^^~J555555555YYYYY5555YY55PPPGGPPGPJGGGGGGBBP5GBBBBGGBBBBBBBBGPGP5PPGPGBGGGGBBGGGGBBBBBBG5GBBBBBBBBBBBBBBBBBBBP5GBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJ!~^^^^^^^^::^!7?5Y55555Y555YY5Y5YYY55PGBBBGGPPGPJGGGGBBBG5GBBBBBBBBBBBBBBBG5P55PGPPGGGGGGGBBGGGBBBGBGPGBBBBBBBBBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGYJ~^~^^^^^~?5PJYYYY55555555YJY5YY5PGBBBBBGGPPP5JGBGGGGGBGPBBBBBBBBBBBBBBBBBGGGPGG5GBGGGGGGGGGGPGBGBGPGBBBBBBBBBBBBBBBBBBBBBBPPBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGPJ~^^~7YGBBYJ55YY5Y55555Y5YJ55PGBBBBBBBGGPPY5GBGGGGGGBGPBBBBBBBBBBBBBBBBBBBBBBG5GBGGGGGGGGBGPGGGPPGBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPYYPGGGBPJYYYY555555YY55PPGBBBBBBBBBGGPYYPBBBBBBBBBBG5BBBBBBBBBBBBBBBBBBBBBBG5GBBGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBGGGGGJY55555YYYY55PGGBBBBBBBBBBBBG5YPBBBBBBBBBBBBBP5GBBBBBBBBBBBBBBBBBBBBG5GBBBBGGGGGGGGGG5GBBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBGBBPJ5YYYYY5PPGGGBBBBBBBBBBBBBBGYPBBBBBBBBBBBBBBBBP5GGGGGBBBBBBBBBBBGGGGG5GBBBBBBBBGGGGG5PBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5BBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5PPPPGGGBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBGPPGGGGBBBBBBBBBGPPGBB5PBBBBBBBBBBBG5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5GBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5JPBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBBBBBBBBBBBBBP5GGGBBBBBBBBBGGGGBBP5BBBBBBBBBBB5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5PBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJPBBBBBBBBBBBGBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBB5GBBBBBBBBBBBBGGBBBG5GBBBBBBBBG5GBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBPPBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYBBBBBBBBBBBJ?BBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBB5GBBBBBBBBBBBBBBBBBBPPBBBBBBBBPPBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBG5BBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP5BBBBBBBBBBYYYBBBBBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBPGBBBBBBBBBBBBBBBBBBG5GBBBBGGG5GBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBG5GBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBYYGJBBBBBBBBBPJBBBBBBBBBBBBBBBBBBBBBBBBBGPBBBBBBBBBBBBBBGGGGGPPGGGGGG5GBBBBBBBBBBBBBBBBBBBG5BBBBBBBBBBBBBG5BBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGYGBBBBBBBBYYBPYBBBBBBBBBYPBGBBBBBBBBBBBBBBBBBBBBBBBBPGBBBBBBBBBBBBGPGGGBG5PGGGGG5GBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBBBBBG5BBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBP?GB5YBBBBBBBBY5BGBBBBBBBBBBBBBBBBBBBBBBBBBPPBBBBBBBBBBBBGPGPGBBP5PGGGGGPGBBBBBBBBBBBBBBBBBG5YGBBBBBBBBBBBBG5BBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YYYYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGBBBBBGGGBGGGGGGBBBPJYY55JYBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y55555555PGGPY?7777!7?JYJ555555YGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJY5555555YY5J~^:^^^^^J!:^J555555YBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYY5555555555~^^^^^^^^?~^^~555555YGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y555555Y5Y7^^^^^^^^^^^^^!555555YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ55555577~~^~~~^:~~~^:^~?55555Y5BGGGGBBBBBBBBBBBBBGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ555555?~~7~~!^^^~~~:~~~J55555Y5BGGGBBBBBBBBBBBGGBBBBBBBBBBBBGBBBBBBGGGGGGGGGGGGGGGGGBBBBBBGGBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYJ55555Y!!~~!7~:::~?J?!^J55555YPBGBGBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGBBBBBGBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ55555J~!~^?5!...:~JJ~^Y55555J5BGBGBBBBBBBBBBBGGBBBBBBBBBBBBBBBGBGGGGGGGGGGGGGGGGGGGGGGGGGBGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y555?~??J^^^:.....:^:!555555!?BGGBBBBBBBBBBBBGGBBBBBBBBBBBGGBBGGGGGGGGGGGGGGGGGGGPPGGGGGGBGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ5J7!J5Y?7:...:::^^^~755555Y~~YBGBBBBBBBBBBBBGGBBBBBBBBBBBBBBBGGGPGGBBBBBBBBBBBGGGGGGGGGGBGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP?7?~?5555Y?!~:.^^~^!!!Y555557^~~5BGGBBBBBBBBBBBGBBBBBBBBBBGGGBGGGGGGBBBBBBBBBBBBBGGGGGBBBBBGBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP5?!^?5J?P55555J77~:^^^~J!?555555~:^~!PBGBBBBBBBBBBBBGBBBBBBBGGGGGBGGGBGGBBBBBBBBBBBBGPPPGGBGGGBGBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5?Y?7?JJPG?J555555P5YJ?!~^^7?Y5555557:^^^^~PBBBBBBBBBBBBGGBBBBBBBBGGGGGGGGGGGGGGGGGBBBGGGPPGGGGGGGGGGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJ^~~!?JGBB5J5Y555PGPJ7!7~^!?Y555555J^:^^^^^!5BBBBBBBBBBBBGBBBBBBBBBBBGGGGGGGGGGGGGGBBBGGGGGGGGGGGGGGGGBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPPG5PBBBBB?YJ7J5PGY~^~~^~~75555555!:^^^^^^^~YGBBBBBBBBBBGGBBBBBBBBBBGGGGGGGGGGGGGGGGBBGGGGGGGGGGGGGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGG?JJ?JJJJ7!~^~!!!!?P5555?^^^^^^^^^~~JBBGBBBBBBBGGGBBBBBBBBBGGGGGGGGGGPPPGGBBBGGPPPPPGGGGGGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBGGJJ5555YJJJ!!~JY?!!?PP55J^:^^^^^^^^^^~JGBBBBBBBBBGGBBBBBBBBBGGGGGGGGPPPPPGGBBBGGGGPPPPGGGGGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?555555YY5JJ?YYY?JY555?^^^^^^^^^^^^^^~JGBBBBBBBBGGBBBBBBBBGGGBGGGGGGPPPPGBBBBBBGBGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG5J5555555555Y5YYYYY5555!^^^^^^^^^^^^^^^~JBBBBBBBBBGGBBBBBBGGGGGGGGGGGGGGGGBBBBBBBBBBBBGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG?Y55555555555555YYY555?^^^^^^^^^^^^^^^^~?GBBBBBBBGGBBBGGGGGGGGGGGGGGGBBGGBBBBBBBBBBBGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5?55555555P55555YYYYYY7^^^^^^^^^^^^^^^^^^YBBBBBBBGGGBGGGGGGGGGBGGGGGGBBBBBBBBBBGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBG?55555555P55555YYYYY7^^^^^^^^^^^^^^^^^^^YBBBBBBBBGGBGGGGBBBGGBBBBGGGGBBBBGGGGGGGGGGGGBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG?55555555555555YYYJ~^^^^^^^^^^^^^^^^^^^~5BBBBBBBBBBBBBBBGBBBBBBBBBGGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGJY5555555555555Y5J!^^^^^^^^^^^~~^^^^^^^~5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGGGGBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5J5555555555555PGJ^^^^^^^^^^^^~~^^^^^^^~5BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGG?Y555555555YJJBGP~^^^^^^^^^^^~~^^^^^^^!GGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBGGBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGB5?5YJ5555Y57~!PPY7~^^^^^^^^^^~~^^^^^^^?GGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBGGBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBG?GG5JY55YYY?JY55YYJ???7!~~^^::^^^^^^^JGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBGGGBGGGGGBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG77GBP?Y55555555555555555YYYJ??!~^^^^^^YGGBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBGBBGBBBBGBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP^^JP5YY555555555555555555555555YJ7^::!GGBBBBBBBBBBBBBBBBBBBBBBBBBGBGGGBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBY^:~Y55555555555555555555555555PPPPPY7^~?GBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBB!:^7555555555555555555555Y55PGGGGGGGGP~^!GBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBGGBBBBBBGGBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBY?5Y?555J?555555555555555555555PGGBBGGGPPPGY!7GBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBGGGGBBBBBGGBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP!!YGBB5J555555555555555555PGGBBBBBGGPPPG5JGBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBGGGJY5555555555555555PGBBBBBBBBGGPPPYYGBGBBBBBBBBBGGBBBBBBBBBBBBBBBBBGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPJ55555555555555PGGBBBBBBBBBBGGP5J5BBGBBBBBBBBBBGGBBBBBBBBBBBBBBBBBGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5J555555555555PBBBBBBBBBBBBBBBPYYGBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBYY55555YY55PGGBBBBBBBBBBBBBBBPYPBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBYY5YYY55PGBBBBBBBBBBBBBBBBBBGJGBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5JPPPGGBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBB5YBGBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBBBG5BBBBBBBBBBGJGBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYGBBBBBBBBBBYJBBBBBBBBBBY5BBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBP~?BBBBBBBBB5JBGBBBBBBBBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBG7:YBBBBBBBBGJGGBBBBBBBBBBBBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPPPPPGGBBGGGGGGGGBBBBBGBBBGP555PBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG?YYYYYY5PGGG5??77??J5PGGP5JJYYYJGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGB5Y555555YJY?~^^^^^^^~J~7JYY55555JGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGBJ555555555P7:^^^^^^^7J~^!5555555JGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGBJY55555YYY7~^^^^^^^^^^^~^7555555JGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGJ55555Y?7~^^^^^^^^^~!^^^^7555555YBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGJ555555?~^~~!~^^~~~!~^~~~?55555YYBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGBYY55555J!~~^!!^^^^~77!~~^J55555J5BGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGPJ5555YY7~~~JY^...^?YJ~^^J55555?PBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGJ55YYYY~^^:~!:.....^::^^Y5555YYBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGPPPPGGJY5YYY7:^7:......:^:::~~Y5555?PBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGPPPPGG5J555J^!7J?~:.^^^^^:^~~75555Y7GGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGPPPGPJ55J~!Y5??5J^:::::^!!~J5555!:YBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGP??PPGP57Y?^!Y5557~!^^:::::~~?5555J::~5BGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPP5?!!7!~^~~?55555Y?^^::!^^~^!5555Y~:^^~YGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGG5!^~?JJ?~^:^Y5555PPB5::.~?~^~~7J555!:^^^^:?PGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGPJ7~^~~!?5YJ5555YPB5::^~~^^^~P555?:^^^^^^^~JPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGPPGGGBYJ555Y7?J7^^~!!!::^J55J^^^^^^^^^^^!5GGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBGGGGBGGGGGGGGGGGGYY5555J!!!7?77?JJJY?7J~^^^^^^^^^^^^^75GGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGJY55YYYYYPP55YY555P5YY?^^^^^^^^^^^^^^^7PGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGJ555YYYY5555555555P5YY5?^^^^^^^^^^^^^^^~JGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGPJ555YYYY5555555555YYYYYY~^^^^^^^^^^^^^^^^7PGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGBP?55YYYYY5PP555555555555?^^^^^^^^^^^^^^^^^^~YBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGB5?5555YYY5P55555555555Y7^^^^^^^^^~^^^^^^~^^^^YGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGB5?555555555555555YYYJ!~^^^^^^^^^~~^^^^^^~~^^^^5GGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGB5?5555555555555555Y7^^^^^^^^^^^^^^^^^^^^^^^^^^7GGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBP?5555555555555P55?^^^^^^^^^^^^^^^^^^^^^^^^^^^!GGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGJY5PY??Y5555Y5JJG?::^^^^^^^^^^^^^^^^^^^^^^^^:7GGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBY5BBG~~75555YY775P!~~^^^^^^^^^^^^^^^^^^^^^^^^PGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBY5BGY?7JY5555555Y55YYJ?7!~^^^:::^~^^^^^^^^::YBGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBJY55Y555555555555555555555YYJ?!~~^:^^^^^^::?GGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGJ5555555555555555555YY555YYY55555Y?~:::^:^JGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGBPJ55555555555555555555Y5Y55PPPGPPPPGY!J~:~5GGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGBGB5J55555555555555555555555PGBGGPPPPPGYYG!7PGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGBYY55555555555555555555PGBBBBGGPPPPPPJPBPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGBGGGJY55555555555555555PGBBBBBBBBGPPPGPYYBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJY555555555555555PGGBBBBBBBBBGGPPPY5BGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB?Y5Y5Y5555555Y5PBBBBBBBBBBBBBGGPYYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJY555Y555Y55PPGBBBBBBBBBBBBBBBPYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJY5Y555YY5PGBBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGJ55Y555PGBBBBBBBBBBBBBBBBBBGJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?PGGGGBBBBBBBBBBBBBBBBBBBB5YBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYBBBBBBBBBBBBBBBBBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJBBBBBBBBBBBBBBBBBBBBBBPYBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBBBBBBJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBBGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55YY5PGGGP5YYY555PPGPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGB5J555J?YJ!~^^^^^^!~7YPGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGJ55555Y~:^^^^^^^!Y~:^!YPGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YPP5Y5GBBBBGG555555555Y55PGBBBBBBBBBBBBBBBBBBGBPJ55555Y?^::^^^^^~?~^^^^YP5555555Y555Y5BGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYPGGGGP5PGG5JY5PGBBBBBGPYJYY5GBBBBBBBBBBBBBBGGGBYJ5555577^^^^^^^^^^^^^^^?YYYY5555555PJYBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5GGGGGGPJ?Y5BBBBGGPPPPP?!?GG5Y5GBBBBBBBBBBBBBGGBYY55555~^~~~^:^^~^^^^^^^J555555555555?GBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5Y5GBBGGG?!YBG5Y55YY5YYJ?7!?5GGGYYGBBBBBBBBBBBGGBBYJ5Y55Y~~!~!~^:^~~~^^^~^7YYY55555555?5BGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YPBBGGGP7~??JY5YYYY555YJ!!!!75GGYYGBGGGGPPP55555PJ?JJ??Y?^~~?7:...!?J7:^~!?J?J555555JYBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5PBBBBGJ!!!7?JYPGGBBBBBP7!Y5J75GGYY55PPPP555PPPGGP?55J7YY~^~?!.....:^:.^^^~J?Y55555JYBGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55GBBBBGJ!~!7JGGYYGBBBBB57!JPBGPPGJ?PBGPPPPPP5PGGGGJYY??Y5?^::.........:~~~~?555555YJGBGGBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55GBBBBGY!?J?5PJ!?GBBBP55J?JJYP5J57~JPGGGGG55YPGGGG5JJ?Y555~::..^~~~::^^~77^J55555YJGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55GBBBBGYJ5J?JJ!!!J5P5?7??7??J?7~?Y7YBBBBG555PGGGPGG?7J5555?^~~::::^^~~!?YY!75555YJGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55GBBBBBPJYY?7!!!!?5P555Y?777JYY!!JJ5BGPPY5PPPGGGPG5^7555555!^!~:::~~!~777Y!7555YJPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55GBBBBBGYJYJ77!^~JPGBB5!~~~^^JGJ~?YJY5PYJPPPGGGGGP7.!555555J:~~...!!~~~!JY!!55YJPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55PBBBBBG5J5Y7^^^~?PGGBBGY77?5GP?77JJ5#GJ5GPPGGGGP?::^Y55555J^~J^..~?~::^J5!~5Y?GGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP55GBBBBGPYYYJ?7?YPGGGBBBBBBBBBY!7?JY??JPGPPGGGGGY~:^:!55555J^~5?..:?7~:.:J~!Y~~YGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55GBBBBBG5JYYYPBBG5PBGGPPGBBBP?JG5JJ?YGGPPPGGGPJ?!:^:~Y5555!^^!!~::777~::~^7!^^^?PGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYPBBBBBBPJYYJYGBBGY?7!~~?GB5?YGB5JJJYGPPPGGGGY7Y!:^^^J5Y5?~!77?YJJYJYJJ?~?J?!^^^~YGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55GBBBBBG5JYY??5PPJ7???YGGY?5GPY5JJJJ5PPGGGGY?Y5!^^^^?5Y?!?YYYYY5PP555Y?J55YY?^^^^75PGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YPBBBBBBGYJYY?7??J5PGGP?!7GPYYPG5JJJYPGGGG5?5P5!^^^:75J?JYYYYYY5P555YYYY5P5YY7^^^^~7YGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJJYGBBBBBGPJY5Y7!?YJJY?~!7?7~!?J55YJJYGGGG5?5PP5!^^^^~YYYYYYYYYY5555555555YYYYJ~^^^^^^75PGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ?YPBBBBBGGYJ55?!?PGPPJ!!~!!7777???YJYPPG5J5PPP5~^^^^^?YYYYYYYYPP5555555555YY5J~^^^^^^^^!YPPPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYYYYPGBBBBGGPJYPJ!7PBGPJJ?!!7J?7??!~JYJYP5JPGGGG5!^^^^:7YYYYYYY55555Y55555P555Y!~^^^^^^^^^^!JPPPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5P55PBBBBGGPYYPY?7JYPPYJJ?5PJ?JJYY?YY?YYYPGGGGGP7:^^^:!YJJYYY5555555YYY5555J7~^^^^^^^^^^^^^^!5PGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YPBP55GBBBGGGYYGPJJJYGBPJJJYYPGG5Y5J5J?J7JPGGGGGGJ^^^^:!YYYYY5PP555555YYY5Y7^^^^^^^^^^^^^^^^^^^75GPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYYPBG55PBBBBBGYYBPJYJYGBPJY5YYPGGG5?JP?77JJYPGGGGPP!^^^:7YYYJJY55555555YY5J~^^^^^^^^^^^^^^^^^^^^^~?PPPGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPY5GGGP5PBBBBGPYPB5??7?5BPJYGP5YPGGY!YY~~?P5YJYPGPPGY~:^^?PPP577?YY5YYYYY5Y~^^^^^^^^^^:::::^^^^^^^^^7PGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5YPBBBPY5GBBGPY5GP?7?JJJYY?YPPPYJY7^!J77!YPPP5JY5PPPPJ^^7GGGGP!~!Y5YYYYYYJ~^^^^^^^^^:::::^^^^^^^~~^^:?GPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYYGBBBG5YPBBGYY5?!7Y5PGGGGPPPPPPY?!7JJP5??Y5PP5YYYPPPG??5PPPPY??JY5555YY?~^^^~^:^^:::::::~~^^^^^~!^^^^?PGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5GBBBG5Y5PP5YY?!75GGGGGGPPGGGG5Y?~~JGPP5J?J5P55PYYPPY?55YYY5555555555YY7^:^^^^^^^^::::::^7!:::::!!^^:!PPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYYGBBBG5555J?JYYY5GGBBGGGPPPPGGGY~^JGG555Y?JYY55PPP5??YYYYYYYYYYYYYYYYYYY?!~^^^!^^^^::::::!Y7!777??^~~^YGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYYGBBBGP5YJJ5GGGGGGBBBBBBGGGBBBGGPPBBGPPPP5YYYYPGGPJ7???YYYYYYYYYYYYYYYYYYJJJ?7?7^::^~!?JY5PPPPPPPP55PPPPGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYYGBBBGPY5G#BBBBBBBBBBBBBBBBBBBBBBBBBBBGGGPYYYYPGGJJ5YJ??JY5555YYYYYYYYYYYYJYY5YJJ?7?YPPPPPPPPPPPPGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYYGBBBGGYYPBBBBBBBBBBBBBGGBBBBBBBBBBBBBGGGPYYYYPGY?555YYJ??JYY5YYYYYYYYYYYYYYYY55PPPPY?PPGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5GBBBBG5YPBBBBBBBBBBGPPPPGBBBBBBBBBBBBBGBP?5JJPP?5555555YJ??JYY5YYYYYYYY55PPPPPPPPGG5JGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5GBBBBBPY5GBBBBBBBBBGPP5PGBBBBBBBBBGPPPGG??J77?J?5555555YYYJ???JYYYY55PPGBBGGGPPPPP5JGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5Y5GBBBBPYYGBBBBBBBBBBGGGBBBBBBBBBBGP555GJ!?YG5?~~JY555555JJYYJ??JJ5PGGBBBBBBGGPPGPYYGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPY5GBBBBPYYGBBBBBBBBBBGBBBBBBBBBBBBGGPPPJ75GBGGP?^7?JY5555J77?YYYJY5GBBBBBBBBGGGPYYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55PBBBBPYYGBBBBBBBGPPPGBBBBBBBBBBBGGG5J5BBBBBGGG?!77JY5Y5YJ77?YGGGP5PGBBBBBBGGYYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP55GBBBPYYGBBBBBBGGPPPGBBBBBBBBBBBBGJYGBBBBBBBGBG7777?YYYY55YJ?YPGBP55PBBBBBBPJBBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55GBBBPYYPGGGGGGGGGGGGBBBBBBBBGGP5?5BBBBBBBBBGGBP??77?J5PPGGPJ?JPGBG5Y5GBBBBGJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP55GBBGYJ5PPP5J??J5GGGBBBBBBBBGP5?5BBBBBBBBBGGGGBPJ?77J5GBBGGPYYYYPGGG55GBBBBYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGP55GB5JPBBBBPYJ?JYPGBBBBBBBBBBPJ5BBGGBBBBBGBGGGGGGJJJYY5GBGGGP5YYYPGBGY5GBBBYGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55P5YPBBBBGYYJ?YJPBBBBBBBBBBG7YBBGJYPBBBBBBGGGGGGGY?JJJ5GGGGGPYY55PGBPY5GBBYGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@sleep 0.03
+		@clear
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5YY5GGGGGGGGGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYJYYYJYPGPYJ???JJJ5PPPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPPPPGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBPJ55555J?7~^^^^::^!^!JPGGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5PGGP5PGBBBBBBBBBBBGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGBYY55555Y~:^^^^^^^7J^^^~YPGGGGGGGGGPPPPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5PBBGGGP5PBBBBGGP5Y55555PPPPPGGBBBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGJY5555YY?^:::^^^^~!~^^^~Y555YYYYYYYYYY?PBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB55GBBBBGGG55GP5J5PGGGBBBBBGPPP5YYGBBBBBBBBBBBBBBBBBBBBBBBBBGGGGGGJ55555YJ7^^^^^^^^^^^^^^^JYY55555555555JGBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYPBBBBBBGGGJJYPBBBBGGGGGGGP77PBBPJ5GBBBBBBBBBBBBBBBBBBBBBBBBGGGGGJY55555Y~^~~^^^^~^^^^~^^J55555555555P?YBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5YGBBBBBBG5?YBBGPP5YYYYYYYY??JJGBBG5YPBBBBBBBBBBBBBBBBBBBBGGGGBGGB5J55555Y?~~~~^:^~~!~^^~~JYYYY5555555YJGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYYGBBBBBBGJ?Y5JJY55555YYJYJ777!7YGBB5JPBBBBBBGGGGPPPP5PPPP5PPPPGGGGJ555555J~!7!...:!?J!:^^!?Y?7555555Y?GBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYYGBBBBBBG55Y7JYJY5PPGBBBBGJ~!JJ77YGBYYPPPPP5PPPPPPPPGGGBBBBBPJGGGBYJ5555YY!!7~.....::.:^~^~??Y555555?PBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YGBBBBBBGPY?77YGGPGBBBBBBP77JGBG55PG5?YGGGGGGPPPPPPGGGBBBBGBYYGGGGG?5555557^:.....::..^^^~~75555555?5BGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YGBBBBBBGP5Y7JGG57YBBBBBGPJY5JYGBGYPGJYGGPPPPGGGP55PGGGBBBBPJPGGGGGJY55555Y~^:.^~~~::^^^!J?~J55555J5BGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPYPBBBBBBGPP5?YGJJ7YGGBGYYGYYP5JJYYJJPY?PGBBBBGP55P5PGGGGBBGJPBGGGGGJ?555YY5Y~^^::::^~^!?YYY?~J555JPGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP55GBBBBBGPPP?JP??JYY5GGY?JYYJJY55?!!5Y?GBBBBBP5PGG5GGGGGGBYYGGGGGG5~!5555555?^~^::~~!!777JYY7^JYJPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5YGBBBBBGGPPJ?J????5GGGGP5?7~!7?YGY~?5JPBGPPYJGGGP5GGGBGB5JGGGGGGG7:^Y555555577^..!7~~^~JJYYY?!~7PGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGPYPBBBBGGGPP5J?7!~!5GGGBGY7~~!~~?GP!!YJ?55PPYYGGGPPGGGGGPJPBGGGGGY~:^!Y555555?~7:.^7~^::!5P5YJ~^:~YGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG55GBBBBGGGP5J7~~7!JGGBBBBBJ77JPGGJ?J75?PBB5JPGGGPPGGGBGJ5BGGGGGP!^:^:7555555J~7!::777!:.^JJ7^::::^JPPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYPBBBBGGGG5YJ??JJPBBBBBBBGBBBBBG7??7Y5J5YYGGGGPPGGGGGY5GGGGGGGJ^^^^:^Y5555YJJ?7~~?JJJ?7!77!!:::^~:JPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ5BBBBBBBBPYYYPBG5PBBBBBBBBBBBBY7PBP?5Y75BGGGGPGGGGGJYGGGGGGGP!^^^^^:!Y5Y5YYYYY?JPG555Y55555?^:~Y~^PGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYYGBBBBBBBGY5PJ5BGGGP5??77JGBB5?PBBGYJPY5GGGGGGGGGGYYPGGGGGGG5~^^^^^^^?YYYYYYYYJY555555YYY5P5J~7P!^PGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYPBBBBBBBGPJ5PY5GBY7?JYY?5BPJJPBPY5P5YP55GGGGGGGPJ5BGGGGGGGGY^^^^^^^:~YYYYYYYYYY5555555YYYYYY?5P?YGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?5BBBBBBBBG5Y5PYYPG5Y55PBGJ75BG5Y5BBBPYP5YGGGGGGY5BBBGGGGGGG?^^^^^^^^:!YYYYYYYYYPP5YYY555YYY5?5PPPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB57YBBBBBBBBGGP5PPPYJYPPPY?7~JPJ?YGGGGGG55P5PGGGPYPBBBBGGGGGGG?^^^^^^^^:~YYYYYYYYY555YYYYYY555J?PPPPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBP?5YPBBBBBBBBGGP5PGP555YY??Y!??7!7?Y5GGGGP5PPPGPYPBBBBBGGGGGGG?^^^^^^^^^^?YYYYYY555555YYYYY557!?J5PPPPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYYG55GBBBBBBBBGG55PPPPGBBJ7!~77Y5?7?7YGGGGPPPPG55BBBBBBBGGGGGP7^^^^^^^^^^?YYYYYY5PP5555YYY5J!^^::^~7J5PPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5JPGP5GBBBBBBBBBGG5YY5GBBGJJY7??YJ??Y55PGGGGGPPPPPGGBBBBBGGGGGP7^^^^^^^^^^J5555Y55P55555YYYY~~~^^^^:::^7YPGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJYGBG55GBBBBBBBBBG5YYJ5BBB5JJJPG5J5P55PGGGGGG55PGGGGGBBBBBGGGPP?^^^^^^^::~5GGGGPJ?JYYYYYYYJ~^^^^^^^^^^::^!?5PPGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYJGBGBPYPBBBBBBBBBGY5G5YPBBGYJPYY5GBGG5YPGGGGYYGGGGGGGGGBBBGGGPPY^^^^^:^!?YPPPGG57~!YYYYYYJ~^^^^^^~^^^^^~~^:~?5GGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ5GBBBG55GBBBBBBBBPYPGG5YGBBP?PBP55GGGG5Y5P555PGGGGGGGGGGBBGGGPPP~:^^~7Y555YYY55J77JYYYYYJ~^^^^^^:~?~^^^^~7~::~7YGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBYJGBBBBBG55GBBBBBBGYPGGGP5PGGYYPGGGGGPGGG55P55PGGGGGGGGGGGBGGGGPP5^:^?Y55YYYYYYYYY5555YYY?~^^^^^^^::^??^:^^^7J!::^7PGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJ5BBBBBBBPYPBBBBBB55GGGPPGGGGPPGGGGGGGGP55PPPPPPPGGGGPGGGGGGBBGGPP~!Y5YYYYYYYYYYYYYYY5YY?^^^^^^^^::^:^?Y~:^^:~YJ^^^!5GGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5YPBBBBBBBG55GGBBBG5PGGGBBBGGGGGGGGGGGGGGPGGGGGGP5PGGPY5BGGGGGBGGGY?5YYYYYYYYYYYYYYYYYYYY7^:^^^^^^:::::^?5!:^^:~YJ^::!5PGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5BBBBBBBBGG5PGGGPPGGGBBBBBGPPGGGGGGBBBBGBBBGPPPPPPPGP5PGGPPGBGGGJ?YYYYYYYYYYYYYYYYYYYYYYYJ7~^^^^^^::::::J5!^~~~7PJ?J?5GGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPY5BBBBBBBBBBP5PGGGGBBBBBBBBGGGBBBBBBBBBBBBBBGGPPPGGP5PGGGG5PGGGBJ?5YYYYYY5555YYYYYYYYYYYYYYYYJ?!^::^^~!77JPP5PPPPPPGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB5YPBBBBBBBBBBBP5GGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBGBBGGG5PGGBGPGGGGY?YYYYYY55YY5YYYYYYYYYYYYYYYYYY55J?7?5PPPPPPPPPPPGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYYGBBBBBBBBBBBP5PGBBBBBBBBBBBBBBBGGBBBBBBBBBBBBBBBBGGP5GBBBGBGGP?YYY55555YYYYYYY55YYYYYYYY55PPPPPPPPJ5GPGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGY5BBBBBBBBBBBBG55GBBBBBBBBBBBBBGPPPGGBBBBBBBBBBBBBGGGP5GBBBBBGG5J5555555Y55YYYYYY5555PPPGGGBBGGPPGPPJPGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ5BBBBBBBBBBBBBP5PGBBBBBBBBBBBBGPPPPGBBBBBBBBBBBBBGGG5PGBBBBGGGJJ5YYY55YY55Y555PPPGGBBBBBBBBBGGPPPPJPGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGJ5BBBBBBBBBBBBBBP5GBBBBBBBBBBBBGGGGBBBBBBBBBBBBGGGGG55GBBBBGGGGY?5YYYY555PPPGGGBBBBBBBBBBBBBBGGGP5JPBGGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPJPBBBBBBBGBBBBBBPYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBGGP55PGBBBGGGGGGG?YPPPGGGGGBBBBBBBBBBBBBBBBBBBBGPY5GBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYPGBBBBBGPGBBBBBGYGBBBBBBBBBBBGGGGBBBBBBBBBBBBBGGPPGGGBBBGGGGGGGGYYYGBGGGGGBBBBBBBBBBBBBBBBBBBBJPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYPBBBBBBBPGBBBBBG5GBBBBBBBBGGP5PPGGBBBBBBBBBBBBP5PBBBBBBGGGGGGGGBBG5JPBGGGBBBBBBBBBBBBBBBBBBBBB55BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYPGBBBBBGPGBBBBBG5GBBBBBBBBGGGPPPGGBBBBBBBBBBBPYGGGGBBBBGGGGGGGGGGGBGJ5BGGGGBBBBBBBBBBBBBBBBBBBPYBGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBPYGBBBBBBG5PGBBBBG5PGGGGGGGGGGGGGGGBBBBBBBBBBBPYGGGGPGGBBGGGGGGPGGGGGGGYYBBBGBBBBBBBBBBBBBBBBBBBGYGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBGYPBBBBBBBP5GBBBBPYPBGGGGPPP55PPGGBBBBBBBBGGGPYGBBBGPPPGGGGGGGGGGGGGGGGGYYBBBBBBBBBBBBBBBBBBBBBBBJGBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@echo "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBG5PGBBBBBBP5GBBBGJPBBBBBGGGP5555PGBBBBBBBBBB5JPBBBBBGGPPGGGGGGGPPPPGGGGGGYYBBBBBBBBBBBGYGBBBBBBBBYPBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+		@clear
